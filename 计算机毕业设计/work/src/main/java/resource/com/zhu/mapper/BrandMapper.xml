@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhu.mapper.BrandMapper">
+
+    <resultMap id="brandResultMap" type="brand">
+        <result property="brandName" column="brand_name" />
+        <result property="customName" column="custom_name" />
+    </resultMap>
+    
+    <delete id="deleteByIds">
+        delete from tb_brand where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+    	</foreach>
+    </delete>
+    
+    <select id="selectByPagesAndCondition" resultMap="brandResultMap">
+    	 select *
+         from tb_brand
+        <where>
+            <if test="brand.brandName != null and brand.brandName != ''">
+                and brand_name like #{brand.brandName}
+            </if>
+            <if test="brand.customName != null and brand.customName != ''">
+                and custom_name like #{brand.customName}
+            </if>
+            <if test="brand.status != null">
+                and status = #{brand.status}
+            </if>
+        </where>
+        limit #{begin}, #{size}
+    </select>
+    
+    
+    <select id="selectTotalCountByCondition" resultType="java.lang.Integer">
+    	 select COUNT(*)
+         from tb_brand
+        <where>
+            <if test="brandName != null and  brandName != ''">
+                and brand_name like #{brandName}
+            </if>
+            <if test="customName != null and  customName != ''">
+                and custom_name like #{customName}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+    
+</mapper>
