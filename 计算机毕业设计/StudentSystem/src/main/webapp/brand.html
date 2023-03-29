@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生管理系统</title>
+    <style>
+        .el-table .warning-row {
+            background: oldlace;
+        }
+
+        .el-table .success-row {
+            background: #f0f9eb;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+
+        <!--搜索表单-->
+        <el-form :inline="true" :model="student" class="demo-form-inline">
+
+            <el-form-item label="学生ID">
+                <el-input v-model="student.studentId" placeholder="学生ID"></el-input>
+            </el-form-item>
+
+            <el-form-item label="学生姓名">
+                <el-input v-model="student.studentName" placeholder="学生姓名"></el-input>
+            </el-form-item>
+
+            <el-form-item label="科目">
+                <el-select v-model="subject" clearable placeholder="请选择科目名称">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-input v-model="minScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
+            <nobr> ~</nobr>
+            <el-input v-model="maxScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
+
+            <el-form-item>
+                <el-button type="success" @click="clear" plain>清空</el-button>
+                <el-button icon="el-icon-search" type="primary" round="true" @click="onSubmit"></el-button>
+            </el-form-item>
+        </el-form>
+
+        <!--按钮-->
+
+        <el-row>
+
+            <el-button type="danger" plain round="true" @click="deleteByIds">批量删除</el-button>
+            <el-button type="primary" plain round="true" @click="addStudent">新增</el-button>
+            <el-button type="primary" plain round="true" @click="">导出为Excel</el-button>
+
+        </el-row>
+        <!--添加数据对话框表单-->
+        <el-dialog title="添加学生" :visible.sync="dialogVisible" width="36%">
+            <p>信息</p>
+            <el-form ref="form" :model="student" label-width="80px">
+                <el-form-item label="学生ID">
+                    <el-input v-model="student.studentId"></el-input>
+                </el-form-item>
+
+                <el-form-item label="姓名">
+                    <el-input v-model="student.studentName"></el-input>
+                </el-form-item>
+
+                <el-form-item label="性别">
+                    <el-radio-group v-model="student.studentGender">
+                        <el-radio label="男"></el-radio>
+                        <el-radio label="女"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+
+                <el-form-item label="出生日期">
+                    <el-col :span="11">
+                        <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions"
+                            v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+
+                <el-form-item label="电话">
+                    <el-input v-model="student.studentTel"></el-input>
+                </el-form-item>
+
+                <el-form-item label="住址">
+                    <el-input type="textarea" v-model="student.studentAdress"></el-input>
+                </el-form-item>
+                <p>学分</p>
+                <el-form-item label="语文">
+                    <el-input v-model="subject.chinese"></el-input>
+                </el-form-item>
+                <el-form-item label="数学">
+                    <el-input v-model="subject.math"></el-input>
+                </el-form-item>
+                <el-form-item label="英语">
+                    <el-input v-model="subject.english"></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="addstudent">提交</el-button>
+                    <el-button @click="dialogVisible = false">取消</el-button>
+                </el-form-item>
+            </el-form>
+
+        </el-dialog>
+
+
+
+
+        <!--表格-->
+        <template>
+            <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName"
+                @selection-change="handleSelectionChange">
+                <el-table-column type="selection" width="55">
+                </el-table-column>
+                <el-table-column type="index" width="50">
+                </el-table-column>
+
+                <el-table-column prop="studentId" label="学生ID" align="center">
+                </el-table-column>
+                <el-table-column prop="studentName" label="姓名" align="center">
+                </el-table-column>
+                <el-table-column prop="studentGender" align="center" label="性别">
+                </el-table-column>
+                <el-table-column prop="studentBirth" align="center" label="出生年月日">
+                </el-table-column>
+                <el-table-column prop="studentTel" align="center" label="电话">
+                </el-table-column>
+                <el-table-column prop="studentAdress" align="center" label="住址">
+                </el-table-column>
+                <el-table-column prop="studentScore" align="center" label="各科学分">
+                </el-table-column>
+
+                <el-table-column align="center" label="操作">
+
+                    <template slot-scope="scope">
+                        <el-row>
+                            <el-button type="primary" round="true" @click="startEdit(scope.row)">编辑</el-button><br>
+                            <el-button type="danger" round="true" @click="deleteById(scope.row)">删除</el-button>
+                        </el-row>
+                    </template>
+
+                </el-table-column>
+
+            </el-table>
+        </template>
+
+        <!-- 编辑表单 -->
+        <el-dialog title="编辑" :visible.sync="editDialogVisible" width="36%">
+            <template slot-scope="scope"> <!-- 编辑的scope -->
+                <p>信息</p>
+                <el-form ref="form" :model="student" label-width="80px">
+                    <el-form-item label="学生ID">
+                        <el-input v-model="student.studentId"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="姓名">
+                        <el-input v-model="student.studentName"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="性别">
+                        <el-radio-group v-model="student.studentGender">
+                            <el-radio label="男"></el-radio>
+                            <el-radio label="女"></el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+
+                    <el-form-item label="出生日期">
+                        <el-col :span="11">
+                            <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions"
+                                v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
+                        </el-col>
+                    </el-form-item>
+
+                    <el-form-item label="电话">
+                        <el-input v-model="student.studentTel"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="住址">
+                        <el-input type="textarea" v-model="student.studentAdress"></el-input>
+                    </el-form-item>
+                    <p>学分</p>
+                    <el-form-item label="语文">
+                        <el-input v-model="subject.chinese"></el-input>
+                    </el-form-item>
+                    <el-form-item label="数学">
+                        <el-input v-model="subject.math"></el-input>
+                    </el-form-item>
+                    <el-form-item label="英语">
+                        <el-input v-model="subject.english"></el-input>
+                    </el-form-item>
+
+
+                    <el-button type="primary" @click="confirmEdit">提交</el-button>
+                    <el-button @click="cancelEdit">取消</el-button>
+                    </el-form-item>
+                </el-form>
+            </template>
+        </el-dialog>
+
+
+
+
+
+
+
+        <!--分页工具条-->
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="curPage"
+            :page-sizes="[5, 10, 15, 20]" :page-size="5" layout="total, sizes, prev, pager, next, jumper"
+            :total="totalCount">
+        </el-pagination>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+
+
+    <script>
+        new Vue({
+            el: "#app",
+
+            mounted() {
+
+
+            },
+
+            methods: {
+                clear() {
+                    this.student.studentId = '';
+                    this.student.studentName = '';
+                    this.student.studentAdress = '';
+                    this.student.studentBirth = '';
+                    this.student.studentGender = '';
+                    this.student.studentScore = '';
+                    this.student.studentTel = '';
+                    this.maxScore = '';
+                    this.minScore = '';
+                },
+                startEdit(row) {
+                    // 获取改行已经有的数据，以供填入修改框
+                    this.student = JSON.parse(JSON.stringify(row));
+                    this.subject = JSON.parse(JSON.stringify(row));
+                    // 弹出修改框
+                    this.editDialogVisible = true;
+                },
+                addStudent(){
+                    //因为绑定的都是student，所以在新增时要重新清空一下数据
+                    this.student.studentId = '';
+                    this.student.studentName = '';
+                    this.student.studentAdress = '';
+                    this.student.studentBirth = '';
+                    this.student.studentGender = '';
+                    this.student.studentScore = '';
+                    this.student.studentTel = '';
+                    this.dialogVisible=true;
+                }
+
+
+
+
+
+            },
+            data() {
+                return {
+                    totalCount: 100,
+                    // 当前页码
+                    curPage: 1,
+                    //每页显示条数
+                    pageSize: 5,
+                    // 添加数据对话框是否展示的标记
+                    dialogVisible: false,
+                    editDialogVisible: false,
+
+                    // 品牌模型数据
+                    student: {
+                        studentId: '',
+                        studentName: '',
+                        studentGender: '1',
+                        studentBirth: "",
+                        studentTel: "",
+                        studentAdress: ''
+                    },
+                    subject: {
+                        chinese: '',
+                        math: '',
+                        english: ''
+                    },
+
+
+                    //被选中的数组
+                    selectedIds: [],
+
+                    // 复选框选中数据集合
+                    multipleSelection: [],
+                    // 表格数据
+                    tableData: [{
+                        studentId: '加载中',
+                        studentName: '加载中',
+                        studentGender: '男',
+                        studentBirth: "2022-1-2",
+                        studentTel: '加载中',
+                        studentAdress: '加载中',
+                        studentScore: '加载中'
+
+                    }, {
+                        studentId: '加载中',
+                        studentName: '加载中',
+                        studentGender: '加载中',
+                        studentBirth: "加载中",
+                        studentTel: '加载中',
+                        studentAdress: '加载中',
+                        studentScore: '加载中'
+
+                    }, {
+                        studentId: '加载中',
+                        studentName: '加载中',
+                        studentGender: '加载中',
+                        studentBirth: "加载中",
+                        studentTel: '加载中',
+                        studentAdress: '加载中',
+                        studentScore: '加载中'
+
+                    }, {
+                        studentId: '加载中',
+                        studentName: '加载中',
+                        studentGender: '加载中',
+                        studentBirth: "加载中",
+                        studentTel: '加载中',
+                        studentAdress: '加载中',
+                        studentScore: '加载中'
+
+                    }, {
+                        studentId: '加载中',
+                        studentName: '加载中',
+                        studentGender: '加载中',
+                        studentBirth: "加载中",
+                        studentTel: '加载中',
+                        studentAdress: '加载中',
+                        studentScore: '加载中'
+                    }],
+                    //科目默认选项
+                    options: [{
+                        value: '选项1',
+                        label: '语文'
+                    }, {
+                        value: '选项2',
+                        label: '数学'
+                    }, {
+                        value: '选项3',
+                        label: '英语'
+                    }],
+                    maxScore: '',
+                    minScore: '',
+                    radio: '1'
+
+
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
