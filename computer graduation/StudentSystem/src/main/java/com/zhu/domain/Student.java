@@ -1,6 +1,9 @@
 package com.zhu.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
+import java.util.List;
 
 
 public class Student {
@@ -15,12 +18,22 @@ public class Student {
     public String studentId;
     public String studentName;
     public Gender studentGender;
+    @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     public Date studentBirth;
     public String studentTel;
     public String studentAdress;
-
     public String getStudentId() {
         return studentId;
+    }
+
+    public List<Score> scores;
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
     }
 
     public void setStudentId(String studentId) {
@@ -73,10 +86,11 @@ public class Student {
         return "Student{" +
                 "studentId='" + studentId + '\'' +
                 ", studentName='" + studentName + '\'' +
-                ", studentGender='" + studentGender + '\'' +
+                ", studentGender=" + studentGender +
                 ", studentBirth=" + studentBirth +
                 ", studentTel='" + studentTel + '\'' +
                 ", studentAdress='" + studentAdress + '\'' +
+                ", scores=" + scores +
                 '}';
     }
 }

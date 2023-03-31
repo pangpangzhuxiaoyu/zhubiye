@@ -1,13 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zhu.dao.StudentDao">
-    <resultMap id="StudentResultMap" type="com.zhu.domain.Student" >
+    <resultMap id="studentResultMap" type="com.zhu.domain.Student" >
         <result column="student_id" property="studentId"/>
         <result column="student_name" property="studentName"/>
         <result column="student_gender" property="studentGender"/>
-        <result column="student_birth" property="sudentBirth" javaType="java.util.Date"/>
+        <result column="student_birth" property="studentBirth"/>
         <result column="student_tel" property="studentTel"/>
         <result column="student_adress" property="studentAdress"/>
+        <collection property="scores" ofType="com.zhu.domain.Score">
+            <id  column="student_id" property="studentId" />
+            <id column="course_id" property="courseId" />
+            <result column="subject_score"  property="subjectScore"/>
+            <association property="course" javaType="com.zhu.domain.Course">
+                <id  column="course_id" property="courseId"/>
+                <result column="course_name"  property="courseName"/>
+            </association>
+        </collection>
     </resultMap>
+    <!-- 在查询学生时关联查询学生的所有成绩 -->
+    <select id="selectAll" resultMap="studentResultMap">
+        SELECT s.student_id, s.student_name, s.student_gender,s.student_birth,s.student_tel,s.student_adress, c.course_name, sc.subject_score
+        FROM Student s
+                 LEFT JOIN Score sc ON s.student_id = sc.student_id
+                 LEFT JOIN Course c ON sc.course_id = c.course_id
+    </select>
 </mapper>

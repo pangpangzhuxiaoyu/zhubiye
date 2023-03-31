@@ -16,7 +16,7 @@ public class StudentController {
     @Autowired
     private StudentService studnetService;
 
-    @GetMapping("/{}")
+    @GetMapping
     public List<Student> selectAll() {
         return studnetService.selectAll();
 
