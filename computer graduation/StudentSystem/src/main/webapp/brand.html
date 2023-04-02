@@ -131,7 +131,7 @@
                 </el-table-column>
                 <el-table-column prop="studentAdress" align="center" label="住址">
                 </el-table-column>
-                <el-table-column prop="studentScore" align="center" label="各科学分">
+                <el-table-column prop="scores" align="center" label="各科学分">
                 </el-table-column>
 
                 <el-table-column align="center" label="操作">
@@ -226,11 +226,24 @@
             el: "#app",
 
             mounted() {
-
+                this.selectAll();
 
             },
 
             methods: {
+                selectAll(){
+                    axios({
+                        method:"get",
+                        url:"localhost:8080/students",
+                        data:this.student
+
+                  }).then(resp => {
+                        this.tableData = resp.data.student;
+                        //设置总记录数
+                        /*this.totalCount = resp.data.totalCount;*/
+
+                    })
+                },
                 clear() {
                     this.student.studentId = '';
                     this.student.studentName = '';
@@ -284,7 +297,13 @@
                         studentGender: '1',
                         studentBirth: "",
                         studentTel: "",
-                        studentAdress: ''
+                        studentAdress: '',
+                        scores:[{
+                            subjectScore:"",
+                            course:{
+                                courseName:""
+                            }
+                        }]
                     },
                     subject: {
                         chinese: '',
@@ -306,7 +325,7 @@
                         studentBirth: "2022-1-2",
                         studentTel: '加载中',
                         studentAdress: '加载中',
-                        studentScore: '加载中'
+                        scores: '加载中'
 
                     }, {
                         studentId: '加载中',
@@ -315,7 +334,7 @@
                         studentBirth: "加载中",
                         studentTel: '加载中',
                         studentAdress: '加载中',
-                        studentScore: '加载中'
+                        scores: '加载中'
 
                     }, {
                         studentId: '加载中',
@@ -324,7 +343,7 @@
                         studentBirth: "加载中",
                         studentTel: '加载中',
                         studentAdress: '加载中',
-                        studentScore: '加载中'
+                        scores: '加载中'
 
                     }, {
                         studentId: '加载中',
@@ -333,7 +352,7 @@
                         studentBirth: "加载中",
                         studentTel: '加载中',
                         studentAdress: '加载中',
-                        studentScore: '加载中'
+                        scores: '加载中'
 
                     }, {
                         studentId: '加载中',
@@ -342,7 +361,7 @@
                         studentBirth: "加载中",
                         studentTel: '加载中',
                         studentAdress: '加载中',
-                        studentScore: '加载中'
+                        scores: '加载中'
                     }],
                     //科目默认选项
                     options: [{

@@ -7,7 +7,11 @@ public class Score {
     public String courseId;
     public Integer subjectScore;
 
-    public List<Course> course;
+    public Course course;
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
     public String getStudentId() {
         return studentId;
@@ -33,13 +37,6 @@ public class Score {
         this.subjectScore = subjectScore;
     }
 
-    public List<Course> getCourse() {
-        return course;
-    }
-
-    public void setCourse(List<Course> course) {
-        this.course = course;
-    }
 
     @Override
     public String toString() {
