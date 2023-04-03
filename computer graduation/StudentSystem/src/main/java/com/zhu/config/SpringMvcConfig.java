@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.text.SimpleDateFormat;
 
 @Configuration
-@ComponentScan({"com.zhu.controller"})
+@ComponentScan({"com.zhu.controller","com.zhu.config"})
 @EnableWebMvc
 public class SpringMvcConfig {
 

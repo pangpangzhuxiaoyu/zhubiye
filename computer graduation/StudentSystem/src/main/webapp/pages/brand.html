@@ -132,6 +132,11 @@
                 <el-table-column prop="studentAdress" align="center" label="住址">
                 </el-table-column>
                 <el-table-column prop="scores" align="center" label="各科学分">
+                    <template slot-scope="scope">
+                        <div v-for="score in scope.row.scores">
+                            {{ score.course.courseName }}：{{ score.subjectScore }}
+                        </div>
+                    </template>
                 </el-table-column>
 
                 <el-table-column align="center" label="操作">
@@ -216,9 +221,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="element-ui/lib/index.js"></script>
-    <link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+    <script src="../js/vue.js"></script>
+    <script src="../element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
 
 
     <script>
@@ -226,24 +231,41 @@
             el: "#app",
 
             mounted() {
-                this.selectAll();
+                this.selectAllByPages();
 
             },
 
             methods: {
-                selectAll(){
+                selectAllByPages(){
                     axios({
                         method:"get",
-                        url:"localhost:8080/students",
-                        data:this.student
-
+                        url:"http://localhost:8080/students?curPage="+this.curPage+"&pageSize="+this.pageSize*this.courseNum
                   }).then(resp => {
-                        this.tableData = resp.data.student;
+                        this.tableData = resp.data.rowsStudents;
                         //设置总记录数
-                        /*this.totalCount = resp.data.totalCount;*/
+                        this.totalCount = resp.data.totalCount;
+                        //获取科目数量并返回给数据模型（其实这一步不用跟数据库查询 因为固定是三科目，但是为了方便程序扩展，进行了查询并赋值的操作）
+                        this.courseNum=resp.data.courseNum;
 
                     })
                 },
+
+                handleSelectionChange(val) {
+                    this.multipleSelection = val;
+
+                    console.log(this.multipleSelection)
+                },
+                //当用户变化分页的页数或者改变，每页显示条数时
+                handleSizeChange(val) {
+                    this.pageSize=val;
+                    this.selectAllByPages();
+
+                },
+                handleCurrentChange(val) {
+                    this.curPage=val;
+                    this.selectAllByPages();
+                },
+
                 clear() {
                     this.student.studentId = '';
                     this.student.studentName = '';
@@ -254,6 +276,14 @@
                     this.student.studentTel = '';
                     this.maxScore = '';
                     this.minScore = '';
+                },
+                tableRowClassName({row, rowIndex}) {
+                    if (rowIndex === 1) {
+                        return 'warning-row';
+                    } else if (rowIndex === 3) {
+                        return 'success-row';
+                    }
+                    return '';
                 },
                 startEdit(row) {
                     // 获取改行已经有的数据，以供填入修改框
@@ -281,6 +311,7 @@
             },
             data() {
                 return {
+                    courseNum:3,
                     totalCount: 100,
                     // 当前页码
                     curPage: 1,
@@ -290,7 +321,7 @@
                     dialogVisible: false,
                     editDialogVisible: false,
 
-                    // 品牌模型数据
+                    // 学生模型数据
                     student: {
                         studentId: '',
                         studentName: '',
@@ -298,12 +329,7 @@
                         studentBirth: "",
                         studentTel: "",
                         studentAdress: '',
-                        scores:[{
-                            subjectScore:"",
-                            course:{
-                                courseName:""
-                            }
-                        }]
+                        scores:[]
                     },
                     subject: {
                         chinese: '',
@@ -321,11 +347,39 @@
                     tableData: [{
                         studentId: '加载中',
                         studentName: '加载中',
-                        studentGender: '男',
-                        studentBirth: "2022-1-2",
+                        studentGender: '加载中',
+                        studentBirth: "加载中",
                         studentTel: '加载中',
                         studentAdress: '加载中',
-                        scores: '加载中'
+                        scores:[
+                            {
+                                "studentId": "0",
+                                "courseId": "0",
+                                "subjectScore": 0,
+                                "course": {
+                                    "courseId": "0",
+                                    "courseName": "0"
+                                }
+                            },
+                            {
+                                "studentId": "0",
+                                "courseId": "0",
+                                "subjectScore": 0,
+                                "course": {
+                                    "courseId": "0",
+                                    "courseName": "0"
+                                }
+                            },
+                            {
+                                "studentId": "0",
+                                "courseId": "0",
+                                "subjectScore": 0,
+                                "course": {
+                                    "courseId": "0",
+                                    "courseName": "0"
+                                }
+                            }
+                        ]
 
                     }, {
                         studentId: '加载中',
@@ -365,6 +419,9 @@
                     }],
                     //科目默认选项
                     options: [{
+                        value: '选项3',
+                        label: ' '
+                    }, {
                         value: '选项1',
                         label: '语文'
                     }, {
@@ -373,7 +430,8 @@
                     }, {
                         value: '选项3',
                         label: '英语'
-                    }],
+                    }
+                    ],
                     maxScore: '',
                     minScore: '',
                     radio: '1'

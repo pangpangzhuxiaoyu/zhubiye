@@ -1,5 +1,6 @@
 package com.zhu.service;
 
+import com.zhu.domain.PageBean;
 import com.zhu.domain.Student;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +9,10 @@ import java.util.List;
 @Transactional
 public interface StudentService {
     /**
-     * 查询全部
+     *
+     * @param CurPage 用户当前所在页数
+     * @param pageSize 用户当前每页显示条数
+     * @return
      */
-    public List<Student> selectAll();
+    public PageBean<Student> selectAllByPage(int CurPage, int pageSize);
 }

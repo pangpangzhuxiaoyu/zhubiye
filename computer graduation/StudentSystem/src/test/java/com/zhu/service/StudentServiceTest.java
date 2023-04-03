@@ -1,6 +1,7 @@
 package com.zhu.service;
 
 import com.zhu.config.SpringConfig;
+import com.zhu.domain.PageBean;
 import com.zhu.domain.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +18,12 @@ public class StudentServiceTest {
     private StudentService studentService;
     @Test
     public void testSelectAll(){
-        List<Student> studnet =studentService.selectAll();
-        System.out.println(studnet);
+        /*List<Student> studnet =studentService.selectAll();
+        System.out.println(studnet);*/
 
+    }
+    @Test
+    public void testSelectByPage(){
+       PageBean<Student> student = studentService.selectAllByPage(1,30);
     }
 }
