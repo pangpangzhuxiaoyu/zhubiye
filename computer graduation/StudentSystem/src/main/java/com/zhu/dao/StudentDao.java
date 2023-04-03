@@ -1,6 +1,7 @@
 package com.zhu.dao;
 
 import com.zhu.domain.Student;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
@@ -30,4 +31,8 @@ public interface StudentDao {
      */
     @Select("select count(*) from course")  //因为不涉及到映射所以定义在了student里，这个方法的主要作用是提供给前端又有多少个科目
     int selectCourseNum();
+    @Delete({"delete from student where student_id=#{studentId}","delete from score where student_id=#{studentId}"})
+    void deleteById(Student student);
+
+
 }

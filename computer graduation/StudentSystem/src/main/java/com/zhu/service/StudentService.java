@@ -15,4 +15,6 @@ public interface StudentService {
      * @return
      */
     public PageBean<Student> selectAllByPage(int CurPage, int pageSize);
+
+    public boolean deleteById(Student student);
 }

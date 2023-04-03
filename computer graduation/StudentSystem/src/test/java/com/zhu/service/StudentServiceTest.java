@@ -26,4 +26,10 @@ public class StudentServiceTest {
     public void testSelectByPage(){
        PageBean<Student> student = studentService.selectAllByPage(1,30);
     }
+    @Test
+    public void deleteById(){
+        Student s=new Student();
+        s.setStudentId("20230014");
+        studentService.deleteById(s);
+    }
 }

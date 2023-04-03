@@ -22,18 +22,11 @@ public class Student {
     public Date studentBirth;
     public String studentTel;
     public String studentAdress;
-    public String getStudentId() {
-        return studentId;
-    }
 
     public List<Score> scores;
 
-    public List<Score> getScores() {
-        return scores;
-    }
-
-    public void setScores(List<Score> scores) {
-        this.scores = scores;
+    public String getStudentId() {
+        return studentId;
     }
 
     public void setStudentId(String studentId) {
@@ -55,7 +48,6 @@ public class Student {
     public void setStudentGender(Gender studentGender) {
         this.studentGender = studentGender;
     }
-
 
     public Date getStudentBirth() {
         return studentBirth;
@@ -79,6 +71,14 @@ public class Student {
 
     public void setStudentAdress(String studentAdress) {
         this.studentAdress = studentAdress;
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
     }
 
     @Override

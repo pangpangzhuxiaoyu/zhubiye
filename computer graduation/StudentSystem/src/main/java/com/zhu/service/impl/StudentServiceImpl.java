@@ -31,4 +31,11 @@ public class StudentServiceImpl implements StudentService {
         pageBean.setCourseNum(courseNum);
         return pageBean;
     }
+
+    @Override
+    public boolean deleteById(Student student) {
+        studentDao.deleteById(student);
+        return true;
+    }
+
 }
