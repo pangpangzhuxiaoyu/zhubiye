@@ -29,7 +29,7 @@ public class StudentServiceTest {
     @Test
     public void deleteById(){
         Student s=new Student();
-        s.setStudentId("20230014");
+        s.setStudentId("20230015");
         studentService.deleteById(s);
     }
 }

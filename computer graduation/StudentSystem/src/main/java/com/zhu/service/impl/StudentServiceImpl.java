@@ -1,5 +1,6 @@
 package com.zhu.service.impl;
 
+import com.zhu.dao.ScoreDao;
 import com.zhu.dao.StudentDao;
 import com.zhu.domain.PageBean;
 import com.zhu.domain.Student;
@@ -13,6 +14,8 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentDao studentDao;
+    @Autowired
+    private ScoreDao scoreDao;
 
     @Override
     public PageBean<Student> selectAllByPage(int curPage, int pageSize) {
@@ -35,6 +38,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public boolean deleteById(Student student) {
         studentDao.deleteById(student);
+        scoreDao.deleteById(student);
         return true;
     }
 

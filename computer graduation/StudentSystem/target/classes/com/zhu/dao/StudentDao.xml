@@ -28,4 +28,9 @@
                  LEFT JOIN Course c ON sc.course_id = c.course_id
         LIMIT #{begin},#{size}
     </select>
+
+   <!-- <delete id="deleteById" parameterType="com.zhu.domain.Student">
+        delete from student where student_id=#{student.studentId};
+        delete from score where student_id=#{student.studentId}
+    </delete>-->
 </mapper>
