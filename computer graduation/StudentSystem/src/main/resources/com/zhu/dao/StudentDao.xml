@@ -37,6 +37,7 @@
         </foreach>
     </delete>
 
+
    <!-- <delete id="deleteById" parameterType="com.zhu.domain.Student">
         delete from student where student_id=#{student.studentId};
         delete from score where student_id=#{student.studentId}

@@ -3,8 +3,8 @@ package com.zhu.domain;
 import java.util.List;
 
 public class Score {
-    public String studentId;
-    public String courseId;
+    public Integer studentId;
+    public Integer courseId;
     public Integer subjectScore;
 
     public Course course;
@@ -13,19 +13,19 @@ public class Score {
         this.course = course;
     }
 
-    public String getStudentId() {
+    public Integer getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
 
-    public String getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
@@ -37,14 +37,7 @@ public class Score {
         this.subjectScore = subjectScore;
     }
 
-
-    @Override
-    public String toString() {
-        return "Score{" +
-                "studentId='" + studentId + '\'' +
-                ", courseId='" + courseId + '\'' +
-                ", subjectScore=" + subjectScore +
-                '}';
+    public Course getCourse() {
+        return course;
     }
-
 }

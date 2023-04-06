@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,12 +31,12 @@ public class StudentServiceTest {
     @Test
     public void deleteById(){
         Student s=new Student();
-        s.setStudentId("20230022");
+       // s.setStudentId("20230022");
         studentService.deleteById(s.studentId);
     }
     @Test
     public void deleteByIds(){
-        String[] s={"20230018","20230019","20230022"};
-        studentService.deleteByIds(s);
+        int[] studentIds=new int[]{1};
+        studentService.deleteByIds(studentIds);
     }
 }

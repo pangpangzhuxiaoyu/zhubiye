@@ -33,9 +33,10 @@
     <delete id="deleteByIds">
         delete from student where student_id in
         <foreach collection="studentIds" item="studentId" separator="," open="(" close=")">
-            #{studentIds}
+            ${studentIds}
         </foreach>
     </delete>
+
 
    <!-- <delete id="deleteById" parameterType="com.zhu.domain.Student">
         delete from student where student_id=#{student.studentId};

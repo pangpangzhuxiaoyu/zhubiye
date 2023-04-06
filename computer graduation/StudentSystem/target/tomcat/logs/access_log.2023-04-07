@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:29 +0800] "GET / HTTP/1.1" 404 949 http-bio-8080-exec-1 47
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:29 +0800] "GET /favicon.ico HTTP/1.1" 404 949 http-bio-8080-exec-3 1
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:43 +0800] "GET /pages/brand.html HTTP/1.1" 200 19523 http-bio-8080-exec-5 101
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:43 +0800] "GET /element-ui/lib/theme-chalk/index.css HTTP/1.1" 200 232460 http-bio-8080-exec-8 87
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:43 +0800] "GET /js/vue.js HTTP/1.1" 200 353406 http-bio-8080-exec-7 104
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:43 +0800] "GET /element-ui/lib/index.js HTTP/1.1" 200 567058 http-bio-8080-exec-6 231
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:45 +0800] "GET /element-ui/lib/theme-chalk/fonts/element-icons.woff HTTP/1.1" 200 28200 http-bio-8080-exec-10 102
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:45 +0800] "GET /students?curPage=1&pageSize=15 HTTP/1.1" 200 2681 http-bio-8080-exec-6 442
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:51 +0800] "GET /students?curPage=1&pageSize=15 HTTP/1.1" 200 2681 http-bio-8080-exec-10 29
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:51 +0800] "DELETE /students/20230001 HTTP/1.1" 200 48 http-bio-8080-exec-6 32
+0:0:0:0:0:0:0:1 - - [07/Apr/2023:00:00:51 +0800] "GET /students?curPage=1&pageSize=15 HTTP/1.1" 200 2679 http-bio-8080-exec-6 19

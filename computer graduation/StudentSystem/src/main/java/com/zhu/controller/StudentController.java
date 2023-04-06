@@ -25,7 +25,7 @@ public class StudentController {
         return new Result(code,msg,pageBean);
     }
     @DeleteMapping("/{studentId}")
-    public Result deleteById(@PathVariable String studentId){
+    public Result deleteById(@PathVariable Integer studentId){
         boolean flag = studnetService.deleteById(studentId);
         return new Result(flag?Code.DELETE_OK:Code.DELETE_ERROR,flag);
     }

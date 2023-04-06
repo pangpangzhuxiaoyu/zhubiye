@@ -1,15 +1,15 @@
 package com.zhu.domain;
 
 public class Course {
-    public String courseId;
+    public Integer courseId;
     public String courseName;
 
 
-    public String getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 

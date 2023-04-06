@@ -2,7 +2,7 @@ create database school_db;
 
 use school_db;
 create table Student(
-student_id varchar(10) not null,
+student_id int(10) not null,
 student_name varchar(10)  not null,
 student_gender enum("男","女")  not null,
 student_birth datetime  not null,
@@ -12,15 +12,15 @@ primary key(student_id)
 );
 
 create table Course(
-course_id varchar(20),
+course_id int(10),
 course_name varchar(20) NOT NULL,
 primary key(course_id)
 );
 
 CREATE TABLE Score(
-student_id VARCHAR(20),
-course_id VARCHAR(20),
-subject_score INT(3),
+student_id int(10),
+course_id int(10),
+subject_score int(3),
 PRIMARY KEY(student_id,course_id)
 );
 
@@ -144,7 +144,22 @@ insert into Score values('20230027' , '1001' , 87);
 insert into Score values('20230027' , '1002' , 93);
 insert into Score values('20230027' , '1003' , 98);
 
+
+
+
+
 select * from Student join Score on Score.student_id=Student.student_id where Score.course_id=1001;
+
+SET SQL_SAFE_UPDATES = 0;
+delete o,c from Student o left join Score c on o.student_id =c.student_id where o.student_id=20230001;
+
+
+
+
+
+
+
+
 
 
 

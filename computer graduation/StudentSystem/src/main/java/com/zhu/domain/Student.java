@@ -15,7 +15,7 @@ public class Student {
     }
 
 
-    public String studentId;
+    public Integer studentId;
     public String studentName;
     public Gender studentGender;
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
@@ -25,11 +25,11 @@ public class Student {
 
     public List<Score> scores;
 
-    public String getStudentId() {
+    public Integer getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
 
