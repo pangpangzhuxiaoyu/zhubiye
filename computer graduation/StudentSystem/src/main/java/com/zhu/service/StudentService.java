@@ -16,5 +16,12 @@ public interface StudentService {
      */
     public PageBean<Student> selectAllByPage(int CurPage, int pageSize);
 
-    public boolean deleteById(Student student);
+    public boolean deleteById(String studentId);
+
+    /**
+     * 根据学生的id批量删除
+     * @param studentIds
+     * @return
+     */
+    public boolean deleteByIds(String[] studentIds);
 }

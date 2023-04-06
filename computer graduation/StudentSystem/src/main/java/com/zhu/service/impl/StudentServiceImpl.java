@@ -36,9 +36,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean deleteById(Student student) {
-        studentDao.deleteById(student);
-        scoreDao.deleteById(student);
+    public boolean deleteById(String studentId) {
+        studentDao.deleteById(studentId);
+        scoreDao.deleteById(studentId);
+        return true;
+    }
+
+    @Override
+    public boolean deleteByIds(String[] studentIds) {
+        //删除两张表 保持数据一致性
+        studentDao.deleteByIds(studentIds);
+        scoreDao.deleteByIds(studentIds);
         return true;
     }
 

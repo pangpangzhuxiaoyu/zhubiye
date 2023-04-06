@@ -231,6 +231,7 @@
             el: "#app",
 
             mounted() {
+                //页面加载后查询全部（默认是每页面5条数据）
                 this.selectAllByPages();
 
             },
@@ -241,11 +242,11 @@
                         method:"get",
                         url:"http://localhost:8080/students?curPage="+this.curPage+"&pageSize="+this.pageSize*this.courseNum
                   }).then(resp => {
-                        this.tableData = resp.data.rowsStudents;
+                        this.tableData = resp.data.data.rowsStudents;
                         //设置总记录数
-                        this.totalCount = resp.data.totalCount;
+                        this.totalCount = resp.data.data.totalCount;
                         //获取科目数量并返回给数据模型（其实这一步不用跟数据库查询 因为固定是三科目，但是为了方便程序扩展，进行了查询并赋值的操作）
-                        this.courseNum=resp.data.courseNum;
+                        this.courseNum=resp.data.data.courseNum;
 
                     })
                 },
@@ -257,17 +258,19 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                        axios({
-                            method: "post",
-                            url: "http://localhost:8080/work/brand/deleteById",
-                            contentType: "application/json;charset=utf-8",
-                            data: this.student
-                        }).then(resp=>{
-                            if (resp.data === "success") {
+                        axios.delete("/students/"+row.studentId).then(resp=>{
+                            if (resp.data.code == 60011 ) {
+                                //删除成功 刷新页面
                                 this.selectAllByPages();
                                 this.$message({
                                     message: '删除成功',
                                     type: 'success'
+                                });
+                            }else{
+                                //提示删除失败的消息
+                                this.$message({
+                                    message: '删除失败',
+                                    type: 'error'
                                 });
                             }
 
@@ -278,6 +281,8 @@
                             type: 'info',
                             message: '删除取消成功'
                         });
+                    }).finally(()=>{
+                        this.selectAllByPages();
                     })
                 },
 

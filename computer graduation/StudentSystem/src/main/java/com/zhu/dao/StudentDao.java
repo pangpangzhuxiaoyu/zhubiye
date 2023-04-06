@@ -34,8 +34,14 @@ public interface StudentDao {
 
     /*@Delete({"delete from student where student_id=#{student.studentId}",
             "delete from score where score.student_id=#{student.studentId}"})*/
-    @Delete("delete from student where student_id=#{student.studentId}")
-    void deleteById(@Param("student") Student student);
+    @Delete("delete from student where student_id=#{studentId}")
+    void deleteById(@Param("studentId") String studentId);
+
+    /**
+     * 根据ID批量删除
+     * @param studentIds
+     */
+    void deleteByIds(@Param("studentIds") String[] studentIds);
 
 
 }

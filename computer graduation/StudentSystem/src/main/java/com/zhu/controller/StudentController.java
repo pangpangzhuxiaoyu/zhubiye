@@ -4,10 +4,7 @@ import com.zhu.domain.PageBean;
 import com.zhu.domain.Student;
 import com.zhu.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,10 +16,17 @@ public class StudentController {
     private StudentService studnetService;
 
     @GetMapping
-    public PageBean<Student> selectAllByPage(@RequestParam("curPage") int curPage,
-                                         @RequestParam("pageSize") int pageSize  ) {
+    public Result selectAllByPage(@RequestParam("curPage") int curPage,
+                                  @RequestParam("pageSize") int pageSize  ) {
+        //获得
         PageBean<Student> pageBean = studnetService.selectAllByPage(curPage,pageSize);
-        return pageBean;
-
+        Integer code =pageBean.getRowsStudents() !=null?Code.GET_OK:Code.GET_ERROR;
+        String msg=pageBean.getRowsStudents() !=null?"":"数据查询失败，请重试哦！";
+        return new Result(code,msg,pageBean);
+    }
+    @DeleteMapping("/{studentId}")
+    public Result deleteById(@PathVariable String studentId){
+        boolean flag = studnetService.deleteById(studentId);
+        return new Result(flag?Code.DELETE_OK:Code.DELETE_ERROR,flag);
     }
 }
