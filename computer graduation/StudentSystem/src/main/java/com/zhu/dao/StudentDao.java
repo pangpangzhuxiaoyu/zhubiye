@@ -20,6 +20,11 @@ public interface StudentDao {
     public List<Student> selectAllByPage(@Param("begin") int begin,@Param("size") int size);
 
     /**
+     * 查询科目的名字供前端使用
+     */
+    List<Student> selectSubjectName();
+
+    /**
      *查询学生总的记录数
      */
     @Select("select count(*) from student")
@@ -42,6 +47,7 @@ public interface StudentDao {
      * @param studentIds
      */
     void deleteByIds(@Param("studentIds") int[] studentIds);
+
 
 
 }

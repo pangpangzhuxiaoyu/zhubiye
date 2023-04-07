@@ -47,7 +47,6 @@
         </el-form>
 
         <!--按钮-->
-
         <el-row>
 
             <el-button type="danger" plain round="true" @click="deleteByIds">批量删除</el-button>
@@ -55,20 +54,22 @@
             <el-button type="primary" plain round="true" @click="">导出为Excel</el-button>
 
         </el-row>
+
         <!--添加数据对话框表单-->
         <el-dialog title="添加学生" :visible.sync="dialogVisible" width="36%">
-            <p>信息</p>
-            <el-form ref="form" :model="student" label-width="80px">
+            <el-card>
+            <div slot="header">信息</div>
+            <el-form ref="form" :model="studentAdd" label-width="80px">
                 <el-form-item label="学生ID">
-                    <el-input v-model="student.studentId"></el-input>
+                    <el-input v-model="studentAdd.studentId"></el-input>
                 </el-form-item>
 
                 <el-form-item label="姓名">
-                    <el-input v-model="student.studentName"></el-input>
+                    <el-input v-model="studentAdd.studentName"></el-input>
                 </el-form-item>
 
                 <el-form-item label="性别">
-                    <el-radio-group v-model="student.studentGender">
+                    <el-radio-group v-model="studentAdd.studentGender">
                         <el-radio label="男"></el-radio>
                         <el-radio label="女"></el-radio>
                     </el-radio-group>
@@ -77,38 +78,44 @@
                 <el-form-item label="出生日期">
                     <el-col :span="11">
                         <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions"
-                            v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
+                            v-model="studentAdd.studentBirth" style="width: 100%;"></el-date-picker>
                     </el-col>
                 </el-form-item>
 
                 <el-form-item label="电话">
-                    <el-input v-model="student.studentTel"></el-input>
+                    <el-input v-model="studentAdd.studentTel"></el-input>
                 </el-form-item>
 
                 <el-form-item label="住址">
-                    <el-input type="textarea" v-model="student.studentAdress"></el-input>
+                    <el-input type="textarea" v-model="studentAdd.studentAdress"></el-input>
                 </el-form-item>
-                <p>学分</p>
+            </el-form>
+            </el-card>
+              <!--  <p>学分</p>
                 <el-form-item label="语文">
-                    <el-input v-model="subject.chinese"></el-input>
+                    <el-input v-model="student.scores[0].subjectScore"></el-input>
                 </el-form-item>
                 <el-form-item label="数学">
-                    <el-input v-model="subject.math"></el-input>
+                    <el-input v-model="student.scores[1].subjectScore"></el-input>
                 </el-form-item>
                 <el-form-item label="英语">
                     <el-input v-model="subject.english"></el-input>
-                </el-form-item>
-
+                </el-form-item>-->
+            <el-card>
+                <div slot="header">学分</div>
+                <el-form :model="studentAdd">
+                    <!--为了方便程序扩展 科目名称通过循环加入表单-->
+                    <el-form-item v-for="(score, index) in studentAdd.scores" :key="index" :label="score.course.courseName">
+                        <el-input v-model="score.subjectScore"></el-input>
+                    </el-form-item>
+                </el-form>
                 <el-form-item>
                     <el-button type="primary" @click="addstudent">提交</el-button>
                     <el-button @click="dialogVisible = false">取消</el-button>
                 </el-form-item>
-            </el-form>
+            </el-card>
 
         </el-dialog>
-
-
-
 
         <!--表格-->
         <template>
@@ -206,12 +213,6 @@
             </template>
         </el-dialog>
 
-
-
-
-
-
-
         <!--分页工具条-->
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="curPage"
             :page-sizes="[5, 10, 15, 20]" :page-size="5" layout="total, sizes, prev, pager, next, jumper"
@@ -249,6 +250,14 @@
                         this.courseNum=resp.data.data.courseNum;
 
                     })
+                    //调用后端查询科目的语句
+                    axios.get("/students/subject").then(resp=>{
+                        //如果查询成功
+                        if (resp.data.code == 60011 ) {
+                            this.studentAdd=resp.data.data;
+                        }
+
+                    })
                 },
                 deleteById(row){
                     //将要被删除的学生ID传到数据模型
@@ -259,6 +268,7 @@
                         type: 'warning'
                     }).then(() => {
                         axios.delete("/students/"+row.studentId).then(resp=>{
+                            //60011是后端返回的删除成功的代码
                             if (resp.data.code == 60011 ) {
                                 //删除成功 刷新页面
                                 this.selectAllByPages();
@@ -285,14 +295,60 @@
                         this.selectAllByPages();
                     })
                 },
+                deleteByIds(){
+                    //如果没有选择数据
+                    if(this.multipleSelection.length==0){
+                        this.$message({
+                            type: 'info',
+                            message: '您没有选择数据'
+                        });
+                        return;
+                    }
+                    //弹出确认框
+                    this.$confirm('此操作将删除数据，是否继续？','提示',{
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(()=>{
+                        for (let i = 0;i<this.multipleSelection.length; i++){
+                            let id = this.multipleSelection[i];
+                            this.selectedIds[i]=id.studentId;
+                        }
+                        //批量删除URL
+                        axios.delete("/students/Ids/"+this.selectedIds).then(resp=>{
+                            //60011是后端返回的删除成功的代码
+                        if (resp.data.code == 60011 ) {
+                            //删除成功 刷新页面
+                            this.selectAllByPages();
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success'
+                            });
+                        }else{
+                            //提示删除失败的消息
+                            this.$message({
+                                message: '删除失败',
+                                type: 'error'
+                            });
+                        }
+
+                    })
+
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '删除取消成功'
+                        });
+                    }).finally(()=>{
+                        this.selectAllByPages();
+                    })
+                },
 
 
 
-
+                //当复选框数据被选中时
                 handleSelectionChange(val) {
                     this.multipleSelection = val;
-
-                    console.log(this.multipleSelection)
                 },
                 //当用户变化分页的页数或者改变，每页显示条数时
                 handleSizeChange(val) {
@@ -304,15 +360,18 @@
                     this.curPage=val;
                     this.selectAllByPages();
                 },
-
+                //清空除了科目的所有数据（因为科目要展示在表单中）
                 clear() {
-                    this.student.studentId = '';
-                    this.student.studentName = '';
-                    this.student.studentAdress = '';
-                    this.student.studentBirth = '';
-                    this.student.studentGender = '';
-                    this.student.studentScore = '';
-                    this.student.studentTel = '';
+                    this.studentAdd.studentId = '';
+                    this.studentAdd.studentName = '';
+                    this.studentAdd.studentAdress = '';
+                    this.studentAdd.studentBirth = '';
+                    this.studentAdd.studentGender = '';
+                    this.studentAdd.studentScore = '';
+                    this.studentAdd.studentTel = '';
+                    for(let i=0;i<this.studentAdd.scores.length;i++){
+                        this.studentAdd.scores[i].subjectScore='';
+                    }
                     this.maxScore = '';
                     this.minScore = '';
                 },
@@ -332,14 +391,10 @@
                     this.editDialogVisible = true;
                 },
                 addStudent(){
+
+
                     //因为绑定的都是student，所以在新增时要重新清空一下数据
-                    this.student.studentId = '';
-                    this.student.studentName = '';
-                    this.student.studentAdress = '';
-                    this.student.studentBirth = '';
-                    this.student.studentGender = '';
-                    this.student.studentScore = '';
-                    this.student.studentTel = '';
+                    this.clear();
                     this.dialogVisible=true;
                 }
 
@@ -360,16 +415,65 @@
                     dialogVisible: false,
                     editDialogVisible: false,
 
-                    // 学生模型数据
-                    student: {
+                    // 修改学生临时模型数据
+                    student: [{
                         studentId: '',
                         studentName: '',
-                        studentGender: '1',
+                        studentGender: '',
                         studentBirth: "",
                         studentTel: "",
                         studentAdress: '',
-                        scores:[]
-                    },
+                        scores:[ {
+                            "studentId": "",
+                            "courseId": "",
+                            "subjectScore": '',
+                            "course": {
+                                "courseId": "",
+                                "courseName": ""
+                            }
+                        }
+                        ]
+                    }],
+                    //添加学生临时的模型数据
+                    studentAdd: [{
+                        studentId: '加载中',
+                        studentName: '加载中',
+                        studentGender: '加载中',
+                        studentBirth: "加载中",
+                        studentTel: '加载中',
+                        studentAdress: '加载中',
+                        scores:[
+                            {
+                                "studentId": "0",
+                                "courseId": "0",
+                                "subjectScore": 0,
+                                "course": {
+                                    "courseId": "0",
+                                    "courseName": "0"
+                                }
+                            },
+                            {
+                                "studentId": "0",
+                                "courseId": "0",
+                                "subjectScore": 0,
+                                "course": {
+                                    "courseId": "0",
+                                    "courseName": "0"
+                                }
+                            },
+                            {
+                                "studentId": "0",
+                                "courseId": "0",
+                                "subjectScore": 0,
+                                "course": {
+                                    "courseId": "0",
+                                    "courseName": "0"
+                                }
+                            }
+                        ]
+
+                    }],
+
                     subject: {
                         chinese: '',
                         math: '',
@@ -420,41 +524,6 @@
                             }
                         ]
 
-                    }, {
-                        studentId: '加载中',
-                        studentName: '加载中',
-                        studentGender: '加载中',
-                        studentBirth: "加载中",
-                        studentTel: '加载中',
-                        studentAdress: '加载中',
-                        scores: '加载中'
-
-                    }, {
-                        studentId: '加载中',
-                        studentName: '加载中',
-                        studentGender: '加载中',
-                        studentBirth: "加载中",
-                        studentTel: '加载中',
-                        studentAdress: '加载中',
-                        scores: '加载中'
-
-                    }, {
-                        studentId: '加载中',
-                        studentName: '加载中',
-                        studentGender: '加载中',
-                        studentBirth: "加载中",
-                        studentTel: '加载中',
-                        studentAdress: '加载中',
-                        scores: '加载中'
-
-                    }, {
-                        studentId: '加载中',
-                        studentName: '加载中',
-                        studentGender: '加载中',
-                        studentBirth: "加载中",
-                        studentTel: '加载中',
-                        studentAdress: '加载中',
-                        scores: '加载中'
                     }],
                     //科目默认选项
                     options: [{

@@ -28,12 +28,19 @@
                  LEFT JOIN Course c ON sc.course_id = c.course_id
         LIMIT #{begin},#{size}
     </select>
+    <!--前端需要科目的数据-->
+    <select id="selectSubjectName" resultMap="studentResultMap">
+        SELECT s.*,c.course_name,sc.subject_score,c.course_id
+        FROM Student s
+                 LEFT JOIN Score sc ON s.student_id = sc.student_id
+                 LEFT JOIN Course c ON sc.course_id = c.course_id
+    </select>
 
 
     <delete id="deleteByIds">
         delete from student where student_id in
         <foreach collection="studentIds" item="studentId" separator="," open="(" close=")">
-            #{studentIds}
+            #{studentId}
         </foreach>
     </delete>
 

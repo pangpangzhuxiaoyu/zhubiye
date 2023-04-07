@@ -5,7 +5,7 @@ import java.util.List;
 public class Score {
     public Integer studentId;
     public Integer courseId;
-    public Integer subjectScore;
+    public double subjectScore;
 
     public Course course;
 
@@ -29,11 +29,11 @@ public class Score {
         this.courseId = courseId;
     }
 
-    public Integer getSubjectScore() {
+    public double getSubjectScore() {
         return subjectScore;
     }
 
-    public void setSubjectScore(Integer subjectScore) {
+    public void setSubjectScore(double subjectScore) {
         this.subjectScore = subjectScore;
     }
 

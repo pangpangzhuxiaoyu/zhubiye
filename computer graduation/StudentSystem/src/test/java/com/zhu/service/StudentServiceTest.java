@@ -36,7 +36,7 @@ public class StudentServiceTest {
     }
     @Test
     public void deleteByIds(){
-        int[] studentIds=new int[]{1};
+        int[] studentIds=new int[]{20230004};
         studentService.deleteByIds(studentIds);
     }
 }

@@ -34,9 +34,15 @@ public class StudentServiceImpl implements StudentService {
         pageBean.setCourseNum(courseNum);
         return pageBean;
     }
+    @Override
+    public  List<Student>  selectSubjectName(){
+        List<Student> student = studentDao.selectSubjectName();
+        return student;
+    }
 
     @Override
     public boolean deleteById(Integer studentId) {
+        //删除两张表 保持数据一致性
         studentDao.deleteById(studentId);
         scoreDao.deleteById(studentId);
         return true;

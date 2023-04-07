@@ -16,6 +16,11 @@ public interface StudentService {
      */
     public PageBean<Student> selectAllByPage(int CurPage, int pageSize);
 
+    /**
+     * 查询课程的名字
+     */
+    public List<Student> selectSubjectName();
+
     public boolean deleteById(Integer studentId);
 
     /**

@@ -1,8 +1,8 @@
-create database school_db;
-
+/*DROP DATABASE IF EXISTS school_db;*/
+create database if not exists school_db;
 use school_db;
 create table Student(
-student_id int(10) not null,
+student_id int not null,
 student_name varchar(10)  not null,
 student_gender enum("男","女")  not null,
 student_birth datetime  not null,
@@ -12,15 +12,15 @@ primary key(student_id)
 );
 
 create table Course(
-course_id int(10),
+course_id int,
 course_name varchar(20) NOT NULL,
 primary key(course_id)
 );
 
 CREATE TABLE Score(
-student_id int(10),
-course_id int(10),
-subject_score int(3),
+student_id int,
+course_id int,
+subject_score double(5,2),
 PRIMARY KEY(student_id,course_id)
 );
 
@@ -62,7 +62,7 @@ insert into Course values('1002' , '数学' );
 insert into Course values('1003' , '英语' );
  
 
-insert into Score values('20230001' , '1001' , 80);
+insert into Score values('20230001' , '1001' , 80.5);
 insert into Score values('20230001' , '1002' , 90);
 insert into Score values('20230001' , '1003' , 99);
 insert into Score values('20230002' , '1001' , 70);
@@ -136,13 +136,15 @@ insert into Score values('20230024' , '1002' , 67);
 insert into Score values('20230024' , '1003' , 82);
 insert into Score values('20230025' , '1001' , 82);
 insert into Score values('20230025' , '1002' , 88);
-insert into Score values('20230025' , '1003' , 94);
+insert into Score values('20230025' , '1003' , 94.5);
 insert into Score values('20230026' , '1001' , 70);
 insert into Score values('20230026' , '1002' , 75);
 insert into Score values('20230026' , '1003' , 78);
 insert into Score values('20230027' , '1001' , 87);
 insert into Score values('20230027' , '1002' , 93);
 insert into Score values('20230027' , '1003' , 98);
+
+
 
 
 
