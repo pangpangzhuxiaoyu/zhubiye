@@ -1,3 +1,4 @@
+com\zhu\domain\StudentWithScore.class
 com\zhu\controller\ProjectExceptionAdvice.class
 com\zhu\controller\Code.class
 com\zhu\config\SpringMvcSupport.class

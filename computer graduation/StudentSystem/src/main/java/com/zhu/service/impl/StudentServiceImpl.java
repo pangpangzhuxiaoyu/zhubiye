@@ -2,8 +2,10 @@ package com.zhu.service.impl;
 
 import com.zhu.dao.ScoreDao;
 import com.zhu.dao.StudentDao;
+import com.zhu.dao.CourseDao;
 import com.zhu.domain.PageBean;
 import com.zhu.domain.Student;
+import com.zhu.domain.StudentWithScore;
 import com.zhu.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao;
     @Autowired
     private ScoreDao scoreDao;
+
+
 
     @Override
     public PageBean<Student> selectAllByPage(int curPage, int pageSize) {
@@ -35,12 +39,6 @@ public class StudentServiceImpl implements StudentService {
         return pageBean;
     }
     @Override
-    public  List<Student>  selectSubjectName(){
-        List<Student> student = studentDao.selectSubjectName();
-        return student;
-    }
-
-    @Override
     public boolean deleteById(Integer studentId) {
         //删除两张表 保持数据一致性
         studentDao.deleteById(studentId);
@@ -53,6 +51,18 @@ public class StudentServiceImpl implements StudentService {
         //删除两张表 保持数据一致性
         studentDao.deleteByIds(studentIds);
         scoreDao.deleteByIds(studentIds);
+        return true;
+    }
+    @Override
+    public boolean studentAdd(Student student, List<StudentWithScore> studentWithScoreList){
+        //将学生的id set到插入成绩的临时类中 以便于在插入成绩时可以直接获得
+        for(StudentWithScore studentWithScore:studentWithScoreList){
+            studentWithScore.setStudentId(student.studentId);
+        }
+        //执行插入学生
+        studentDao.studentAdd(student);
+        //执行插入成绩
+        scoreDao.scoreAdd(studentWithScoreList);
         return true;
     }
 

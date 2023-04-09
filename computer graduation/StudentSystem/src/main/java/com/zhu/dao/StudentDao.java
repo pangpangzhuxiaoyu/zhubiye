@@ -1,10 +1,7 @@
 package com.zhu.dao;
 
 import com.zhu.domain.Student;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -18,11 +15,6 @@ public interface StudentDao {
      * @return
      */
     public List<Student> selectAllByPage(@Param("begin") int begin,@Param("size") int size);
-
-    /**
-     * 查询科目的名字供前端使用
-     */
-    List<Student> selectSubjectName();
 
     /**
      *查询学生总的记录数
@@ -47,6 +39,13 @@ public interface StudentDao {
      * @param studentIds
      */
     void deleteByIds(@Param("studentIds") int[] studentIds);
+
+    /**
+     * 新增学生
+     */
+    @Insert("INSERT INTO `Student` (`student_id`, `student_name`, `student_gender`, `student_birth`, `student_tel`,`student_adress`) " +
+            "VALUES (#{studentId}, #{studentName}, #{studentGender}, #{studentBirth}, #{studentTel}, #{studentAdress})")
+    void studentAdd(Student student);
 
 
 

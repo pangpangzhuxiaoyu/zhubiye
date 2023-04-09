@@ -1,5 +1,7 @@
 package com.zhu.domain;
 
+
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
@@ -8,12 +10,24 @@ import java.util.List;
 
 public class Student {
 
+
     //性别在数据库中定义为枚举类型
     public enum Gender {
         男,
         女
     }
 
+    public Student() {
+    }
+
+    public Student(Integer studentId, String studentName, Gender studentGender, Date studentBirth, String studentTel, String studentAdress) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.studentGender = studentGender;
+        this.studentBirth = studentBirth;
+        this.studentTel = studentTel;
+        this.studentAdress = studentAdress;
+    }
 
     public Integer studentId;
     public String studentName;
@@ -79,18 +93,5 @@ public class Student {
 
     public void setScores(List<Score> scores) {
         this.scores = scores;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "studentId='" + studentId + '\'' +
-                ", studentName='" + studentName + '\'' +
-                ", studentGender=" + studentGender +
-                ", studentBirth=" + studentBirth +
-                ", studentTel='" + studentTel + '\'' +
-                ", studentAdress='" + studentAdress + '\'' +
-                ", scores=" + scores +
-                '}';
     }
 }

@@ -2,6 +2,7 @@ package com.zhu.service;
 
 import com.zhu.domain.PageBean;
 import com.zhu.domain.Student;
+import com.zhu.domain.StudentWithScore;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,6 @@ public interface StudentService {
      */
     public PageBean<Student> selectAllByPage(int CurPage, int pageSize);
 
-    /**
-     * 查询课程的名字
-     */
-    public List<Student> selectSubjectName();
 
     public boolean deleteById(Integer studentId);
 
@@ -29,4 +26,13 @@ public interface StudentService {
      * @return
      */
     public boolean deleteByIds(int[] studentIds);
+
+    /**
+     * 添加学生信息以及成绩信息
+     * @param student
+     * @param studentWithScoreList
+     * @return
+     */
+    public boolean studentAdd(Student student, List<StudentWithScore> studentWithScoreList);
+
 }

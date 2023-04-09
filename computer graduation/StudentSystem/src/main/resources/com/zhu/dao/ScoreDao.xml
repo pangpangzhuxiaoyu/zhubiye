@@ -15,4 +15,13 @@
          delete from student where student_id=#{student.studentId};
          delete from score where student_id=#{student.studentId}
      </delete>-->
+    <insert id="scoreAdd">
+        insert into score (student_id, course_id, subject_score)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.studentId}, #{item.courseId}, #{item.score})
+        </foreach>
+    </insert>
+
+
 </mapper>

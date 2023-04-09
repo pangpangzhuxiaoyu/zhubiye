@@ -1,12 +1,17 @@
 package com.zhu.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.zhu.domain.PageBean;
 import com.zhu.domain.Student;
+import com.zhu.domain.StudentWithScore;
 import com.zhu.service.StudentService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/students")
@@ -25,17 +30,6 @@ public class StudentController {
         return new Result(code,msg,pageBean);
     }
 
-    /**
-     * 前端需要的科目信息
-     * @return
-     */
-    @GetMapping("/subject")
-    public Result selectSubjectName(){
-       List<Student> student = studentService.selectSubjectName();
-       Integer code = student != null?Code.GET_OK:Code.GET_ERROR;
-       String msg = student != null?"":"科目查询出错了";
-       return new Result(code,msg,student);
-    }
 
     @DeleteMapping("/{studentId}")
     public Result deleteById(@PathVariable Integer studentId){
@@ -51,4 +45,17 @@ public class StudentController {
         //返回删除结果
        return new Result(flag?Code.DELETE_OK:Code.DELETE_ERROR,flag);
     }
+    @PostMapping
+    public Result studentAdd(@RequestBody String requestBody){
+         //获得前端传来的学生信息
+        com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSON.parseObject(requestBody);
+        String studentJson = jsonObject.getString("student");
+        Student student = JSON.parseObject(studentJson, Student.class);
+        //获得前端传来的学生成绩信息*/
+        String scores=jsonObject.getString("scores");
+        List<StudentWithScore> studentWithScoreList = JSONArray.parseArray(scores,StudentWithScore.class);
+        boolean flag = studentService.studentAdd(student,studentWithScoreList);
+        return new Result(flag?Code.SAVE_OK.intValue():Code.SAVE_ERROR,flag);
+    }
 }
+
