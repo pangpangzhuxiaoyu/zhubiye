@@ -23,5 +23,12 @@
         </foreach>
     </insert>
 
+    <update id="scoreUpdate">
+            update `score`
+            set `subject_score`=#{item.score}
+            where `course_id`=#{item.courseId} and `student_id`=#{item.studentId}
+    </update>
+
+
 
 </mapper>

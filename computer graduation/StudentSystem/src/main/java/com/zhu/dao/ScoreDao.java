@@ -26,6 +26,10 @@ public interface ScoreDao {
      * 添加学生 时为了保持数据一致性 也要插入成绩信息
      */
     void scoreAdd(List<StudentWithScore> list);
+    /**
+     * 修改学生 时为了保持数据一致性 也要插入成绩信息
+     */
+    void scoreUpdate(@Param("item") StudentWithScore studentWithScore);
 
 
 

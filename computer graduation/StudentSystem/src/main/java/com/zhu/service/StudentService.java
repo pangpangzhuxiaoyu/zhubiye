@@ -35,4 +35,10 @@ public interface StudentService {
      */
     public boolean studentAdd(Student student, List<StudentWithScore> studentWithScoreList);
 
+    /**
+     * 修改学生信息异界成绩信息
+     * @param student
+     */
+    public boolean studentUpdate(Student student);
+
 }

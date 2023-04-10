@@ -1,5 +1,6 @@
 package com.zhu.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhu.config.SpringConfig;
 import com.zhu.domain.Course;
@@ -55,7 +56,7 @@ public class StudentServiceTest {
     }
     @Test
     public void add(){
-        Student s=new Student(1,"aa",Student.Gender.男, new Date("2022/01/02"),"515","asdsa");
+        Student s=new Student(100,"aa",Student.Gender.男, new Date("2022/01/02"),"515","asdsa");
         //String scores=jsonObject.getString("scores");
 
         //String scores="[{courseId: 1001, courseName: "语文", score: "1"},{courseId: 1002, courseName: "数学", score: "1"},{courseId: 1003, courseName: "英语", score: "1"}]";
@@ -68,5 +69,16 @@ public class StudentServiceTest {
        // List<StudentWithScore> ss=
         studentService.studentAdd(s,studentWithScoreList);
     }
+
+    @Test
+    public void update(){
+        String s="{\"student\":{\"studentId\":20230017,\"studentName\":\"朱赫\",\"studentGender\":\"男\",\"studentBirth\":\"2001-01-31T16:00:00.000Z\",\"studentTel\":\"13596929473\",\"studentAdress\":\"辽宁省大连市中山区\",\"scores\":[{\"studentId\":20230017,\"courseId\":1001,\"subjectScore\":\"100\",\"course\":{\"courseId\":1001,\"courseName\":\"语文\"}},{\"studentId\":20230017,\"courseId\":1002,\"subjectScore\":\"100\",\"course\":{\"courseId\":1002,\"courseName\":\"数学\"}},{\"studentId\":20230017,\"courseId\":1003,\"subjectScore\":\"100\",\"course\":{\"courseId\":1003,\"courseName\":\"英语\"}}]}}";
+        com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSON.parseObject(s);
+        String studentJson = jsonObject.getString("student");
+        Student student = JSON.parseObject(studentJson, Student.class);
+        boolean flag = studentService.studentUpdate(student);
+    }
+
+
 
 }

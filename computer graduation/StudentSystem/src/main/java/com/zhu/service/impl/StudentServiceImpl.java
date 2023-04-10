@@ -10,6 +10,7 @@ import com.zhu.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -63,6 +64,23 @@ public class StudentServiceImpl implements StudentService {
         studentDao.studentAdd(student);
         //执行插入成绩
         scoreDao.scoreAdd(studentWithScoreList);
+        return true;
+    }
+    @Override
+    public boolean studentUpdate(Student student){
+        List<StudentWithScore> studentWithScoreList=new ArrayList<>();
+        for (int i=0;i<student.scores.size();i++){
+            StudentWithScore studentWithScore = new StudentWithScore();
+            studentWithScore.setStudentId(student.getStudentId());
+            studentWithScore.setCourseId(student.scores.get(i).course.getCourseId());
+            studentWithScore.setScore(student.scores.get(i).getSubjectScore());
+            studentWithScoreList.add(studentWithScore);
+        }
+        studentDao.studentUpdate(student);
+        for(StudentWithScore studentWithScore:studentWithScoreList){
+            scoreDao.scoreUpdate(studentWithScore);
+        }
+
         return true;
     }
 

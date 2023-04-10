@@ -47,6 +47,15 @@ public interface StudentDao {
             "VALUES (#{studentId}, #{studentName}, #{studentGender}, #{studentBirth}, #{studentTel}, #{studentAdress})")
     void studentAdd(Student student);
 
+    /**
+     * 修改学生信息
+     * @param student
+     */
+    @Update("UPDATE  `Student` SET `student_name`=#{studentName},`student_gender`=#{studentGender},"+
+            "`student_birth`=#{studentBirth},`student_tel`=#{studentTel},`student_adress`=#{studentAdress} " +
+            "WHERE `student_id`=#{studentId}")
+    void studentUpdate(Student student);
+
 
 
 }

@@ -57,5 +57,15 @@ public class StudentController {
         boolean flag = studentService.studentAdd(student,studentWithScoreList);
         return new Result(flag?Code.SAVE_OK.intValue():Code.SAVE_ERROR,flag);
     }
+    @PutMapping
+    public Result studentUpdate(@RequestBody String requestBody){
+        //获得前端传来的学生信息
+        com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSON.parseObject(requestBody);
+        String studentJson = jsonObject.getString("student");
+        Student student = JSON.parseObject(studentJson, Student.class);
+        boolean flag = studentService.studentUpdate(student);
+        return new Result(flag?Code.UPDATE_OK.intValue():Code.UPDATE_ERROR,flag);
+    }
+
 }
 
