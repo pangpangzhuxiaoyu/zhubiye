@@ -3,10 +3,7 @@ package com.zhu.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhu.config.SpringConfig;
-import com.zhu.domain.Course;
-import com.zhu.domain.PageBean;
-import com.zhu.domain.Student;
-import com.zhu.domain.StudentWithScore;
+import com.zhu.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +32,16 @@ public class StudentServiceTest {
     }
     @Test
     public void testSelectByPage(){
-       PageBean<Student> student = studentService.selectAllByPage(1,30);
+       //PageBean<Student> student = studentService.selectAllByPage(1,30);
+    }
+    @Test
+    public void testSelectByPageWithCondition(){
+        PojoByCondition pb=new PojoByCondition();
+        pb.studentId=20230001;
+        pb.subjectName="英语";
+        pb.maxScore=100;
+        pb.minScore=99.9;
+        PageBean<Student> student = studentService.selectAllByPageWithCondition(1,30,pb);
     }
     @Test
     public void deleteById(){

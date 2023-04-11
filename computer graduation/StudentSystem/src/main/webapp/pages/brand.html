@@ -23,16 +23,16 @@
     <el-form :inline="true" :model="student" class="demo-form-inline">
 
         <el-form-item label="学生ID">
-            <el-input v-model="student.studentId" placeholder="学生ID"></el-input>
+            <el-input v-model="studentSelectByCondition.studentId" placeholder="学生ID"></el-input>
         </el-form-item>
 
         <el-form-item label="学生姓名">
-            <el-input v-model="student.studentName" placeholder="学生姓名"></el-input>
+            <el-input v-model="studentSelectByCondition.studentName" placeholder="学生姓名"></el-input>
         </el-form-item>
 
-        <el-form-item prop="subject" label="科目">
-            <el-select clearable placeholder="请选择科目名称">
-                <el-option v-for="item in this.courseWithScoreMessage" :key="item.courseId" :label="item.courseName">
+        <el-form-item label="科目">
+            <el-select  v-model="studentSelectByCondition.selectSubject" clearable placeholder="请选择科目名称" @change="selectSubject">
+                <el-option v-for="item in this.courseWithScoreMessage":key="item.courseId" :label="item.courseName" :value="item.courseName">
                 </el-option>
             </el-select>
         </el-form-item>
@@ -111,7 +111,7 @@
                 </el-form-item>
             </el-form>
             <el-button type="primary" @click="submitInsert">提交</el-button>
-            <el-button @click="this.dialogVisible=false">取消</el-button>
+            <el-button @click="dialogVisible=false">取消</el-button>
         </el-card>
 
     </el-dialog>
@@ -206,7 +206,7 @@
                     </el-form-item>
                 </el-form>
                 <el-button type="primary" @click="submitEdit">提交</el-button>
-                <el-button @click="this.editDialogVisible=false">取消</el-button>
+                <el-button @click="editDialogVisible=false">取消</el-button>
             </el-card>
         </template>
     </el-dialog>
@@ -239,7 +239,8 @@
             selectAllByPages() {
                 axios({
                     method: "get",
-                    url: "http://localhost:8080/students?curPage=" + this.curPage + "&pageSize=" + this.pageSize * this.courseNum
+                    url: "http://localhost:8080/students?curPage=" + this.curPage +
+                        "&pageSize=" + this.pageSize * this.courseNum
                 }).then(resp => {
                     this.tableData = resp.data.data.rowsStudents;
                     //设置总记录数
@@ -502,8 +503,9 @@
                 courseWithScoreMessage: [],
 
                 courseScore: [],
+
                 //条件查询成绩对应模型
-                subject:'',
+                selectSubject:'',
 
 
                 //被选中的数组

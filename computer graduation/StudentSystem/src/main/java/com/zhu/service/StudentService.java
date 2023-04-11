@@ -1,6 +1,7 @@
 package com.zhu.service;
 
 import com.zhu.domain.PageBean;
+import com.zhu.domain.PojoByCondition;
 import com.zhu.domain.Student;
 import com.zhu.domain.StudentWithScore;
 import org.apache.ibatis.annotations.Select;
@@ -10,12 +11,13 @@ import java.util.List;
 @Transactional
 public interface StudentService {
     /**
-     *
-     * @param CurPage 用户当前所在页数
-     * @param pageSize 用户当前每页显示条数
+     * 根据页数信息查询符合条件的数据（分页查询）
+     * @param CurPage 当前所在页数
+     * @param pageSize  每页显示的条数
+     * @param pojoByCondition  条件查询的所有条件信息
      * @return
      */
-    public PageBean<Student> selectAllByPage(int CurPage, int pageSize);
+    public PageBean<Student> selectAllByPageWithCondition(int CurPage, int pageSize, PojoByCondition pojoByCondition);
 
 
     public boolean deleteById(Integer studentId);

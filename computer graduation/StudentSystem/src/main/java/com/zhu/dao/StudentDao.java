@@ -1,5 +1,6 @@
 package com.zhu.dao;
 
+import com.zhu.domain.PojoByCondition;
 import com.zhu.domain.Student;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +13,11 @@ public interface StudentDao {
      * 根据页数信息查询符合条件的数据（分页查询）
      * @param begin 开始的页数
      * @param size  每页的条数
+     * @param pojoByCondition  条件查询的所有条件信息
      * @return
      */
-    public List<Student> selectAllByPage(@Param("begin") int begin,@Param("size") int size);
+    public List<Student> selectAllByPageWithCondition(@Param("begin") int begin, @Param("size") int size,
+                                         @Param("pojoByCondition") PojoByCondition pojoByCondition);
 
     /**
      *查询学生总的记录数

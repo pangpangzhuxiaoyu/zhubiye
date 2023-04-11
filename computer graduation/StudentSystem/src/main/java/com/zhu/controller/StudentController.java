@@ -3,6 +3,7 @@ package com.zhu.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhu.domain.PageBean;
+import com.zhu.domain.PojoByCondition;
 import com.zhu.domain.Student;
 import com.zhu.domain.StudentWithScore;
 import com.zhu.service.StudentService;
@@ -22,9 +23,12 @@ public class StudentController {
 
     @GetMapping
     public Result selectAllByPage(@RequestParam("curPage") int curPage,
-                                  @RequestParam("pageSize") int pageSize  ) {
+                                  @RequestParam("pageSize") int pageSize,
+                                  @RequestParam("pojoByCondition") String pojo) {
         //获得
-        PageBean<Student> pageBean = studentService.selectAllByPage(curPage,pageSize);
+        //把前端传过来的检索条件转换为实体类
+        PojoByCondition pojoByCondition = JSON.parseObject(pojo, PojoByCondition.class);
+        PageBean<Student> pageBean = studentService.selectAllByPageWithCondition(curPage,pageSize,pojoByCondition);
         Integer code =pageBean.getRowsStudents() !=null?Code.GET_OK:Code.GET_ERROR;
         String msg=pageBean.getRowsStudents() !=null?"":"数据查询失败，请重试哦！";
         return new Result(code,msg,pageBean);
