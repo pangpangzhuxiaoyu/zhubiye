@@ -20,6 +20,8 @@
             </association>
         </collection>
     </resultMap>
+
+    <!--最开始的写法 并没有设计条件查询-->
     <!--&lt;!&ndash; 在查询学生时关联查询学生的所有成绩 &ndash;&gt;
     <select id="selectAllByPage" resultMap="studentResultMap">
         SELECT s.student_id, s.student_name, s.student_gender,s.student_birth,s.student_tel,s.student_adress,c.course_id,c.course_name,sc.subject_score
@@ -28,8 +30,11 @@
                  LEFT JOIN Course c ON sc.course_id = c.course_id
         LIMIT #{begin},#{size}
     </select>-->
+
+
     <!-- 在查询学生时关联查询学生的所有成绩 -->
-    <select id="selectAllByPage" resultMap="studentResultMap">
+    <!--根据前端返回的查询条件 先查出满足条件的id 然后根据满足条件的id查询全部数据-->
+    <select id="selectAllByPageWithCondition" resultMap="studentResultMap">
         SELECT s.student_id, s.student_name, s.student_gender, s.student_birth, s.student_tel, s.student_adress,
                 c.course_id, c.course_name, sc.subject_score
         FROM Student s

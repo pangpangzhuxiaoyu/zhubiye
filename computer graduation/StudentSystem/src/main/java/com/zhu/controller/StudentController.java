@@ -21,13 +21,15 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping
+    @PostMapping("/{condition}") //为了区别于其他的post请求 故要在url上加
     public Result selectAllByPage(@RequestParam("curPage") int curPage,
                                   @RequestParam("pageSize") int pageSize,
-                                  @RequestParam("pojoByCondition") String pojo) {
+                                  @RequestBody String pojo) {
         //获得
         //把前端传过来的检索条件转换为实体类
-        PojoByCondition pojoByCondition = JSON.parseObject(pojo, PojoByCondition.class);
+        com.alibaba.fastjson.JSONObject pojo1= com.alibaba.fastjson.JSON.parseObject(pojo);
+        String pojoByConditionJson = pojo1.getString("pojoByCondition");
+        PojoByCondition pojoByCondition = JSON.parseObject(pojoByConditionJson, PojoByCondition.class);
         PageBean<Student> pageBean = studentService.selectAllByPageWithCondition(curPage,pageSize,pojoByCondition);
         Integer code =pageBean.getRowsStudents() !=null?Code.GET_OK:Code.GET_ERROR;
         String msg=pageBean.getRowsStudents() !=null?"":"数据查询失败，请重试哦！";

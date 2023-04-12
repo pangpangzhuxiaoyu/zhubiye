@@ -23,22 +23,22 @@
     <el-form :inline="true" :model="student" class="demo-form-inline">
 
         <el-form-item label="学生ID">
-            <el-input v-model="studentSelectByCondition.studentId" placeholder="学生ID"></el-input>
+            <el-input v-model="pojoByCondition.studentId" placeholder="学生ID"></el-input>
         </el-form-item>
 
         <el-form-item label="学生姓名">
-            <el-input v-model="studentSelectByCondition.studentName" placeholder="学生姓名"></el-input>
+            <el-input v-model="pojoByCondition.studentName" placeholder="学生姓名"></el-input>
         </el-form-item>
 
         <el-form-item label="科目">
-            <el-select  v-model="studentSelectByCondition.selectSubject" clearable placeholder="请选择科目名称" @change="selectSubject">
+            <el-select  v-model="pojoByCondition.selectSubject" clearable placeholder="请选择科目名称" @change="selectSubject">
                 <el-option v-for="item in this.courseWithScoreMessage":key="item.courseId" :label="item.courseName" :value="item.courseName">
                 </el-option>
             </el-select>
         </el-form-item>
-        <el-input v-model="minScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
+        <el-input v-model="pojoByCondition.minScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
         <nobr> ~</nobr>
-        <el-input v-model="maxScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
+        <el-input v-model="pojoByCondition.maxScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
 
         <el-form-item>
             <el-button type="success" @click="clear" plain>清空</el-button>
@@ -238,9 +238,10 @@
         methods: {
             selectAllByPages() {
                 axios({
-                    method: "get",
-                    url: "http://localhost:8080/students?curPage=" + this.curPage +
-                        "&pageSize=" + this.pageSize * this.courseNum
+                    method: "post",
+                    url: "http://localhost:8080/students/condition?curPage=" + this.curPage +
+                        "&pageSize=" + this.pageSize * this.courseNum,
+                    data:this.pojoByCondition
                 }).then(resp => {
                     this.tableData = resp.data.data.rowsStudents;
                     //设置总记录数
@@ -504,8 +505,15 @@
 
                 courseScore: [],
 
-                //条件查询成绩对应模型
-                selectSubject:'',
+                //条件查询对应模型
+                pojoByCondition:{
+                    selectSubject:'',
+                    studentId:'',
+                    studentName:'',
+                    maxScore: '',
+                    minScore: ''
+
+                },
 
 
                 //被选中的数组
@@ -551,10 +559,7 @@
                         }
                     ]
 
-                }],
-
-                maxScore: '',
-                minScore: ''
+                }]
 
 
             }
