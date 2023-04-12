@@ -22,7 +22,7 @@ public interface StudentDao {
     /**
      *查询学生总的记录数
      */
-    @Select("select count(*) from student")
+    //@Select("select count(*) from student")
     int selectTotalCount();
 
     /**

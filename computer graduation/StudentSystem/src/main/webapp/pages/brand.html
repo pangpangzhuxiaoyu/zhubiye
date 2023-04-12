@@ -31,7 +31,7 @@
         </el-form-item>
 
         <el-form-item label="科目">
-            <el-select  v-model="pojoByCondition.selectSubject" clearable placeholder="请选择科目名称" @change="selectSubject">
+            <el-select  v-model="pojoByCondition.subjectName" clearable placeholder="请选择科目名称" @change="subjectName">
                 <el-option v-for="item in this.courseWithScoreMessage":key="item.courseId" :label="item.courseName" :value="item.courseName">
                 </el-option>
             </el-select>
@@ -42,7 +42,7 @@
 
         <el-form-item>
             <el-button type="success" @click="clear" plain>清空</el-button>
-            <el-button icon="el-icon-search" type="primary" round="true" @click="onSubmit"></el-button>
+            <el-button icon="el-icon-search" type="primary" round="true" @click="selectAllByPages"></el-button>
         </el-form-item>
     </el-form>
 
@@ -232,6 +232,22 @@
         mounted() {
             //页面加载后查询全部（默认是每页面5条数据）
             this.selectAllByPages();
+            //调用后端查询科目的语句
+            axios.get("/courseNames").then(resp => {
+                //如果查询成功
+                if (resp.data.code == 60041) {
+                    //后端会返回一个json里面包含学科和学科id 这段代码的作用是将score附加上去，方便之后前端给后端传递
+                    this.courseWithScoreMessage = resp.data.data.map(item => {
+                            return {
+                                ...item,
+                                score: null
+                            }
+                        }
+                    );
+                } else {
+                    //查询失败做处理
+                }
+            })
 
         },
 
@@ -241,7 +257,7 @@
                     method: "post",
                     url: "http://localhost:8080/students/condition?curPage=" + this.curPage +
                         "&pageSize=" + this.pageSize * this.courseNum,
-                    data:this.pojoByCondition
+                    data:{pojoByCondition:this.pojoByCondition}
                 }).then(resp => {
                     this.tableData = resp.data.data.rowsStudents;
                     //设置总记录数
@@ -250,22 +266,7 @@
                     this.courseNum = resp.data.data.courseNum;
 
                 })
-                //调用后端查询科目的语句
-                axios.get("/courseNames").then(resp => {
-                    //如果查询成功
-                    if (resp.data.code == 60041) {
-                        //后端会返回一个json里面包含学科和学科id 这段代码的作用是将score附加上去，方便之后前端给后端传递
-                        this.courseWithScoreMessage = resp.data.data.map(item => {
-                                return {
-                                    ...item,
-                                    score: null
-                                }
-                            }
-                        );
-                    } else {
-                        //查询失败做处理
-                    }
-                })
+
             },
 
             deleteById(row) {
@@ -434,8 +435,8 @@
                          this.studentAdd.scores[i].subjectScore='';
                      }
                  }*/
-                this.maxScore = '';
-                this.minScore = '';
+                this.maxScore = 100;
+                this.minScore = 0;
             },
 
         },
@@ -507,11 +508,11 @@
 
                 //条件查询对应模型
                 pojoByCondition:{
-                    selectSubject:'',
-                    studentId:'',
+                    subjectName:'',
+                    studentId:null,
                     studentName:'',
-                    maxScore: '',
-                    minScore: ''
+                    maxScore: 100,
+                    minScore: 0
 
                 },
 

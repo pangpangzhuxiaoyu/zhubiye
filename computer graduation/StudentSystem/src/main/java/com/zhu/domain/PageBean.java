@@ -37,4 +37,13 @@ public class PageBean<T> {
     public void setRowsStudents(List<T> rowsStudents) {
         this.rowsStudents = rowsStudents;
     }
+
+    @Override
+    public String toString() {
+        return "PageBean{" +
+                "totalCount=" + totalCount +
+                ", rowsStudents=" + rowsStudents +
+                ", courseNum=" + courseNum +
+                '}';
+    }
 }

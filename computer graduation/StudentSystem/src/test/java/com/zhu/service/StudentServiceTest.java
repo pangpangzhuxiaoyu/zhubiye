@@ -37,11 +37,13 @@ public class StudentServiceTest {
     @Test
     public void testSelectByPageWithCondition(){
         PojoByCondition pb=new PojoByCondition();
-        pb.studentId=20230001;
-        pb.subjectName="英语";
+        pb.studentId=null;
+        pb.subjectName="";
+        pb.studentName="";
         pb.maxScore=100;
-        pb.minScore=99.9;
-        PageBean<Student> student = studentService.selectAllByPageWithCondition(1,30,pb);
+        pb.minScore=0;
+        PageBean<Student> student = studentService.selectAllByPageWithCondition(1,15,pb);
+        System.out.println(student);
     }
     @Test
     public void deleteById(){

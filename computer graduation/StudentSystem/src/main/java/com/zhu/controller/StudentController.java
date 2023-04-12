@@ -29,7 +29,8 @@ public class StudentController {
         //把前端传过来的检索条件转换为实体类
         com.alibaba.fastjson.JSONObject pojo1= com.alibaba.fastjson.JSON.parseObject(pojo);
         String pojoByConditionJson = pojo1.getString("pojoByCondition");
-        PojoByCondition pojoByCondition = JSON.parseObject(pojoByConditionJson, PojoByCondition.class);
+        PojoByCondition pojoByCondition = new PojoByCondition();
+        pojoByCondition=JSON.parseObject(pojoByConditionJson, PojoByCondition.class);
         PageBean<Student> pageBean = studentService.selectAllByPageWithCondition(curPage,pageSize,pojoByCondition);
         Integer code =pageBean.getRowsStudents() !=null?Code.GET_OK:Code.GET_ERROR;
         String msg=pageBean.getRowsStudents() !=null?"":"数据查询失败，请重试哦！";
