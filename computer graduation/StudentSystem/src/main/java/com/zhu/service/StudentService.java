@@ -1,10 +1,9 @@
 package com.zhu.service;
 
-import com.zhu.domain.PageBean;
-import com.zhu.domain.PojoByCondition;
+import com.zhu.pojo.PageBean;
+import com.zhu.pojo.PojoByCondition;
 import com.zhu.domain.Student;
-import com.zhu.domain.StudentWithScore;
-import org.apache.ibatis.annotations.Select;
+import com.zhu.pojo.StudentWithScore;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,6 +17,8 @@ public interface StudentService {
      * @return
      */
     public PageBean<Student> selectAllByPageWithCondition(int CurPage, int pageSize, PojoByCondition pojoByCondition);
+
+
 
 
     public boolean deleteById(Integer studentId);

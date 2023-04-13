@@ -4,16 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhu.config.SpringConfig;
 import com.zhu.domain.*;
+import com.zhu.pojo.PageBean;
+import com.zhu.pojo.PojoByCondition;
+import com.zhu.pojo.StudentWithScore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.xml.crypto.Data;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

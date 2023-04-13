@@ -1,9 +1,8 @@
 package com.zhu.dao;
 
-import com.zhu.domain.PojoByCondition;
+import com.zhu.pojo.PojoByCondition;
 import com.zhu.domain.Student;
 import org.apache.ibatis.annotations.*;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -18,6 +17,12 @@ public interface StudentDao {
      */
     public List<Student> selectAllByPageWithCondition(@Param("begin") int begin, @Param("size") int size,
                                          @Param("pojoByCondition") PojoByCondition pojoByCondition);
+
+    /**
+     * 用于到处excel全部数据
+     * @return
+     */
+    public List<Student> selectAll();
 
     /**
      *查询学生总的记录数

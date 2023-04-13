@@ -1,9 +1,7 @@
 package com.zhu.dao;
 
-import com.zhu.domain.Student;
-import com.zhu.domain.StudentWithScore;
+import com.zhu.pojo.StudentWithScore;
 import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

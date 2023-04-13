@@ -2,11 +2,10 @@ package com.zhu.service.impl;
 
 import com.zhu.dao.ScoreDao;
 import com.zhu.dao.StudentDao;
-import com.zhu.dao.CourseDao;
-import com.zhu.domain.PageBean;
-import com.zhu.domain.PojoByCondition;
+import com.zhu.pojo.PageBean;
+import com.zhu.pojo.PojoByCondition;
 import com.zhu.domain.Student;
-import com.zhu.domain.StudentWithScore;
+import com.zhu.pojo.StudentWithScore;
 import com.zhu.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +61,7 @@ public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize,
     pageBean.setCourseNum(courseNum);
     return pageBean;
 }
+
 
 
     @Override
