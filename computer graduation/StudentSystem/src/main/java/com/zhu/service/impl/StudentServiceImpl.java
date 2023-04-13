@@ -46,9 +46,14 @@ public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize,
     int begin = (curPage - 1) * pageSize;
     //计算查询条数
     int size = pageSize;
+    //判断学生姓名，因为要做模糊查询
+    String studentNameString= pojoByCondition.studentName;
+    if(studentNameString !=null&&studentNameString.length()>0){
+        pojoByCondition.setStudentName("%"+studentNameString+"%");
+    }
     //获取符合条件的行
     List<Student> rows = studentDao.selectAllByPageWithCondition(begin, size,pojoByCondition);
-    int count = studentDao.selectTotalCount();
+    int count = studentDao.selectTotalCount(pojoByCondition);
     int courseNum = studentDao.selectCourseNum();
     //将所有符合条件的行以及总学生数据set进PageBean里面
     PageBean<Student> pageBean = new PageBean<>();

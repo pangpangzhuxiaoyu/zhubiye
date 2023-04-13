@@ -23,7 +23,7 @@ public interface StudentDao {
      *查询学生总的记录数
      */
     //@Select("select count(*) from student")
-    int selectTotalCount();
+    int selectTotalCount( @Param("pojoByCondition") PojoByCondition pojoByCondition);
 
     /**
      * 用于查询课程的数目

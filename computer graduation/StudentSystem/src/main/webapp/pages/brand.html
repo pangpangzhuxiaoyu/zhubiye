@@ -261,7 +261,7 @@
                 }).then(resp => {
                     this.tableData = resp.data.data.rowsStudents;
                     //设置总记录数
-                    this.totalCount = resp.data.data.totalCount;
+                    this.totalCount = resp.data.data.totalCount/this.courseNum;
                     //获取科目数量并返回给数据模型（其实这一步不用跟数据库查询 因为固定是三科目，但是为了方便程序扩展，进行了查询并赋值的操作）
                     this.courseNum = resp.data.data.courseNum;
 
@@ -361,6 +361,7 @@
                     //插入成功
                     if (resp.data.code == 60011) {
                         this.dialogVisible = false;
+                        //this.pojoByCondition=null;
                         //插入成功 刷新页面
                         this.selectAllByPages();
                         this.$message({

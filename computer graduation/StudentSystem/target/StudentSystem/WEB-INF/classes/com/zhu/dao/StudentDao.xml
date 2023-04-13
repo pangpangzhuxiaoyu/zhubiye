@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhu.dao.StudentDao">
+    <resultMap id="studentResultMap" type="com.zhu.domain.Student" >
+        <result column="student_id" property="studentId"/>
+        <result column="student_name" property="studentName"/>
+        <result column="student_gender" property="studentGender"/>
+        <result column="student_birth" property="studentBirth"/>
+        <result column="student_tel" property="studentTel"/>
+        <result column="student_adress" property="studentAdress"/>
+        <collection property="scores" ofType="com.zhu.domain.Score">
+            <result  column="student_id" property="studentId" />
+            <result column="course_id" property="courseId" />
+            <result column="subject_score"  property="subjectScore"/>
+            <association property="course" javaType="com.zhu.domain.Course">
+                <result  column="course_id" property="courseId"/>
+                <result column="course_name"  property="courseName"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <!--最开始的写法 并没有设计条件查询-->
+    <!--&lt;!&ndash; 在查询学生时关联查询学生的所有成绩 &ndash;&gt;
+    <select id="selectAllByPage" resultMap="studentResultMap">
+        SELECT s.student_id, s.student_name, s.student_gender,s.student_birth,s.student_tel,s.student_adress,c.course_id,c.course_name,sc.subject_score
+        FROM Student s
+                 LEFT JOIN Score sc ON s.student_id = sc.student_id
+                 LEFT JOIN Course c ON sc.course_id = c.course_id
+        LIMIT #{begin},#{size}
+    </select>-->
+
+
+    <!-- 在查询学生时关联查询学生的所有成绩 -->
+    <!--根据前端返回的查询条件 先查出满足条件的id 然后根据满足条件的id查询全部数据-->
+    <select id="selectAllByPageWithCondition" resultMap="studentResultMap">
+        SELECT s.student_id, s.student_name, s.student_gender, s.student_birth, s.student_tel, s.student_adress,
+                c.course_id, c.course_name, sc.subject_score
+        FROM Student s
+        LEFT JOIN Score sc ON s.student_id = sc.student_id
+        LEFT JOIN Course c ON sc.course_id = c.course_id
+        WHERE s. student_id in(
+            SELECT s.student_id
+            FROM Student s
+            LEFT JOIN Score sc ON s.student_id = sc.student_id
+            LEFT JOIN Course c ON sc.course_id = c.course_id
+            <where>
+                <if test="pojoByCondition.subjectName != null and pojoByCondition.subjectName != ''">
+                    c.course_name = #{pojoByCondition.subjectName}
+                </if>
+                <if test="pojoByCondition.studentId != null and pojoByCondition.studentId != ''">
+                    and s.student_id = #{pojoByCondition.studentId}
+                </if>
+                <if test="pojoByCondition.studentName != null and pojoByCondition.studentName != ''">
+                    and s.student_name like #{pojoByCondition.studentName}
+                </if>
+                <if test="pojoByCondition.minScore != null and pojoByCondition.minScore != ''">
+                    and sc.subject_score >= #{pojoByCondition.minScore}
+                </if>
+                <if test="pojoByCondition.maxScore != null and pojoByCondition.maxScore != ''">
+                    and sc.subject_score &lt;= #{pojoByCondition.maxScore}
+                </if>
+            </where>
+
+        )
+            LIMIT #{begin},#{size}
+    </select>
+    <select id="selectTotalCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM Student s
+        LEFT JOIN Score sc ON s.student_id = sc.student_id
+        LEFT JOIN Course c ON sc.course_id = c.course_id
+        WHERE s. student_id in(
+        SELECT s.student_id
+        FROM Student s
+        LEFT JOIN Score sc ON s.student_id = sc.student_id
+        LEFT JOIN Course c ON sc.course_id = c.course_id
+        <where>
+            <if test="pojoByCondition.subjectName != null and pojoByCondition.subjectName != ''">
+                c.course_name = #{pojoByCondition.subjectName}
+            </if>
+            <if test="pojoByCondition.studentId != null and pojoByCondition.studentId != ''">
+                and s.student_id = #{pojoByCondition.studentId}
+            </if>
+            <if test="pojoByCondition.studentName != null and pojoByCondition.studentName != ''">
+                and s.student_name like #{pojoByCondition.studentName}
+            </if>
+            <if test="pojoByCondition.minScore != null and pojoByCondition.minScore != ''">
+                and sc.subject_score >= #{pojoByCondition.minScore}
+            </if>
+            <if test="pojoByCondition.maxScore != null and pojoByCondition.maxScore != ''">
+                and sc.subject_score &lt;= #{pojoByCondition.maxScore}
+            </if>
+        </where>
+
+        )
+    </select>
+
+
+
+    <delete id="deleteByIds">
+        delete from student where student_id in
+        <foreach collection="studentIds" item="studentId" separator="," open="(" close=")">
+            #{studentId}
+        </foreach>
+    </delete>
+
+
+   <!-- <delete id="deleteById" parameterType="com.zhu.domain.Student">
+        delete from student where student_id=#{student.studentId};
+        delete from score where student_id=#{student.studentId}
+    </delete>-->
+</mapper>
