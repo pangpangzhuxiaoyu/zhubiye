@@ -32,7 +32,7 @@ public class ExcelServiceImpl implements ExcelService {
             excel.add(new ExcelBean("性别", "studentGender", 0));
             excel.add(new ExcelBean("出生日期", "studentBirth", 0));
             excel.add(new ExcelBean("电话号码", "studentTel", 0));
-            excel.add(new ExcelBean("各科成绩", "Scores.subjectScore", 0));
+            excel.add(new ExcelBean("各科成绩", "scores", 0));
             map.put(0, excel);
             String sheetName = "Student";
             xssfWorkbook = ExcelUtil.createExcelFile(Student.class, studentList, map, sheetName);

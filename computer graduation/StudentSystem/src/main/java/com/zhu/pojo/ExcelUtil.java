@@ -1,19 +1,22 @@
 package com.zhu.pojo;
 
 
-//import com.shitong.pojo.ExcelBean;
+
 import com.zhu.pojo.ExcelBean;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.springframework.beans.BeanUtils;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -38,8 +41,8 @@ public class ExcelUtil {
      * @param map  标题列行数以及cell字体样式
      */
     public static XSSFWorkbook createExcelFile(Class clazz, List objs, Map<Integer, List<ExcelBean>> map, String sheetName) throws
-            IllegalArgumentException,IllegalAccessException,InvocationTargetException,
-            ClassNotFoundException, IntrospectionException, ParseException {
+            IllegalArgumentException, IllegalAccessException, InvocationTargetException,
+            ClassNotFoundException, IntrospectionException, ParseException, NoSuchFieldException {
         // 创建新的Excel工作簿
         XSSFWorkbook workbook = new XSSFWorkbook();
         // 在Excel工作簿中建一工作表，其名为缺省值, 也可以指定Sheet名称
@@ -122,7 +125,7 @@ public class ExcelUtil {
     }
     public static void createTableRows(XSSFSheet sheet, Map<Integer, List<ExcelBean>> map, List objs, Class clazz)
             throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, IntrospectionException,
-            ClassNotFoundException, ParseException {
+            ClassNotFoundException, ParseException, NoSuchFieldException {
         int rowindex = map.size();
         int maxKey = 0;
         List<ExcelBean> ems = new ArrayList<>();
@@ -138,7 +141,7 @@ public class ExcelUtil {
             for (int i = 0; i < ems.size(); i++) {
                 ExcelBean em = (ExcelBean) ems.get(i);
                 // 获得get方法
-                PropertyDescriptor pd = new PropertyDescriptor(em.getPropertyName(), clazz);
+                PropertyDescriptor pd = new PropertyDescriptor((String)em.getPropertyName(), clazz);
                 Method getMethod = pd.getReadMethod();
                 Object rtn = getMethod.invoke(obj);
                 String value = "";
@@ -152,7 +155,29 @@ public class ExcelUtil {
                         value=nf.format((BigDecimal)rtn).toString();
                     } else if((rtn instanceof Integer) && (Integer.valueOf(rtn.toString())<0 )){
                         value="--";
-                    }else {
+                    }else if (rtn instanceof List){
+                        String s="";
+                        for (int j = 0; j <((List<?>) rtn).size() ; j++) {
+                            Object element = ((List<?>) rtn).get(j);
+                            Class<?> clazzMap=element.getClass();
+                            try {
+                                Field field = clazzMap.getDeclaredField("subjectScore");
+                                Field field2 = clazzMap.getDeclaredField("course");
+                                field.setAccessible(true);
+                                field2.setAccessible(true);
+                                Object propertyValue = field.get(element);
+                                Object propertyValue2 = field2.get(element);
+                                Class clazzMap2 = propertyValue2.getClass();
+                                Field field3 = clazzMap2.getDeclaredField("courseName");
+                                field3.setAccessible(true);
+                                Object propertyValue3 = field3.get(propertyValue2);
+                                s+=propertyValue3+":"+propertyValue.toString()+"  ";
+                            } catch (Exception e) {
+                                throw e;
+                            }
+                        }
+                        value=s;
+                    } else {
                         value = rtn.toString();
                     }
                 }
