@@ -41,6 +41,19 @@ public class StudentServiceImpl implements StudentService {
 //    }
 @Override
 public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize, PojoByCondition pojoByCondition) {
+
+    //校验最大分数和最小分数是否为数字且在0-100之间
+
+    try {
+        double maxScore = pojoByCondition.getMaxScore();
+        double minScore = pojoByCondition.getMinScore();
+        if(maxScore < 0 || maxScore > 100 || minScore < 0 || minScore > 100) {
+            throw new IllegalArgumentException("最大分数和最小分数必须在0-100之间");
+        }
+        } catch(NumberFormatException e) {
+            throw new IllegalArgumentException("最大分数和最小分数必须为数字");
+        }
+
     //查询开始的索引为当前页数-1后乘页面的条数
     int begin = (curPage - 1) * pageSize;
     //计算查询条数

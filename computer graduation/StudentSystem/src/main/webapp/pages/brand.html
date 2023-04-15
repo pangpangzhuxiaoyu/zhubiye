@@ -51,8 +51,7 @@
 
         <el-button type="danger" plain round="true" @click="deleteByIds">批量删除</el-button>
         <el-button type="primary" plain round="true" @click="addStudent">新增</el-button>
-        <el-button type="primary" plain round="true" @click="">导出为Excel</el-button>
-
+        <el-button type="primary" plain round="true" @click="exportExcel">导出为Excel</el-button>
     </el-row>
 
     <!--添加数据对话框表单-->
@@ -245,7 +244,9 @@
                         }
                     );
                 } else {
-                    //查询失败做处理
+                    this.$message({
+                        message: '科目信息查询失败',
+                        type: 'error'})
                 }
             })
 
@@ -253,6 +254,39 @@
 
         methods: {
             selectAllByPages() {
+                // 去掉输入内容的前后空格
+                this.pojoByCondition.studentId = this.pojoByCondition.studentId.trim();
+                this.pojoByCondition.studentName = this.pojoByCondition.studentName.trim();
+                /*this.pojoByCondition.minScore = this.pojoByCondition.minScore.trim();
+                this.pojoByCondition.maxScore = this.pojoByCondition.maxScore.trim();*/
+
+                //表单校验
+
+                // 判断学生ID是否为整数，如果不是，则给出提示信息
+                if(isNaN(parseInt(this.pojoByCondition.studentId))&&this.pojoByCondition.studentId !== '') {
+                    this.$message({
+                        message: '请输入整数类型的学生ID',
+                        type: 'error'
+                    });
+                    return;
+                }
+                // 判断最大分数和最小分数是否为数字并在0-100之间
+                const minScore = parseFloat(this.pojoByCondition.minScore);
+                const maxScore = parseFloat(this.pojoByCondition.maxScore);
+                if (!isNaN(minScore) && !isNaN(maxScore)) {
+                    if (minScore < 0 || minScore > 100 || maxScore < 0 || maxScore > 100) {
+                        alert('最小分数和最大分数必须在0-100之间');
+                        return;
+                    }
+                } else if (!isNaN(minScore) || !isNaN(maxScore)) {
+                    alert('最小分数和最大分数必须都为数字');
+                    return;
+                }
+                if (Number(this.pojoByCondition.minScore) > Number(this.pojoByCondition.maxScore)) {
+                    this.$message.error('最小分数不能大于最大分数');
+                    return;
+                }
+
                 axios({
                     method: "post",
                     url: "http://localhost:8080/students/condition?curPage=" + this.curPage +
@@ -265,6 +299,11 @@
                     //获取科目数量并返回给数据模型（其实这一步不用跟数据库查询 因为固定是三科目，但是为了方便程序扩展，进行了查询并赋值的操作）
                     this.courseNum = resp.data.data.courseNum;
 
+                }).catch(error=>{
+                    //异常
+                    this.$message({
+                        message: '请求失败，请稍后重试',
+                        type: 'error'})
                 })
 
             },
@@ -392,6 +431,28 @@
                 })
 
             },
+            exportExcel(){
+                axios.get("/excels", {
+                    responseType: "blob"
+                }).then(resp=>{
+                    if(resp.data.type=== "application/vnd.ms-excel"){
+                        this.$message({
+                            message:"导出成功！",
+                            type:'success'
+                        });
+                        const url = window.URL.createObjectURL(new Blob([resp.data]));
+                        const link = document.createElement("a");
+                        link.style.display = "none";
+                        link.href = url;
+                        link.setAttribute("download", "aa.xlsx");
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        window.URL.revokeObjectURL(url);
+                    }
+                })
+
+            },
 
             startEdit(row) {
                 // 获取改行已经有的数据，以供填入修改框
@@ -424,25 +485,17 @@
             },
 
             clear() {
-                /* this.studentAdd.studentId = '';
-                 this.studentAdd.studentName = '';
-                 this.studentAdd.studentAdress = '';
-                 this.studentAdd.studentBirth = '';
-                 this.studentAdd.studentGender = '';
-                 this.studentAdd.studentScore = '';
-                 this.studentAdd.studentTel = '';
-                 if (this.studentAdd.scores && this.studentAdd.scores.length) {
-                     for(let i=0; i<this.studentAdd.scores.length; i++){
-                         this.studentAdd.scores[i].subjectScore='';
-                     }
-                 }*/
-                this.maxScore = 100;
-                this.minScore = 0;
+                    this.pojoByCondition.subjectName='',
+                    this.pojoByCondition.studentId='',
+                    this.pojoByCondition.studentName='',
+                    this.pojoByCondition.maxScore= '',
+                    this.pojoByCondition.minScore= ''
             },
 
         },
         data() {
             return {
+                filePath: "",
                 courseNum: 3,
                 totalCount: 100,
                 // 当前页码
@@ -507,10 +560,9 @@
 
                 courseScore: [],
 
-                //条件查询对应模型
                 pojoByCondition:{
                     subjectName:'',
-                    studentId:null,
+                    studentId:'',
                     studentName:'',
                     maxScore: 100,
                     minScore: 0

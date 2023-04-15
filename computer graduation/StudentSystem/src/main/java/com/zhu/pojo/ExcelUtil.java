@@ -2,6 +2,7 @@ package com.zhu.pojo;
 
 
 
+import com.zhu.domain.Score;
 import com.zhu.pojo.ExcelBean;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.formula.functions.T;
@@ -125,7 +126,7 @@ public class ExcelUtil {
     }
     public static void createTableRows(XSSFSheet sheet, Map<Integer, List<ExcelBean>> map, List objs, Class clazz)
             throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, IntrospectionException,
-            ClassNotFoundException, ParseException, NoSuchFieldException {
+             NoSuchFieldException {
         int rowindex = map.size();
         int maxKey = 0;
         List<ExcelBean> ems = new ArrayList<>();
@@ -155,29 +156,36 @@ public class ExcelUtil {
                         value=nf.format((BigDecimal)rtn).toString();
                     } else if((rtn instanceof Integer) && (Integer.valueOf(rtn.toString())<0 )){
                         value="--";
-                    }else if (rtn instanceof List){
-                        String s="";
-                        for (int j = 0; j <((List<?>) rtn).size() ; j++) {
-                            Object element = ((List<?>) rtn).get(j);
-                            Class<?> clazzMap=element.getClass();
-                            try {
-                                Field field = clazzMap.getDeclaredField("subjectScore");
-                                Field field2 = clazzMap.getDeclaredField("course");
-                                field.setAccessible(true);
-                                field2.setAccessible(true);
-                                Object propertyValue = field.get(element);
-                                Object propertyValue2 = field2.get(element);
-                                Class clazzMap2 = propertyValue2.getClass();
-                                Field field3 = clazzMap2.getDeclaredField("courseName");
-                                field3.setAccessible(true);
-                                Object propertyValue3 = field3.get(propertyValue2);
-                                s+=propertyValue3+":"+propertyValue.toString()+"  ";
-                            } catch (Exception e) {
-                                throw e;
+                    }else if (rtn instanceof List) {
+
+                        //如果是Score类型的话
+                        if (((List<?>) rtn).get(0) instanceof Score) {
+                            String s = "";
+                            for (int j = 0; j < ((List<?>) rtn).size(); j++) {
+                                Object element = ((List<?>) rtn).get(j);
+                                Class<?> clazzMap = element.getClass();
+                                try {
+                                    //获取属性值
+                                    Field field = clazzMap.getDeclaredField("subjectScore");
+                                    Field field2 = clazzMap.getDeclaredField("course");
+                                    field.setAccessible(true);
+                                    field2.setAccessible(true);
+                                    Object propertyValue = field.get(element);
+                                    Object propertyValue2 = field2.get(element);
+                                    Class clazzMap2 = propertyValue2.getClass();
+                                    Field field3 = clazzMap2.getDeclaredField("courseName");
+                                    field3.setAccessible(true);
+                                    Object propertyValue3 = field3.get(propertyValue2);
+                                    s += propertyValue3 + ":" + propertyValue.toString() + "  ";
+                                } catch (Exception e) {
+                                    throw e;
+                                }
                             }
+                            value = s;
                         }
-                        value=s;
-                    } else {
+
+
+                    }else {
                         value = rtn.toString();
                     }
                 }
