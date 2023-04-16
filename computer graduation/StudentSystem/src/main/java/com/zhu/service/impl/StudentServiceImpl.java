@@ -42,17 +42,7 @@ public class StudentServiceImpl implements StudentService {
 @Override
 public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize, PojoByCondition pojoByCondition) {
 
-    //校验最大分数和最小分数是否为数字且在0-100之间
 
-    try {
-        double maxScore = pojoByCondition.getMaxScore();
-        double minScore = pojoByCondition.getMinScore();
-        if(maxScore < 0 || maxScore > 100 || minScore < 0 || minScore > 100) {
-            throw new IllegalArgumentException("最大分数和最小分数必须在0-100之间");
-        }
-        } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("最大分数和最小分数必须为数字");
-        }
 
     //查询开始的索引为当前页数-1后乘页面的条数
     int begin = (curPage - 1) * pageSize;
@@ -79,18 +69,28 @@ public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize,
 
     @Override
     public boolean deleteById(Integer studentId) {
+        try{
         //删除两张表 保持数据一致性
         studentDao.deleteById(studentId);
         scoreDao.deleteById(studentId);
         return true;
+        }catch(Exception e){
+            //
+            return false;
+        }
     }
 
     @Override
     public boolean deleteByIds(int[] studentIds) {
-        //删除两张表 保持数据一致性
-        studentDao.deleteByIds(studentIds);
-        scoreDao.deleteByIds(studentIds);
-        return true;
+        try{//删除两张表 保持数据一致性
+            studentDao.deleteByIds(studentIds);
+            scoreDao.deleteByIds(studentIds);
+            return true;
+        }catch(Exception e){
+            //
+            return false;
+        }
+
     }
     @Override
     public boolean studentAdd(Student student, List<StudentWithScore> studentWithScoreList){
@@ -106,6 +106,9 @@ public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize,
     }
     @Override
     public boolean studentUpdate(Student student){
+        if(student.getStudentId() == null || student.getStudentId() <= 0){
+            throw new IllegalArgumentException("学生ID不能为空或小于等于0！");
+        }
         List<StudentWithScore> studentWithScoreList=new ArrayList<>();
         for (int i=0;i<student.scores.size();i++){
             StudentWithScore studentWithScore = new StudentWithScore();

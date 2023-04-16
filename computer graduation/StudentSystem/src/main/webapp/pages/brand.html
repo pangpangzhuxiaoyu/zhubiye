@@ -55,57 +55,49 @@
     </el-row>
 
     <!--添加数据对话框表单-->
-    <el-dialog title="添加学生" :visible.sync="dialogVisible" width="36%">
+    <el-dialog title="添加学生" :visible.sync="dialogVisible" width="50%">
         <el-card>
             <div slot="header">信息</div>
-            <el-form ref="form" :model="studentAdd" label-width="80px">
-                <el-form-item label="学生ID">
-                    <el-input v-model="studentAdd.studentId"></el-input>
+            <el-form ref="form3" :model="studentAdd" label-width="80px":rules="rules">
+                <el-form-item label="学生ID" prop="studentId">
+                    <el-input v-model="studentAdd.studentId" ></el-input>
                 </el-form-item>
 
-                <el-form-item label="姓名">
-                    <el-input v-model="studentAdd.studentName"></el-input>
+                <el-form-item label="姓名" prop="studentName">
+                    <el-input v-model="studentAdd.studentName" ></el-input>
                 </el-form-item>
 
-                <el-form-item label="性别">
+                <el-form-item label="性别" prop="studentGender">
                     <el-radio-group v-model="studentAdd.studentGender">
                         <el-radio label="男"></el-radio>
                         <el-radio label="女"></el-radio>
                     </el-radio-group>
                 </el-form-item>
 
-                <el-form-item label="出生日期">
+                <el-form-item label="出生日期" prop="studentBirth">
                     <el-col :span="11">
                         <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions"
                                         v-model="studentAdd.studentBirth" style="width: 100%;"></el-date-picker>
                     </el-col>
                 </el-form-item>
 
-                <el-form-item label="电话">
+                <el-form-item label="电话" prop="studentTel">
                     <el-input v-model="studentAdd.studentTel"></el-input>
                 </el-form-item>
 
-                <el-form-item label="住址">
+                <el-form-item label="住址" prop="studentAdress">
                     <el-input type="textarea" v-model="studentAdd.studentAdress"></el-input>
                 </el-form-item>
             </el-form>
         </el-card>
-        <!--  <p>学分</p>
-          <el-form-item label="语文">
-              <el-input v-model="student.scores[0].subjectScore"></el-input>
-          </el-form-item>
-          <el-form-item label="数学">
-              <el-input v-model="student.scores[1].subjectScore"></el-input>
-          </el-form-item>
-          <el-form-item label="英语">
-              <el-input v-model="subject.english"></el-input>
-          </el-form-item>-->
         <el-card>
             <div slot="header">学分</div>
-            <el-form>
+            <el-form ref="form4">
                 <!--为了方便程序扩展 科目名称通过循环加入表单-->
                 <el-form-item v-for="(course, index) in courseWithScoreMessage" :key="index"
-                              :label="course.courseName+`\(${course.courseId}\)`">
+                              :label="course.courseName+`\(${course.courseId}\)`"
+                              :prop="'courseWithScoreMessage[' + index + '].score'"
+                              :rules="rules.score">
                     <el-input v-model="course.score"></el-input>
                 </el-form-item>
             </el-form>
@@ -159,49 +151,47 @@
     </template>
 
     <!-- 编辑表单 -->
-    <el-dialog title="编辑" :visible.sync="editDialogVisible" width="36%">
+    <el-dialog  title="编辑" :visible.sync="editDialogVisible" width="50%">
         <template slot-scope="scope"> <!-- 编辑的scope -->
             <el-card>
-                <p>信息</p>
-                <el-form ref="form" :model="student" label-width="80px">
-                    <el-form-item label="学生ID">
+                <div slot="header">学生信息</div>
+                <el-form ref="form1" :model="student" label-width="80px":rules="rules">
+                    <el-form-item label="学生ID" prop="studentId">
                         <el-input v-model="student.studentId" :disabled="true"></el-input>
                     </el-form-item>
-
-                    <el-form-item label="姓名">
+                    <el-form-item label="姓名" prop="studentName">
                         <el-input v-model="student.studentName"></el-input>
                     </el-form-item>
-
-                    <el-form-item label="性别">
+                    <el-form-item label="性别" prop="studentGender">
                         <el-radio-group v-model="student.studentGender">
                             <el-radio label="男"></el-radio>
                             <el-radio label="女"></el-radio>
                         </el-radio-group>
                     </el-form-item>
-
-                    <el-form-item label="出生日期">
+                    <el-form-item label="出生日期" prop="studentBirth">
                         <el-col :span="11">
-                            <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions"
-                                            v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions" v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
-
-                    <el-form-item label="电话">
+                    <el-form-item label="电话" prop="studentTel">
                         <el-input v-model="student.studentTel"></el-input>
                     </el-form-item>
-
-                    <el-form-item label="住址">
+                    <el-form-item label="住址" prop="studentAdress">
                         <el-input type="textarea" v-model="student.studentAdress"></el-input>
                     </el-form-item>
                 </el-form>
             </el-card>
             <el-card>
                 <div slot="header">学分</div>
-                <el-form>
+                <el-form ref="form2" :model="student">
                     <!--为了方便程序扩展 科目名称通过循环加入表单-->
                     <el-form-item v-for="(score, index) in student.scores" :key="index"
-                                  :label="score.course.courseName">
-                        <el-input v-model="score.subjectScore"></el-input>
+                                  :label="score.course.courseName"
+                                  :prop="'scores.' + index + '.subjectScore'"
+                                  :rules="rules.subjectScore">
+                        <el-input v-model="score.subjectScore"
+
+                                  ></el-input>
                     </el-form-item>
                 </el-form>
                 <el-button type="primary" @click="submitEdit">提交</el-button>
@@ -239,7 +229,7 @@
                     this.courseWithScoreMessage = resp.data.data.map(item => {
                             return {
                                 ...item,
-                                score: null
+                                score: ''
                             }
                         }
                     );
@@ -414,52 +404,117 @@
 
             },
             submitEdit(){
-                axios.put("/students",{student:this.student},{headers: {'Content-Type': 'application/json;' +
-                            'charset=UTF-8'}}).then(resp => {
-                    //更新成功
-                    if (resp.data.code == 60031) {
-                        this.editDialogVisible = false;
-                        //插入成功 刷新页面
-                        this.selectAllByPages();
-                        this.$message({
-                            message: '更新成功！',
-                            type: 'success'
-                        });
-                    } else {
-                    }
+                //对表单进行前端校验
+                Promise.all([
+                    this.$refs['form1'].validate(),
+                    this.$refs['form2'].validate()
+                ]).then(results => {
+                    const [valid1, valid2] = results;
+                    if (valid1 && valid2) {
+                        // 校验通过，执行表单提交逻辑
+                        axios.put("/students",{student:this.student},{headers: {'Content-Type': 'application/json;' +
+                                    'charset=UTF-8'}}).then(resp => {
+                            //更新成功
+                            if (resp.data.code == 60031) {
+                                this.editDialogVisible = false;
+                                //插入成功 刷新页面
+                                this.selectAllByPages();
+                                this.$message({
+                                    message: '更新成功！',
+                                    type: 'success'
+                                });
+                            } else {
+                                this.$message({
+                                    message: '更新失败，请重试',
+                                    type: 'error'})
+                            }
 
-                })
+                        })
+                    }
+                }).catch(error => {
+                    //表单校验失败
+                    alert("请正确填写信息，thank you！");
+
+                });
+
+
+                /*this.$refs['form'].validate((valid) => {
+                    if (valid) {
+
+
+                    } else {
+                        // 校验失败，输出错误信息
+                        alert("请将信息填写完整，thank you！");
+                    }
+                    this.$refs['form'].validate((valid) (() => {
+                        // 校验通过，执行表单提交逻辑
+                        axios.put("/students",{student:this.student},{headers: {'Content-Type': 'application/json;' +
+                                    'charset=UTF-8'}}).then(resp => {
+                            //更新成功
+                            if (resp.data.code == 60031) {
+                                this.editDialogVisible = false;
+                                //插入成功 刷新页面
+                                this.selectAllByPages();
+                                this.$message({
+                                    message: '更新成功！',
+                                    type: 'success'
+                                });
+                            } else {
+                                //
+                            }
+
+                        })
+                    }).catch(error => {
+                        // 校验失败，输出错误信息
+                        alert("请将信息填写完整，thank you！");
+                    });
+                });*/
+
+
 
             },
             exportExcel(){
-                axios.get("/excels", {
-                    responseType: "blob"
-                }).then(resp=>{
-                    if(resp.data.type=== "application/vnd.ms-excel"){
-                        this.$message({
-                            message:"导出成功！",
-                            type:'success'
-                        });
-                        const url = window.URL.createObjectURL(new Blob([resp.data]));
-                        const link = document.createElement("a");
-                        link.style.display = "none";
-                        link.href = url;
-                        link.setAttribute("download", "aa.xlsx");
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        window.URL.revokeObjectURL(url);
-                    }
-                })
+                try {
+                    axios.get("/excels", {
+                        responseType: "blob"
+                    }).then(resp => {
+                        if (resp.data.type === "application/vnd.ms-excel") {
+                            this.$message({
+                                message: "导出成功！",
+                                type: 'success'
+                            });
+                            const url = window.URL.createObjectURL(new Blob([resp.data]));
+                            const link = document.createElement("a");
+                            link.style.display = "none";
+                            link.href = url;
+                            link.setAttribute("download", "学生成绩信息.xlsx");
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            window.URL.revokeObjectURL(url);
+                        }
+                    })
+                }catch{
+                    this.$message({
+                        message: "出现异常，导出失败",
+                        type: 'error'
+                    });
+                }
 
             },
 
             startEdit(row) {
+                try{
                 // 获取改行已经有的数据，以供填入修改框
                 //console.log(JSON.parse(JSON.stringify(row)));
                 this.student = JSON.parse(JSON.stringify(row));
                 // 弹出修改框
                 this.editDialogVisible = true;
+            }catch{
+                    this.$message({
+                        message: '获取信息失败，请重试 ',
+                        type: 'error'})
+                }
             },
 
             addStudent() {
@@ -483,7 +538,7 @@
                 this.curPage = val;
                 this.selectAllByPages();
             },
-
+            //清空查询表单
             clear() {
                     this.pojoByCondition.subjectName='',
                     this.pojoByCondition.studentId='',
@@ -495,15 +550,56 @@
         },
         data() {
             return {
-                filePath: "",
+                //编辑和新增输入框校验规则
+                rules: {
+                    studentId: [
+                        { required: true, message: '请输入学生ID', trigger: 'blur' },
+                        { pattern: /^[0-9]*$/, message: '学生ID必须为数字', trigger: 'blur' }
+                    ],
+                    studentName: [
+                        { required: true, message: '请输入姓名', trigger: 'blur' }
+                    ],
+                    studentGender: [
+                        { required: true, message: '请选择性别', trigger: 'change' }
+                    ],
+                    studentBirth: [
+                        { required: true, message: '请选择出生日期', trigger: 'change' }
+                    ],
+                    studentTel: [
+                        { required: true, message: '请输入电话号码', trigger: 'blur' },
+                        { pattern: /^[0-9]*$/, message: '电话号码必须为数字', trigger: 'blur' }
+                    ],
+                    studentAdress: [
+                        { required: true, message: '请输入住址', trigger: 'blur' }
+                    ],
+                    subjectScore: [
+                        { required: true, message: '成绩不能为空', trigger: 'blur' },
+                        { pattern: /^[0-9]+([.]{1}[0-9]{1,2})?$/, message: '请输入数字，最多保留两位小数', trigger: 'blur' },
+                        { pattern: /^(?:100|\d{1,2})(?:\.\d{1,2})?$/,
+                            message: '成绩必须在0-100之间',  trigger: 'blur' }
+                    ],
+                    score:[
+                        { required: true, message: '成绩不能为空', trigger: 'blur' },
+                        { pattern: /^[0-9]+([.]{1}[0-9]{1,2})?$/, message: '请输入数字，最多保留两位小数', trigger: 'blur' },
+                        { pattern: /^(?:100|\d{1,2})(?:\.\d{1,2})?$/,
+                            message: '成绩必须在0-100之间',  trigger: 'blur' }
+                    ]
+                },
+
+
+
+
+                //科目总数量（会根据SQL动态变化）
                 courseNum: 3,
-                totalCount: 100,
+                //共多少页（会根据SQL动态变化）
+                totalCount: 5,
                 // 当前页码
                 curPage: 1,
                 //每页显示条数
                 pageSize: 5,
                 // 添加数据对话框是否展示的标记
                 dialogVisible: false,
+                // 编辑数据对话框是否展示的标记
                 editDialogVisible: false,
 
                 // 修改学生临时模型数据
@@ -555,11 +651,9 @@
                     studentAdress: '',
 
                 },
-
+                ////添加学生成绩临时的模型数据
                 courseWithScoreMessage: [],
-
-                courseScore: [],
-
+                //查询表单的对应
                 pojoByCondition:{
                     subjectName:'',
                     studentId:'',
