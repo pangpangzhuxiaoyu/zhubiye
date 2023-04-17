@@ -28,6 +28,17 @@
                  LEFT JOIN Score sc ON s.student_id = sc.student_id
                  LEFT JOIN Course c ON sc.course_id = c.course_id
     </select>
+    <!--用于excel（选择id的）-->
+    <select id="selectAllByIds" resultMap="studentResultMap">
+        SELECT s.student_id, s.student_name, s.student_gender,s.student_birth,s.student_tel,s.student_adress,c.course_id,c.course_name,sc.subject_score
+        FROM Student s
+                 LEFT JOIN Score sc ON s.student_id = sc.student_id
+                 LEFT JOIN Course c ON sc.course_id = c.course_id
+        WHERE s.student_id IN
+        <foreach collection="studentIds" item="studentId" separator="," open="(" close=")">
+            #{studentId}
+        </foreach>
+    </select>
 
 
 

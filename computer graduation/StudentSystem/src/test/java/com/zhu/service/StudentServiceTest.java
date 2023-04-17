@@ -63,7 +63,7 @@ public class StudentServiceTest {
     }
     @Test
     public void add(){
-        Student s=new Student(100,"aa",Student.Gender.男, new Date("2022/01/02"),"515","asdsa");
+        Student s=new Student(1,"aa",Student.Gender.男, new Date("2022/01/02"),"515","asdsa");
         //String scores=jsonObject.getString("scores");
 
         //String scores="[{courseId: 1001, courseName: "语文", score: "1"},{courseId: 1002, courseName: "数学", score: "1"},{courseId: 1003, courseName: "英语", score: "1"}]";

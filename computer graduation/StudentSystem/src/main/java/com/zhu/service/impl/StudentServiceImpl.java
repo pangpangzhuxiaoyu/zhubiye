@@ -42,8 +42,6 @@ public class StudentServiceImpl implements StudentService {
 @Override
 public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize, PojoByCondition pojoByCondition) {
 
-
-
     //查询开始的索引为当前页数-1后乘页面的条数
     int begin = (curPage - 1) * pageSize;
     //计算查询条数
@@ -75,7 +73,7 @@ public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize,
         scoreDao.deleteById(studentId);
         return true;
         }catch(Exception e){
-            //
+            e.printStackTrace();
             return false;
         }
     }
@@ -87,42 +85,51 @@ public PageBean<Student> selectAllByPageWithCondition(int curPage, int pageSize,
             scoreDao.deleteByIds(studentIds);
             return true;
         }catch(Exception e){
-            //
+
             return false;
         }
 
     }
     @Override
     public boolean studentAdd(Student student, List<StudentWithScore> studentWithScoreList){
-        //将学生的id set到插入成绩的临时类中 以便于在插入成绩时可以直接获得
-        for(StudentWithScore studentWithScore:studentWithScoreList){
+        try{
+            //将学生的id set到插入成绩的临时类中 以便于在插入成绩时可以直接获得
+            for(StudentWithScore studentWithScore:studentWithScoreList){
             studentWithScore.setStudentId(student.studentId);
+            }
+            //执行插入学生
+            studentDao.studentAdd(student);
+            //执行插入成绩
+            scoreDao.scoreAdd(studentWithScoreList);
+            return true;
+        }catch(Exception e){
+            return false;
         }
-        //执行插入学生
-        studentDao.studentAdd(student);
-        //执行插入成绩
-        scoreDao.scoreAdd(studentWithScoreList);
-        return true;
+
     }
     @Override
     public boolean studentUpdate(Student student){
-        if(student.getStudentId() == null || student.getStudentId() <= 0){
-            throw new IllegalArgumentException("学生ID不能为空或小于等于0！");
-        }
-        List<StudentWithScore> studentWithScoreList=new ArrayList<>();
-        for (int i=0;i<student.scores.size();i++){
-            StudentWithScore studentWithScore = new StudentWithScore();
-            studentWithScore.setStudentId(student.getStudentId());
-            studentWithScore.setCourseId(student.scores.get(i).course.getCourseId());
-            studentWithScore.setScore(student.scores.get(i).getSubjectScore());
-            studentWithScoreList.add(studentWithScore);
-        }
-        studentDao.studentUpdate(student);
-        for(StudentWithScore studentWithScore:studentWithScoreList){
-            scoreDao.scoreUpdate(studentWithScore);
-        }
+        try{
+            if(student.getStudentId() == null || student.getStudentId() <= 0){
+                throw new IllegalArgumentException("学生ID不能为空或小于等于0！");
+            }
+            List<StudentWithScore> studentWithScoreList=new ArrayList<>();
+            for (int i=0;i<student.scores.size();i++){
+                StudentWithScore studentWithScore = new StudentWithScore();
+                studentWithScore.setStudentId(student.getStudentId());
+                studentWithScore.setCourseId(student.scores.get(i).course.getCourseId());
+                studentWithScore.setScore(student.scores.get(i).getSubjectScore());
+                studentWithScoreList.add(studentWithScore);
+            }
+            studentDao.studentUpdate(student);
+            for(StudentWithScore studentWithScore:studentWithScoreList){
+                scoreDao.scoreUpdate(studentWithScore);
+            }
 
-        return true;
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 
 }

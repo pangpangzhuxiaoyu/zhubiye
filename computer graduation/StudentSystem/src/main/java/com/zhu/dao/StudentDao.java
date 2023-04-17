@@ -25,6 +25,13 @@ public interface StudentDao {
     public List<Student> selectAll();
 
     /**
+     * 用于导出Excel选择的数据
+     * @param studentIds
+     * @return
+     */
+    public List<Student> selectAllByIds(@Param("studentIds") int[] studentIds);
+
+    /**
      *查询学生总的记录数
      */
     //@Select("select count(*) from student")

@@ -13,6 +13,11 @@
             background: #f0f9eb;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+
 
 </head>
 
@@ -32,7 +37,7 @@
 
         <el-form-item label="科目">
             <el-select  v-model="pojoByCondition.subjectName" clearable placeholder="请选择科目名称" @change="subjectName">
-                <el-option v-for="item in this.courseWithScoreMessage":key="item.courseId" :label="item.courseName" :value="item.courseName">
+                <el-option v-for="item in this.courseWithScoreMessage.items":key="item.courseId" :label="item.courseName" :value="item.courseName">
                 </el-option>
             </el-select>
         </el-form-item>
@@ -51,7 +56,8 @@
 
         <el-button type="danger" plain round="true" @click="deleteByIds">批量删除</el-button>
         <el-button type="primary" plain round="true" @click="addStudent">新增</el-button>
-        <el-button type="primary" plain round="true" @click="exportExcel">导出为Excel</el-button>
+        <el-button type="primary" plain round="true" @click="exportExcel">导出为Excel（全部学生数据）</el-button>
+        <el-button type="primary" plain round="true" @click="exportSelectExcel">导出为Excel（选择学生数据）</el-button>
     </el-row>
 
     <!--添加数据对话框表单-->
@@ -92,12 +98,12 @@
         </el-card>
         <el-card>
             <div slot="header">学分</div>
-            <el-form ref="form4">
+            <el-form ref="form4" :model="courseWithScoreMessage" >
                 <!--为了方便程序扩展 科目名称通过循环加入表单-->
-                <el-form-item v-for="(course, index) in courseWithScoreMessage" :key="index"
+                <el-form-item v-for="(course, index) in courseWithScoreMessage.items" :key="index"
                               :label="course.courseName+`\(${course.courseId}\)`"
-                              :prop="'courseWithScoreMessage[' + index + '].score'"
-                              :rules="rules.score">
+                              :prop="'items.'+index+'.score'"
+                              :rules="rules.subjectScore">
                     <el-input v-model="course.score"></el-input>
                 </el-form-item>
             </el-form>
@@ -208,10 +214,6 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
-<script src="../js/vue.js"></script>
-<script src="../element-ui/lib/index.js"></script>
-<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
 
 
 <script>
@@ -226,13 +228,14 @@
                 //如果查询成功
                 if (resp.data.code == 60041) {
                     //后端会返回一个json里面包含学科和学科id 这段代码的作用是将score附加上去，方便之后前端给后端传递
-                    this.courseWithScoreMessage = resp.data.data.map(item => {
+                    this.courseWithScoreMessage.items = resp.data.data.map(item => {
                             return {
                                 ...item,
                                 score: ''
                             }
                         }
                     );
+                    //console.log(this.courseWithScoreMessage.items)
                 } else {
                     this.$message({
                         message: '科目信息查询失败',
@@ -386,21 +389,53 @@
 
             //提交按钮(把学生信息以及成绩信息提交到后端)
             submitInsert() {
-                axios.post("/students", {student: this.studentAdd, scores: this.courseWithScoreMessage}).then(resp => {
-                    //插入成功
-                    if (resp.data.code == 60011) {
-                        this.dialogVisible = false;
-                        //this.pojoByCondition=null;
-                        //插入成功 刷新页面
-                        this.selectAllByPages();
-                        this.$message({
-                            message: '插入成功',
-                            type: 'success'
-                        });
-                    } else {
-                    }
+                //表单校验
+                Promise.all([
+                    this.$refs['form3'].validate(),
+                    this.$refs['form4'].validate()
+                ]).then(results => {
+                    const [valid1, valid2] = results;
+                    if (valid1 && valid2) {
+                        axios.post("/students", {student: this.studentAdd, scores: this.courseWithScoreMessage.items}).then(resp => {
+                            //插入成功
+                            if (resp.data.code == 60011) {
+                                this.dialogVisible = false;
+                                //this.pojoByCondition=null;
+                                //插入成功 刷新页面
+                                this.selectAllByPages();
+                                this.$message({
+                                    message: '插入成功',
+                                    type: 'success'
+                                });
+                                //插入成功 清空表单
+                                this.studentAdd.studentAdress='';
+                                this.studentAdd.studentId='';
+                                this.studentAdd.studentName='';
+                                this.studentAdd.studentBirth='';
+                                this.studentAdd.studentGender='';
+                                this.studentAdd.studentTel='';
+                                for (let i = 0; i < this.courseWithScoreMessage.items.length; i++) {
+                                    this.courseWithScoreMessage.items[i].score='';
+                                }
+                            } else{
+                                this.$message({
+                                    message: '插入失败，不要输入已经存在的学号，请重试',
+                                    type: 'error'
+                                });
+                            }
 
-                })
+                        })
+
+                    }
+                }).catch(error => {
+                    //表单校验失败
+                    alert("请正确填写信息，thank you！");
+
+                });
+
+
+
+
 
             },
             submitEdit(){
@@ -487,7 +522,7 @@
                             const link = document.createElement("a");
                             link.style.display = "none";
                             link.href = url;
-                            link.setAttribute("download", "学生成绩信息.xlsx");
+                            link.setAttribute("download", "总体学生成绩信息.xlsx");
                             document.body.appendChild(link);
                             link.click();
                             document.body.removeChild(link);
@@ -501,6 +536,47 @@
                     });
                 }
 
+            },
+            exportSelectExcel(){
+                //如果没有选择数据
+                if (this.multipleSelection.length == 0) {
+                    this.$message({
+                        type: 'info',
+                        message: '您没有选择数据'
+                    });
+                    return;
+                }
+                try {
+                    //获取选择的数据
+                    for (let i = 0; i < this.multipleSelection.length; i++) {
+                        let id = this.multipleSelection[i];
+                        this.selectedIds[i] = id.studentId;
+                    }
+                    axios.get("/excels/Ids/"+ this.selectedIds, {
+                        responseType: "blob"
+                    }).then(resp => {
+                        if (resp.data.type === "application/vnd.ms-excel") {
+                            this.$message({
+                                message: "导出成功！",
+                                type: 'success'
+                            });
+                            const url = window.URL.createObjectURL(new Blob([resp.data]));
+                            const link = document.createElement("a");
+                            link.style.display = "none";
+                            link.href = url;
+                            link.setAttribute("download", "选择的学生成绩信息.xlsx");
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            window.URL.revokeObjectURL(url);
+                        }
+                    })
+                }catch{
+                    this.$message({
+                        message: "出现异常，导出失败",
+                        type: 'error'
+                    });
+                }
             },
 
             startEdit(row) {
@@ -519,6 +595,7 @@
 
             addStudent() {
                 this.dialogVisible = true;
+                //console.log(this.courseWithScoreMessage.items[0].score);
             },
 
 
@@ -573,12 +650,6 @@
                         { required: true, message: '请输入住址', trigger: 'blur' }
                     ],
                     subjectScore: [
-                        { required: true, message: '成绩不能为空', trigger: 'blur' },
-                        { pattern: /^[0-9]+([.]{1}[0-9]{1,2})?$/, message: '请输入数字，最多保留两位小数', trigger: 'blur' },
-                        { pattern: /^(?:100|\d{1,2})(?:\.\d{1,2})?$/,
-                            message: '成绩必须在0-100之间',  trigger: 'blur' }
-                    ],
-                    score:[
                         { required: true, message: '成绩不能为空', trigger: 'blur' },
                         { pattern: /^[0-9]+([.]{1}[0-9]{1,2})?$/, message: '请输入数字，最多保留两位小数', trigger: 'blur' },
                         { pattern: /^(?:100|\d{1,2})(?:\.\d{1,2})?$/,
@@ -652,7 +723,9 @@
 
                 },
                 ////添加学生成绩临时的模型数据
-                courseWithScoreMessage: [],
+                courseWithScoreMessage: {
+                    items:[]
+                },
                 //查询表单的对应
                 pojoByCondition:{
                     subjectName:'',

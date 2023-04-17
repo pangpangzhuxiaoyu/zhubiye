@@ -13,7 +13,9 @@ public class Result {
 
     public Result() {
     }
-
+    public Result (Integer code){
+        this.code=code;
+    }
     public Result( Integer code,Object data) {
         this.data = data;
         this.code = code;

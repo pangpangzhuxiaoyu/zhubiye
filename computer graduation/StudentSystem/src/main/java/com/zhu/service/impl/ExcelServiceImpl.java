@@ -42,4 +42,29 @@ public class ExcelServiceImpl implements ExcelService {
         return xssfWorkbook;
 
     }
+
+    @Override
+    public XSSFWorkbook selectByIds(int[] studentIds) {
+        XSSFWorkbook xssfWorkbook = null;
+        try {
+            List<Student> studentList = studentDao.selectAllByIds(studentIds);
+            List<ExcelBean> excel = new ArrayList<>();
+            Map<Integer, List<ExcelBean>> map = new LinkedHashMap<>();
+
+            //设置标题栏
+            excel.add(new ExcelBean("学生ID", "studentId", 0));
+            excel.add(new ExcelBean("学生姓名", "studentName", 0));
+            excel.add(new ExcelBean("性别", "studentGender", 0));
+            excel.add(new ExcelBean("出生日期", "studentBirth", 0));
+            excel.add(new ExcelBean("电话号码", "studentTel", 0));
+            excel.add(new ExcelBean("各科成绩", "scores", 0));
+            map.put(0, excel);
+            String sheetName = "Student";
+            xssfWorkbook = ExcelUtil.createExcelFile(Student.class, studentList, map, sheetName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return xssfWorkbook;
+
+    }
 }

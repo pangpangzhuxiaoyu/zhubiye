@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ExcelService {
     public XSSFWorkbook selectAll();
+    public XSSFWorkbook selectByIds(int[] studentIds);
 }
