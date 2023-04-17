@@ -5,6 +5,7 @@ import com.zhu.domain.Student;
 import com.zhu.pojo.ExcelBean;
 import com.zhu.pojo.ExcelUtil;
 import com.zhu.service.ExcelService;
+import org.apache.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @Service
 public class ExcelServiceImpl implements ExcelService {
+    private static Logger logger= Logger.getLogger(ExcelService.class);
     @Autowired
     StudentDao studentDao;
     @Override
@@ -25,7 +27,7 @@ public class ExcelServiceImpl implements ExcelService {
             List<Student> studentList = studentDao.selectAll();
             List<ExcelBean> excel = new ArrayList<>();
             Map<Integer, List<ExcelBean>> map = new LinkedHashMap<>();
-
+            logger.info("转为Excel开始");
             //设置标题栏
             excel.add(new ExcelBean("学生ID", "studentId", 0));
             excel.add(new ExcelBean("学生姓名", "studentName", 0));
@@ -36,10 +38,14 @@ public class ExcelServiceImpl implements ExcelService {
             map.put(0, excel);
             String sheetName = "Student";
             xssfWorkbook = ExcelUtil.createExcelFile(Student.class, studentList, map, sheetName);
+            logger.info("转为Excel结束");
+            return xssfWorkbook;
         } catch (Exception e) {
+            logger.error("出现异常，转换失败");
             e.printStackTrace();
+            return null;
         }
-        return xssfWorkbook;
+
 
     }
 
@@ -50,7 +56,7 @@ public class ExcelServiceImpl implements ExcelService {
             List<Student> studentList = studentDao.selectAllByIds(studentIds);
             List<ExcelBean> excel = new ArrayList<>();
             Map<Integer, List<ExcelBean>> map = new LinkedHashMap<>();
-
+            logger.info("转为Excel开始");
             //设置标题栏
             excel.add(new ExcelBean("学生ID", "studentId", 0));
             excel.add(new ExcelBean("学生姓名", "studentName", 0));
@@ -61,10 +67,14 @@ public class ExcelServiceImpl implements ExcelService {
             map.put(0, excel);
             String sheetName = "Student";
             xssfWorkbook = ExcelUtil.createExcelFile(Student.class, studentList, map, sheetName);
+            logger.info("转为Excel结束");
+            return xssfWorkbook;
         } catch (Exception e) {
+            logger.error("出现异常，转换失败");
             e.printStackTrace();
+            return null;
         }
-        return xssfWorkbook;
+
 
     }
 }

@@ -2,6 +2,20 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
+
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <!--指定Log4j配置文件的位置 -->
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value>
+  </context-param>
+
+  <!--<display-name>Archetype Created Web Application</display-name>-->
+  <welcome-file-list>
+    <welcome-file>student.html</welcome-file>
+  </welcome-file-list>
+
+
+
 </web-app>
+
