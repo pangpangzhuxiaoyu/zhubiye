@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>学生管理系统</title>
+    <title>学生管理システム</title>
     <style>
         .el-table .warning-row {
             background: oldlace;
@@ -17,89 +17,87 @@
     <script src="../js/vue.js"></script>
     <script src="../element-ui/lib/index.js"></script>
     <link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
-
-
 </head>
 
 <body>
 <div id="app">
 
-    <!--搜索表单-->
+    <!--検索フォーム-->
     <el-form :inline="true" :model="student" class="demo-form-inline">
 
         <el-form-item label="学生ID">
             <el-input v-model="pojoByCondition.studentId" placeholder="学生ID"></el-input>
         </el-form-item>
 
-        <el-form-item label="学生姓名">
-            <el-input v-model="pojoByCondition.studentName" placeholder="学生姓名"></el-input>
+        <el-form-item label="学生氏名">
+            <el-input v-model="pojoByCondition.studentName" placeholder="学生氏名"></el-input>
         </el-form-item>
 
         <el-form-item label="科目">
-            <el-select  v-model="pojoByCondition.subjectName" clearable placeholder="请选择科目名称" @change="subjectName">
+            <el-select  v-model="pojoByCondition.subjectName" clearable placeholder="科目名称を選択してください">
                 <el-option v-for="item in this.courseWithScoreMessage.items":key="item.courseId" :label="item.courseName" :value="item.courseName">
                 </el-option>
             </el-select>
         </el-form-item>
-        <el-input v-model="pojoByCondition.minScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
+        <el-input v-model="pojoByCondition.minScore" placeholder="スコア" maxlength="3" style="width:66px"></el-input>
         <nobr> ~</nobr>
-        <el-input v-model="pojoByCondition.maxScore" placeholder="分数" maxlength="3" style="width:66px"></el-input>
+        <el-input v-model="pojoByCondition.maxScore" placeholder="スコア" maxlength="3" style="width:66px"></el-input>
 
         <el-form-item>
-            <el-button type="success" @click="clear" plain>清空</el-button>
+            <el-button type="success" @click="clear" plain>クリア</el-button>
             <el-button icon="el-icon-search" type="primary" round="true" @click="selectAllByPages"></el-button>
         </el-form-item>
     </el-form>
 
-    <!--按钮-->
+    <!--ボタン-->
     <el-row>
 
-        <el-button type="danger" plain round="true" @click="deleteByIds">批量删除</el-button>
-        <el-button type="primary" plain round="true" @click="addStudent">新增</el-button>
-        <el-button type="primary" plain round="true" @click="exportExcel">导出为Excel（全部学生数据）</el-button>
-        <el-button type="primary" plain round="true" @click="exportSelectExcel">导出为Excel（选择学生数据）</el-button>
+        <el-button type="danger" plain round="true" @click="deleteByIds">一括削除</el-button>
+        <el-button type="primary" plain round="true" @click="addStudent">追加</el-button>
+        <el-button type="primary" plain round="true" @click="exportExcel">Excelにエクスポート（すべての学生データ）</el-button>
+        <el-button type="primary" plain round="true" @click="exportSelectExcel">Excelにエクスポート（選択した学生データ）</el-button>
     </el-row>
 
-    <!--添加数据对话框表单-->
-    <el-dialog title="添加学生" :visible.sync="dialogVisible" width="50%">
+    <!--データ追加ダイアログフォーム-->
+    <el-dialog title="学生追加" :visible.sync="dialogVisible" width="50%">
         <el-card>
-            <div slot="header">信息</div>
+            <div slot="header">情報</div>
             <el-form ref="form3" :model="studentAdd" label-width="80px":rules="rules">
                 <el-form-item label="学生ID" prop="studentId">
                     <el-input v-model="studentAdd.studentId" ></el-input>
                 </el-form-item>
 
-                <el-form-item label="姓名" prop="studentName">
+                <el-form-item label="氏名" prop="studentName">
                     <el-input v-model="studentAdd.studentName" ></el-input>
                 </el-form-item>
 
-                <el-form-item label="性别" prop="studentGender">
+                <el-form-item label="性別" prop="studentGender">
                     <el-radio-group v-model="studentAdd.studentGender">
                         <el-radio label="男"></el-radio>
                         <el-radio label="女"></el-radio>
                     </el-radio-group>
                 </el-form-item>
 
-                <el-form-item label="出生日期" prop="studentBirth">
+                <el-form-item label="生年月日" prop="studentBirth">
                     <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions"
+                        <el-date-picker type="date" placeholder="日付を選択"
                                         v-model="studentAdd.studentBirth" style="width: 100%;"></el-date-picker>
                     </el-col>
                 </el-form-item>
 
-                <el-form-item label="电话" prop="studentTel">
+                <el-form-item label="電話番号" prop="studentTel">
                     <el-input v-model="studentAdd.studentTel"></el-input>
                 </el-form-item>
 
-                <el-form-item label="住址" prop="studentAdress">
+                <el-form-item label="住所" prop="studentAdress">
                     <el-input type="textarea" v-model="studentAdd.studentAdress"></el-input>
                 </el-form-item>
             </el-form>
         </el-card>
         <el-card>
-            <div slot="header">学分</div>
+            <div slot="header">単位数</div>
             <el-form ref="form4" :model="courseWithScoreMessage" >
-                <!--为了方便程序扩展 科目名称通过循环加入表单-->
+                <!--拡張性を考慮して、科目名はループでフォームに追加する-->
                 <el-form-item v-for="(course, index) in courseWithScoreMessage.items" :key="index"
                               :label="course.courseName+`\(${course.courseId}\)`"
                               :prop="'items.'+index+'.score'"
@@ -107,8 +105,8 @@
                     <el-input v-model="course.score"></el-input>
                 </el-form-item>
             </el-form>
-            <el-button type="primary" @click="submitInsert">提交</el-button>
-            <el-button @click="dialogVisible=false">取消</el-button>
+            <el-button type="primary" @click="submitInsert">提出</el-button>
+            <el-button @click="dialogVisible=false">キャンセル</el-button>
         </el-card>
 
     </el-dialog>
@@ -121,19 +119,19 @@
             <el-table-column type="index" width="50">
             </el-table-column>
 
-            <el-table-column prop="studentId" label="学生ID" align="center">
+            <el-table-column prop="studentId" label="学生 ID" align="center">
             </el-table-column>
-            <el-table-column prop="studentName" label="姓名" align="center">
+            <el-table-column prop="studentName" label="名前" align="center">
             </el-table-column>
-            <el-table-column prop="studentGender" align="center" label="性别">
+            <el-table-column prop="studentGender" align="center" label="性別">
             </el-table-column>
-            <el-table-column prop="studentBirth" align="center" label="出生年月日">
+            <el-table-column prop="studentBirth" align="center" label="誕生日">
             </el-table-column>
-            <el-table-column prop="studentTel" align="center" label="电话">
+            <el-table-column prop="studentTel" align="center" label="電話">
             </el-table-column>
-            <el-table-column prop="studentAdress" align="center" label="住址">
+            <el-table-column prop="studentAdress" align="center" label="住所">
             </el-table-column>
-            <el-table-column prop="scores" align="center" label="各科学分">
+            <el-table-column prop="scores" align="center" label="各科目の単位数">
                 <template slot-scope="scope">
                     <div v-for="score in scope.row.scores">
                         {{ score.course.courseName }}：{{ score.subjectScore }}
@@ -145,9 +143,9 @@
 
                 <template slot-scope="scope">
                     <el-row>
-                        <el-button type="primary" round="true" @click="startEdit(scope.row)">编辑</el-button>
+                        <el-button type="primary" round="true" @click="startEdit(scope.row)">編集</el-button>
                         <br>
-                        <el-button type="danger" round="true" @click="deleteById(scope.row)">删除</el-button>
+                        <el-button type="danger" round="true" @click="deleteById(scope.row)">削除</el-button>
                     </el-row>
                 </template>
 
@@ -156,57 +154,57 @@
         </el-table>
     </template>
 
-    <!-- 编辑表单 -->
-    <el-dialog  title="编辑" :visible.sync="editDialogVisible" width="50%">
-        <template slot-scope="scope"> <!-- 编辑的scope -->
+    <!-- 編集フォーム -->
+    <el-dialog  title="編集" :visible.sync="editDialogVisible" width="50%">
+        <template slot-scope="scope"> <!-- 編集するスコープ -->
             <el-card>
-                <div slot="header">学生信息</div>
+                <div slot="header">学生情報</div>
                 <el-form ref="form1" :model="student" label-width="80px":rules="rules">
-                    <el-form-item label="学生ID" prop="studentId">
+                    <el-form-item label="学生 ID" prop="studentId">
                         <el-input v-model="student.studentId" :disabled="true"></el-input>
                     </el-form-item>
-                    <el-form-item label="姓名" prop="studentName">
+                    <el-form-item label="名前" prop="studentName">
                         <el-input v-model="student.studentName"></el-input>
                     </el-form-item>
-                    <el-form-item label="性别" prop="studentGender">
+                    <el-form-item label="性別" prop="studentGender">
                         <el-radio-group v-model="student.studentGender">
                             <el-radio label="男"></el-radio>
                             <el-radio label="女"></el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <el-form-item label="出生日期" prop="studentBirth">
+                    <el-form-item label="誕生日" prop="studentBirth">
                         <el-col :span="11">
-                            <el-date-picker type="date" placeholder="选择日期" :picker-options="pickerOptions" v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" placeholder="日付を選択してください" v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="电话" prop="studentTel">
+                    <el-form-item label="電話番号" prop="studentTel">
                         <el-input v-model="student.studentTel"></el-input>
                     </el-form-item>
-                    <el-form-item label="住址" prop="studentAdress">
+                    <el-form-item label="住所" prop="studentAdress">
                         <el-input type="textarea" v-model="student.studentAdress"></el-input>
                     </el-form-item>
                 </el-form>
             </el-card>
             <el-card>
-                <div slot="header">学分</div>
+                <div slot="header">単位数</div>
                 <el-form ref="form2" :model="student">
-                    <!--为了方便程序扩展 科目名称通过循环加入表单-->
+                    <!--拡張プログラムを容易にするために科目名はループでフォームに追加されます-->
                     <el-form-item v-for="(score, index) in student.scores" :key="index"
                                   :label="score.course.courseName"
                                   :prop="'scores.' + index + '.subjectScore'"
                                   :rules="rules.subjectScore">
                         <el-input v-model="score.subjectScore"
 
-                                  ></el-input>
+                        ></el-input>
                     </el-form-item>
                 </el-form>
-                <el-button type="primary" @click="submitEdit">提交</el-button>
-                <el-button @click="editDialogVisible=false">取消</el-button>
+                <el-button type="primary" @click="submitEdit">提出する</el-button>
+                <el-button @click="editDialogVisible=false">キャンセル</el-button>
             </el-card>
         </template>
     </el-dialog>
 
-    <!--分页工具条-->
+    <!--ページングツールバー-->
     <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="curPage"
                    :page-sizes="[5, 10, 15, 20]" :page-size="5" layout="total, sizes, prev, pager, next, jumper"
                    :total="totalCount">
@@ -238,7 +236,7 @@
                     //console.log(this.courseWithScoreMessage.items)
                 } else {
                     this.$message({
-                        message: '科目信息查询失败',
+                        message: '科目情報の検索に失敗しました',
                         type: 'error'})
                 }
             })
@@ -258,7 +256,7 @@
                 // 判断学生ID是否为整数，如果不是，则给出提示信息
                 if(isNaN(parseInt(this.pojoByCondition.studentId))&&this.pojoByCondition.studentId !== '') {
                     this.$message({
-                        message: '请输入整数类型的学生ID',
+                        message: '整数型の学生IDを入力してください',
                         type: 'error'
                     });
                     return;
@@ -268,15 +266,15 @@
                 const maxScore = parseFloat(this.pojoByCondition.maxScore);
                 if (!isNaN(minScore) && !isNaN(maxScore)) {
                     if (minScore < 0 || minScore > 100 || maxScore < 0 || maxScore > 100) {
-                        alert('最小分数和最大分数必须在0-100之间');
+                        alert('最小スコアと最大スコアは0〜100の間で指定してください');
                         return;
                     }
                 } else if (!isNaN(minScore) || !isNaN(maxScore)) {
-                    alert('最小分数和最大分数必须都为数字');
+                    alert('最小スコアと最大スコアは両方数値でなければなりません');
                     return;
                 }
                 if (Number(this.pojoByCondition.minScore) > Number(this.pojoByCondition.maxScore)) {
-                    this.$message.error('最小分数不能大于最大分数');
+                    this.$message.error('最小スコアは最大スコアよりも大きくすることはできません');
                     return;
                 }
 
@@ -295,7 +293,7 @@
                 }).catch(error=>{
                     //异常
                     this.$message({
-                        message: '请求失败，请稍后重试',
+                        message: 'リクエストが失敗しました、後でもう一度お試しください',
                         type: 'error'})
                 })
 
@@ -304,9 +302,9 @@
             deleteById(row) {
                 //将要被删除的学生ID传到数据模型
                 this.student.studentId = row.studentId;
-                this.$confirm('此操作将删除该数据, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm('この操作はデータを削除します、続行しますか？', 'ヒント', {
+                    confirmButtonText: '確認',
+                    cancelButtonText: 'キャンセル',
                     type: 'warning'
                 }).then(() => {
                     axios.delete("/students/" + row.studentId).then(resp => {
@@ -315,13 +313,13 @@
                             //删除成功 刷新页面
                             this.selectAllByPages();
                             this.$message({
-                                message: '删除成功',
+                                message: '削除成功',
                                 type: 'success'
                             });
                         } else {
                             //提示删除失败的消息
                             this.$message({
-                                message: '删除失败',
+                                message: '削除に失敗しました',
                                 type: 'error'
                             });
                         }
@@ -331,7 +329,7 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '删除取消成功'
+                        message: '削除をキャンセルしました。'
                     });
                 }).finally(() => {
                     this.selectAllByPages();
@@ -340,17 +338,17 @@
 
             deleteByIds() {
                 //如果没有选择数据
-                if (this.multipleSelection.length == 0) {
+                if (this.multipleSelection.length === 0) {
                     this.$message({
                         type: 'info',
-                        message: '您没有选择数据'
+                        message: 'データが選択されていません'
                     });
                     return;
                 }
-                //弹出确认框
-                this.$confirm('此操作将删除数据，是否继续？', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                //確認ダイアログ表示
+                this.$confirm('この操作はデータ削除を実行します、続行しますか？', 'ヒント', {
+                    confirmButtonText: '確認',
+                    cancelButtonText: 'キャンセル',
                     type: 'warning'
                 }).then(() => {
                     for (let i = 0; i < this.multipleSelection.length; i++) {
@@ -364,13 +362,13 @@
                             //删除成功 刷新页面
                             this.selectAllByPages();
                             this.$message({
-                                message: '删除成功',
+                                message: '削除成功',
                                 type: 'success'
                             });
                         } else {
                             //提示删除失败的消息
                             this.$message({
-                                message: '删除失败',
+                                message: '削除に失敗しました',
                                 type: 'error'
                             });
                         }
@@ -380,7 +378,7 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '删除取消成功'
+                        message: '削除をキャンセルしました。'
                     });
                 }).finally(() => {
                     this.selectAllByPages();
@@ -404,10 +402,10 @@
                                 //插入成功 刷新页面
                                 this.selectAllByPages();
                                 this.$message({
-                                    message: '插入成功',
+                                    message: '挿入に成功しました',
                                     type: 'success'
                                 });
-                                //插入成功 清空表单
+                                //挿入に成功したら、フォームをクリアする
                                 this.studentAdd.studentAdress='';
                                 this.studentAdd.studentId='';
                                 this.studentAdd.studentName='';
@@ -419,7 +417,7 @@
                                 }
                             } else{
                                 this.$message({
-                                    message: '插入失败，不要输入已经存在的学号，请重试',
+                                    message: '挿入に失敗しました、既に存在する学籍番号を入力しないでください、再度お試しください',
                                     type: 'error'
                                 });
                             }
@@ -429,7 +427,7 @@
                     }
                 }).catch(error => {
                     //表单校验失败
-                    alert("请正确填写信息，thank you！");
+                    alert("情報を正しく入力してください、ありがとうございます！");
 
                 });
 
@@ -455,12 +453,12 @@
                                 //插入成功 刷新页面
                                 this.selectAllByPages();
                                 this.$message({
-                                    message: '更新成功！',
+                                    message: 'アップデートが完了しました！',
                                     type: 'success'
                                 });
                             } else {
                                 this.$message({
-                                    message: '更新失败，请重试',
+                                    message: '更新に失敗しました、再度お試しください',
                                     type: 'error'})
                             }
 
@@ -468,8 +466,7 @@
                     }
                 }).catch(error => {
                     //表单校验失败
-                    alert("请正确填写信息，thank you！");
-
+                    alert("情報を正しく入力してください、ありがとうございます！");
                 });
 
 
@@ -513,16 +510,16 @@
                     axios.get("/excels", {
                         responseType: "blob"
                     }).then(resp => {
-                        if (resp.data.type === "application/vnd.ms-excel") {
+                        if(resp.data.type === "application/vnd.ms-excel") {
                             this.$message({
-                                message: "导出成功！",
+                                message: "エクスポートに成功しました！",
                                 type: 'success'
                             });
                             const url = window.URL.createObjectURL(new Blob([resp.data]));
                             const link = document.createElement("a");
                             link.style.display = "none";
                             link.href = url;
-                            link.setAttribute("download", "总体学生成绩信息.xlsx");
+                            link.setAttribute("download", "全体学生成績情報.xlsx");
                             document.body.appendChild(link);
                             link.click();
                             document.body.removeChild(link);
@@ -531,7 +528,7 @@
                     })
                 }catch{
                     this.$message({
-                        message: "出现异常，导出失败",
+                        message: "異常が発生しました、エクスポートが失敗しました",
                         type: 'error'
                     });
                 }
@@ -542,7 +539,7 @@
                 if (this.multipleSelection.length == 0) {
                     this.$message({
                         type: 'info',
-                        message: '您没有选择数据'
+                        message: 'データが選択されていません'
                     });
                     return;
                 }
@@ -557,14 +554,14 @@
                     }).then(resp => {
                         if (resp.data.type === "application/vnd.ms-excel") {
                             this.$message({
-                                message: "导出成功！",
+                                message: "エクスポートに成功しました！",
                                 type: 'success'
                             });
                             const url = window.URL.createObjectURL(new Blob([resp.data]));
                             const link = document.createElement("a");
                             link.style.display = "none";
                             link.href = url;
-                            link.setAttribute("download", "选择的学生成绩信息.xlsx");
+                            link.setAttribute("download", "選択された学生成績情報.xlsx");
                             document.body.appendChild(link);
                             link.click();
                             document.body.removeChild(link);
@@ -573,7 +570,7 @@
                     })
                 }catch{
                     this.$message({
-                        message: "出现异常，导出失败",
+                        message: "異常が発生しました、エクスポートが失敗しました",
                         type: 'error'
                     });
                 }
@@ -588,7 +585,7 @@
                 this.editDialogVisible = true;
             }catch{
                     this.$message({
-                        message: '获取信息失败，请重试 ',
+                        message: '情報取得に失敗しました、再度お試しください ',
                         type: 'error'})
                 }
             },
