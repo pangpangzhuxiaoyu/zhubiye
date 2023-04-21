@@ -1,4 +1,4 @@
-package com.zhu.controller;
+package com.zhu.utils;
 
 /**
  * 前后端返回结果类

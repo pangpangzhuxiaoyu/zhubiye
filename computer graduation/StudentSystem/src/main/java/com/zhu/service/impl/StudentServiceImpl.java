@@ -2,7 +2,7 @@ package com.zhu.service.impl;
 
 import com.zhu.dao.ScoreDao;
 import com.zhu.dao.StudentDao;
-import com.zhu.pojo.PageBean;
+import com.zhu.utils.PageBean;
 import com.zhu.pojo.PojoByCondition;
 import com.zhu.domain.Student;
 import com.zhu.pojo.StudentWithScore;

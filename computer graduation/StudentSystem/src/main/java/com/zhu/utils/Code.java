@@ -1,4 +1,4 @@
-package com.zhu.controller;
+package com.zhu.utils;
 
 /**
  * 正确/错误码

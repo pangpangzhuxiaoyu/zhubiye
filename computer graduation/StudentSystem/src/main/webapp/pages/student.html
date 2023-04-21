@@ -272,6 +272,8 @@
                 } else if (!isNaN(minScore) || !isNaN(maxScore)) {
                     alert('最小スコアと最大スコアは両方数値でなければなりません');
                     return;
+                }else{
+                    alert("スコアは0から100の数字でなければなりません");
                 }
                 if (Number(this.pojoByCondition.minScore) > Number(this.pojoByCondition.maxScore)) {
                     this.$message.error('最小スコアは最大スコアよりも大きくすることはできません');

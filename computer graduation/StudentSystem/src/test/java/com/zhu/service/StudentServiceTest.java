@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhu.config.SpringConfig;
 import com.zhu.domain.*;
-import com.zhu.pojo.PageBean;
+import com.zhu.utils.PageBean;
 import com.zhu.pojo.PojoByCondition;
 import com.zhu.pojo.StudentWithScore;
 import org.junit.Test;

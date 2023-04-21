@@ -2,6 +2,8 @@ package com.zhu.controller;
 
 import com.zhu.domain.Course;
 import com.zhu.service.CourseService;
+import com.zhu.utils.Code;
+import com.zhu.utils.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,7 @@ public class CourseController {
         try{
             logger.info("查询所有科目名称，selectSubjectName方法被调用");
             List<Course> courseName = courseService.selectCourseName();
-            Integer code = courseName != null?Code.GET_OK:Code.GET_ERROR;
+            Integer code = courseName != null? Code.GET_OK:Code.GET_ERROR;
             String msg = courseName != null?"":"科目查询出错了";
             logger.info("selectSubjectName方法被调用结束");
             return new Result(code,msg,courseName);
