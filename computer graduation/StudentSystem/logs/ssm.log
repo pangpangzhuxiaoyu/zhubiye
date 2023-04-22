@@ -920,3 +920,523 @@ com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
 com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)
 [INFO][localhost-startStop-2][2023-04-21 18:03:40][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
 com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 15:38:52][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 15:38:53][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1586 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 15:38:54][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 15:38:55][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 1114 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[WARN][http-bio-8080-exec-2][2023-04-22 15:50:05][org.springframework.web.servlet.DispatcherServlet] - No mapping for GET /favicon.ico
+org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+[INFO][http-bio-8080-exec-5][2023-04-22 15:50:23][com.zhu.controller.CourseController] - 查询所有科目名称，selectSubjectName方法被调用
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:27)
+[INFO][http-bio-8080-exec-4][2023-04-22 15:50:23][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-5][2023-04-22 15:50:23][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:1002)
+[INFO][http-bio-8080-exec-4][2023-04-22 15:50:24][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-5][2023-04-22 15:50:24][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目开始
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:20)
+[INFO][http-bio-8080-exec-5][2023-04-22 15:50:24][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目结束，查询成功
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:22)
+[INFO][http-bio-8080-exec-5][2023-04-22 15:50:24][com.zhu.controller.CourseController] - selectSubjectName方法被调用结束
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:31)
+[INFO][http-bio-8080-exec-4][2023-04-22 15:50:24][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-4][2023-04-22 15:50:24][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-8][2023-04-22 16:27:45][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-8][2023-04-22 16:27:45][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-8][2023-04-22 16:27:45][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-8][2023-04-22 16:27:45][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-10][2023-04-22 16:34:52][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-10][2023-04-22 16:34:52][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-04-22 16:34:52][com.zhu.controller.CourseController] - 查询所有科目名称，selectSubjectName方法被调用
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:27)
+[INFO][http-bio-8080-exec-2][2023-04-22 16:34:52][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目开始
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:20)
+[INFO][http-bio-8080-exec-2][2023-04-22 16:34:52][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目结束，查询成功
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:22)
+[INFO][http-bio-8080-exec-2][2023-04-22 16:34:52][com.zhu.controller.CourseController] - selectSubjectName方法被调用结束
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:31)
+[INFO][http-bio-8080-exec-10][2023-04-22 16:34:52][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-10][2023-04-22 16:34:52][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:13][com.zhu.controller.StudentController] - 新增学生按钮，studentAdd方法被调用
+com.zhu.controller.StudentController.studentAdd(StudentController.java:113)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:14][com.zhu.service.impl.StudentServiceImpl] - 新增学生开始
+com.zhu.service.impl.StudentServiceImpl.studentAdd(StudentServiceImpl.java:114)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:14][com.zhu.service.impl.StudentServiceImpl] - 新增学生结束，新增成功
+com.zhu.service.impl.StudentServiceImpl.studentAdd(StudentServiceImpl.java:123)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:14][com.zhu.controller.StudentController] - studentAdd方法调用结束
+com.zhu.controller.StudentController.studentAdd(StudentController.java:122)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:14][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:14][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:14][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-4][2023-04-22 16:36:14][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-8][2023-04-22 16:38:29][com.zhu.controller.StudentController] - 新增学生按钮，studentAdd方法被调用
+com.zhu.controller.StudentController.studentAdd(StudentController.java:113)
+[INFO][http-bio-8080-exec-8][2023-04-22 16:38:29][com.zhu.service.impl.StudentServiceImpl] - 新增学生开始
+com.zhu.service.impl.StudentServiceImpl.studentAdd(StudentServiceImpl.java:114)
+[ERROR][http-bio-8080-exec-8][2023-04-22 16:38:29][com.zhu.service.impl.StudentServiceImpl] - 出现异常，新增失败，事务回滚
+com.zhu.service.impl.StudentServiceImpl.studentAdd(StudentServiceImpl.java:126)
+[INFO][http-bio-8080-exec-8][2023-04-22 16:38:29][com.zhu.controller.StudentController] - studentAdd方法调用结束
+com.zhu.controller.StudentController.studentAdd(StudentController.java:122)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.controller.StudentController] - 编辑学生按钮，studentUpdate方法被调用
+com.zhu.controller.StudentController.studentUpdate(StudentController.java:134)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.service.impl.StudentServiceImpl] - 更新开始
+com.zhu.service.impl.StudentServiceImpl.studentUpdate(StudentServiceImpl.java:135)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.service.impl.StudentServiceImpl] - 更新结束，更新成功
+com.zhu.service.impl.StudentServiceImpl.studentUpdate(StudentServiceImpl.java:151)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.controller.StudentController] - studentUpdate方法调用结束
+com.zhu.controller.StudentController.studentUpdate(StudentController.java:140)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:01][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.controller.StudentController] - 编辑学生按钮，studentUpdate方法被调用
+com.zhu.controller.StudentController.studentUpdate(StudentController.java:134)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.service.impl.StudentServiceImpl] - 更新开始
+com.zhu.service.impl.StudentServiceImpl.studentUpdate(StudentServiceImpl.java:135)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.service.impl.StudentServiceImpl] - 更新结束，更新成功
+com.zhu.service.impl.StudentServiceImpl.studentUpdate(StudentServiceImpl.java:151)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.controller.StudentController] - studentUpdate方法调用结束
+com.zhu.controller.StudentController.studentUpdate(StudentController.java:140)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-1][2023-04-22 18:08:11][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:20:51][com.zhu.controller.ExcelController] - 导出全部学生按钮，export方法被调用
+com.zhu.controller.ExcelController.export(ExcelController.java:25)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:20:51][com.zhu.service.impl.ExcelServiceImpl] - 转为Excel开始
+com.zhu.service.impl.ExcelServiceImpl.selectAll(ExcelServiceImpl.java:30)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:20:52][com.zhu.service.impl.ExcelServiceImpl] - 转为Excel结束
+com.zhu.service.impl.ExcelServiceImpl.selectAll(ExcelServiceImpl.java:41)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:20:52][com.zhu.controller.ExcelController] - export方法被调用结束
+com.zhu.controller.ExcelController.export(ExcelController.java:35)
+[INFO][localhost-startStop-2][2023-04-22 18:22:38][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-04-22 18:22:38][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)
+[INFO][localhost-startStop-2][2023-04-22 18:22:38][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 18:23:09][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 18:23:10][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1327 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 18:23:11][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 18:23:12][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 988 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[INFO][http-bio-8080-exec-3][2023-04-22 18:23:34][com.zhu.controller.CourseController] - 查询所有科目名称，selectSubjectName方法被调用
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:27)
+[INFO][http-bio-8080-exec-2][2023-04-22 18:23:34][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-3][2023-04-22 18:23:34][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:1002)
+[INFO][http-bio-8080-exec-2][2023-04-22 18:23:34][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-3][2023-04-22 18:23:34][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目开始
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:20)
+[INFO][http-bio-8080-exec-3][2023-04-22 18:23:35][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目结束，查询成功
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:22)
+[INFO][http-bio-8080-exec-3][2023-04-22 18:23:35][com.zhu.controller.CourseController] - selectSubjectName方法被调用结束
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:31)
+[INFO][http-bio-8080-exec-2][2023-04-22 18:23:35][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-04-22 18:23:35][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:29:54][com.zhu.controller.ExcelController] - 导出全部学生按钮，export方法被调用
+com.zhu.controller.ExcelController.export(ExcelController.java:25)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:29:54][com.zhu.service.impl.ExcelServiceImpl] - 转为Excel开始
+com.zhu.service.impl.ExcelServiceImpl.selectAll(ExcelServiceImpl.java:30)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:29:55][com.zhu.service.impl.ExcelServiceImpl] - 转为Excel结束
+com.zhu.service.impl.ExcelServiceImpl.selectAll(ExcelServiceImpl.java:41)
+[INFO][http-bio-8080-exec-6][2023-04-22 18:29:55][com.zhu.controller.ExcelController] - export方法被调用结束
+com.zhu.controller.ExcelController.export(ExcelController.java:35)
+[INFO][http-bio-8080-exec-7][2023-04-22 18:30:55][com.zhu.controller.ExcelController] - 导出选中学生按钮，exportSelect方法被调用
+com.zhu.controller.ExcelController.exportSelect(ExcelController.java:44)
+[INFO][http-bio-8080-exec-7][2023-04-22 18:30:55][com.zhu.service.impl.ExcelServiceImpl] - 转为Excel开始
+com.zhu.service.impl.ExcelServiceImpl.selectByIds(ExcelServiceImpl.java:59)
+[INFO][http-bio-8080-exec-7][2023-04-22 18:30:55][com.zhu.service.impl.ExcelServiceImpl] - 转为Excel结束
+com.zhu.service.impl.ExcelServiceImpl.selectByIds(ExcelServiceImpl.java:70)
+[INFO][http-bio-8080-exec-7][2023-04-22 18:30:55][com.zhu.controller.ExcelController] - exportSelect方法被调用结束
+com.zhu.controller.ExcelController.exportSelect(ExcelController.java:54)
+[INFO][http-bio-8080-exec-10][2023-04-22 20:12:27][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.controller.StudentController] - 删除学生按钮,deleteById()方法被调用
+com.zhu.controller.StudentController.deleteById(StudentController.java:72)
+[INFO][http-bio-8080-exec-10][2023-04-22 20:12:27][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.service.impl.StudentServiceImpl] - 删除开始
+com.zhu.service.impl.StudentServiceImpl.deleteById(StudentServiceImpl.java:82)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.service.impl.StudentServiceImpl] - 删除结束，删除成功
+com.zhu.service.impl.StudentServiceImpl.deleteById(StudentServiceImpl.java:86)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.controller.StudentController] - deleteById()方法调用结束
+com.zhu.controller.StudentController.deleteById(StudentController.java:74)
+[INFO][http-bio-8080-exec-10][2023-04-22 20:12:27][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-10][2023-04-22 20:12:27][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-9][2023-04-22 20:12:27][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.controller.StudentController] - 批量删除按钮，deleteByIds()方法被调用
+com.zhu.controller.StudentController.deleteByIds(StudentController.java:88)
+[INFO][http-bio-8080-exec-5][2023-04-22 20:14:11][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.service.impl.StudentServiceImpl] - 批量删除开始
+com.zhu.service.impl.StudentServiceImpl.deleteByIds(StudentServiceImpl.java:98)
+[INFO][http-bio-8080-exec-5][2023-04-22 20:14:11][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.service.impl.StudentServiceImpl] - 批量删除结束，删除成功
+com.zhu.service.impl.StudentServiceImpl.deleteByIds(StudentServiceImpl.java:102)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.controller.StudentController] - deleteByIds()方法调用结束
+com.zhu.controller.StudentController.deleteByIds(StudentController.java:100)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-5][2023-04-22 20:14:11][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-5][2023-04-22 20:14:11][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:14:11][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:40][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:40][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:40][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:40][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:49][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:49][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:49][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-1][2023-04-22 20:15:49][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][localhost-startStop-2][2023-04-22 20:37:42][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-04-22 20:37:42][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)
+[INFO][localhost-startStop-2][2023-04-22 20:37:42][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 20:40:13][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[WARN][localhost-startStop-1][2023-04-22 20:40:16][org.springframework.context.support.AbstractApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'excelServiceImpl': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zhu.service.impl.ExcelServiceImpl] from ClassLoader [WebappClassLoader
+  context: 
+  delegate: false
+  repositories:
+----------> Parent Classloader:
+ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.1, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@2437c6dc]
+]
+org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:559)
+[INFO][localhost-startStop-1][2023-04-22 20:40:16][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[ERROR][localhost-startStop-1][2023-04-22 20:40:16][org.springframework.web.context.ContextLoader] - Context initialization failed
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:313)
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'excelServiceImpl': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.zhu.service.impl.ExcelServiceImpl] from ClassLoader [WebappClassLoader
+  context: 
+  delegate: false
+  repositories:
+----------> Parent Classloader:
+ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.1, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@2437c6dc]
+]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:289)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1285)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1200)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:401)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:292)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4797)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5291)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.zhu.service.impl.ExcelServiceImpl] from ClassLoader [WebappClassLoader
+  context: 
+  delegate: false
+  repositories:
+----------> Parent Classloader:
+ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.1, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@2437c6dc]
+]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:481)
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:321)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:267)
+	... 23 more
+Caused by: java.lang.NoClassDefFoundError: org/apache/poi/xssf/usermodel/XSSFWorkbook
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3166)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2309)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:463)
+	... 25 more
+Caused by: java.lang.ClassNotFoundException: org.apache.poi.xssf.usermodel.XSSFWorkbook
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1713)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1558)
+	... 29 more
+[INFO][localhost-startStop-1][2023-04-22 20:41:07][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 20:41:08][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1355 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 20:41:09][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 20:41:10][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 1092 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[INFO][localhost-startStop-2][2023-04-22 20:49:16][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-04-22 20:49:16][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 20:50:58][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 20:50:59][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1226 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 20:51:00][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 20:51:02][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 2195 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[INFO][http-bio-8080-exec-3][2023-04-22 20:51:22][com.zhu.controller.CourseController] - 查询所有科目名称，selectSubjectName方法被调用
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:27)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:51:22][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-3][2023-04-22 20:51:22][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:1002)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:51:23][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-3][2023-04-22 20:51:23][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目开始
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:20)
+[INFO][http-bio-8080-exec-3][2023-04-22 20:51:23][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目结束，查询成功
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:22)
+[INFO][http-bio-8080-exec-3][2023-04-22 20:51:23][com.zhu.controller.CourseController] - selectSubjectName方法被调用结束
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:31)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:51:24][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-4][2023-04-22 20:51:24][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][localhost-startStop-2][2023-04-22 20:54:44][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-04-22 20:54:44][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)
+[INFO][localhost-startStop-2][2023-04-22 20:54:44][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 20:55:01][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 20:55:02][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1493 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 20:55:03][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 20:55:04][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 1053 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[INFO][localhost-startStop-1][2023-04-22 20:55:06][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 20:55:06][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 20:55:42][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 20:55:43][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1362 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 20:55:44][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 20:55:45][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 1197 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[INFO][localhost-startStop-2][2023-04-22 20:58:32][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-04-22 20:58:32][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 20:58:45][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 20:58:47][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1535 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 20:58:48][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 20:58:49][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 1319 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[INFO][localhost-startStop-2][2023-04-22 21:05:34][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-04-22 21:05:34][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 21:06:05][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 21:06:06][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1624 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 21:06:08][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[WARN][localhost-startStop-1][2023-04-22 21:06:09][org.springframework.context.support.AbstractApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jsonConverter' defined in com.zhu.config.SpringMvcConfig: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter]: Factory method 'jsonConverter' threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/Versioned
+org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:559)
+[INFO][localhost-startStop-1][2023-04-22 21:06:09][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[ERROR][localhost-startStop-1][2023-04-22 21:06:09][org.springframework.web.servlet.FrameworkServlet] - Context initialization failed
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:534)
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jsonConverter' defined in com.zhu.config.SpringMvcConfig: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter]: Factory method 'jsonConverter' threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/Versioned
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:655)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:483)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:702)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:578)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:1091)
+	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:5033)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5317)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter]: Factory method 'jsonConverter' threw exception; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/Versioned
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:650)
+	... 28 more
+Caused by: java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/Versioned
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/java.net.URLClassLoader.defineClass(URLClassLoader.java:550)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:458)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:452)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:451)
+	at org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:1189)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1680)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1558)
+	at com.zhu.config.SpringMvcConfig.jsonConverter(SpringMvcConfig.java:20)
+	at com.zhu.config.SpringMvcConfig$$EnhancerBySpringCGLIB$$c213927b.CGLIB$jsonConverter$0(<generated>)
+	at com.zhu.config.SpringMvcConfig$$EnhancerBySpringCGLIB$$c213927b$$FastClassBySpringCGLIB$$bf097057.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at com.zhu.config.SpringMvcConfig$$EnhancerBySpringCGLIB$$c213927b.jsonConverter(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 29 more
+Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.core.Versioned
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1713)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1558)
+	... 51 more
+[INFO][localhost-startStop-2][2023-04-22 21:06:25][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-04-22 21:06:39][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-04-22 21:06:40][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1637 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-04-22 21:06:41][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-04-22 21:06:42][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 1263 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[INFO][http-bio-8080-exec-1][2023-04-22 21:08:14][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-1][2023-04-22 21:08:15][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:1002)
+[INFO][http-bio-8080-exec-1][2023-04-22 21:08:15][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-1][2023-04-22 21:08:15][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-1][2023-04-22 21:08:15][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-04-22 21:08:25][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-04-22 21:08:25][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-04-22 21:08:25][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-04-22 21:08:25][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-4][2023-04-22 21:11:48][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-4][2023-04-22 21:11:48][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-4][2023-04-22 21:11:48][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-4][2023-04-22 21:11:48][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-5][2023-04-22 21:11:55][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-5][2023-04-22 21:11:55][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-5][2023-04-22 21:11:55][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-5][2023-04-22 21:11:55][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-6][2023-04-22 21:12:54][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-6][2023-04-22 21:12:54][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-6][2023-04-22 21:12:54][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-6][2023-04-22 21:12:54][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-7][2023-04-22 21:12:58][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-7][2023-04-22 21:12:58][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-7][2023-04-22 21:12:58][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-7][2023-04-22 21:12:58][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][localhost-startStop-2][2023-04-22 21:18:47][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-04-22 21:18:47][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)
+[INFO][localhost-startStop-2][2023-04-22 21:18:47][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
