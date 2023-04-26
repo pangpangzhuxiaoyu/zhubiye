@@ -7,7 +7,7 @@ public class StudentWithScore{
     public Integer courseId;
     public String courseName;
 
-    public double score;
+    public Double score = null;
 
     public Integer studentId;
 
@@ -27,11 +27,11 @@ public class StudentWithScore{
         this.courseName = courseName;
     }
 
-    public double getScore() {
+    public Double getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 

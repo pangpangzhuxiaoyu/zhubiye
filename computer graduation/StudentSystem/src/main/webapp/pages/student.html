@@ -229,7 +229,7 @@
                     this.courseWithScoreMessage.items = resp.data.data.map(item => {
                             return {
                                 ...item,
-                                score: ''
+                                score: null
                             }
                         }
                     );
@@ -248,8 +248,6 @@
                 // 去掉输入内容的前后空格
                 this.pojoByCondition.studentId = this.pojoByCondition.studentId.trim();
                 this.pojoByCondition.studentName = this.pojoByCondition.studentName.trim();
-                /*this.pojoByCondition.minScore = this.pojoByCondition.minScore.trim();
-                this.pojoByCondition.maxScore = this.pojoByCondition.maxScore.trim();*/
 
                 //表单校验
 
@@ -261,23 +259,26 @@
                     });
                     return;
                 }
-                // 判断最大分数和最小分数是否为数字并在0-100之间
+
                 const minScore = parseFloat(this.pojoByCondition.minScore);
                 const maxScore = parseFloat(this.pojoByCondition.maxScore);
+
                 if (!isNaN(minScore) && !isNaN(maxScore)) {
                     if (minScore < 0 || minScore > 100 || maxScore < 0 || maxScore > 100) {
                         alert('最小スコアと最大スコアは0〜100の間で指定してください');
                         return;
                     }
-                } else if (!isNaN(minScore) || !isNaN(maxScore)) {
-                    alert('最小スコアと最大スコアは両方数値でなければなりません');
-                    return;
-                }else{
-                    alert("スコアは0から100の数字でなければなりません");
-                }
-                if (Number(this.pojoByCondition.minScore) > Number(this.pojoByCondition.maxScore)) {
-                    this.$message.error('最小スコアは最大スコアよりも大きくすることはできません');
-                    return;
+                    if (minScore > maxScore) {
+                        this.$message.error('最小スコアは最大スコアよりも大きくすることはできません');
+                        return;
+                    }
+                } else{
+                    if(this.pojoByCondition.minScore==''&&this.pojoByCondition.maxScore==''){
+                    }else{
+                        alert('最小スコアと最大スコアは両方数値でなければなりません');
+                        return;
+                    }
+
                 }
 
                 axios({
@@ -649,7 +650,7 @@
                         { required: true, message: '请输入住址', trigger: 'blur' }
                     ],
                     subjectScore: [
-                        { required: true, message: '成绩不能为空', trigger: 'blur' },
+                        /*{ required: true, message: '成绩不能为空', trigger: 'blur' },*/
                         { pattern: /^[0-9]+([.]{1}[0-9]{1,2})?$/, message: '请输入数字，最多保留两位小数', trigger: 'blur' },
                         { pattern: /^(?:100|\d{1,2})(?:\.\d{1,2})?$/,
                             message: '成绩必须在0-100之间',  trigger: 'blur' }
@@ -684,25 +685,7 @@
                         {
                             "studentId": "0",
                             "courseId": "0",
-                            "subjectScore": 0,
-                            "course": {
-                                "courseId": "0",
-                                "courseName": "0"
-                            }
-                        },
-                        {
-                            "studentId": "0",
-                            "courseId": "0",
-                            "subjectScore": 0,
-                            "course": {
-                                "courseId": "0",
-                                "courseName": "0"
-                            }
-                        },
-                        {
-                            "studentId": "0",
-                            "courseId": "0",
-                            "subjectScore": 0,
+                            "subjectScore": '',
                             "course": {
                                 "courseId": "0",
                                 "courseName": "0"
@@ -751,30 +734,12 @@
                     studentAdress: '加载中',
                     scores: [
                         {
-                            "studentId": "0",
-                            "courseId": "0",
-                            "subjectScore": 0,
+                            "studentId": "",
+                            "courseId": "",
+                            "subjectScore":'',
                             "course": {
-                                "courseId": "0",
-                                "courseName": "0"
-                            }
-                        },
-                        {
-                            "studentId": "0",
-                            "courseId": "0",
-                            "subjectScore": 0,
-                            "course": {
-                                "courseId": "0",
-                                "courseName": "0"
-                            }
-                        },
-                        {
-                            "studentId": "0",
-                            "courseId": "0",
-                            "subjectScore": 0,
-                            "course": {
-                                "courseId": "0",
-                                "courseName": "0"
+                                "courseId": "",
+                                "courseName": ""
                             }
                         }
                     ]
