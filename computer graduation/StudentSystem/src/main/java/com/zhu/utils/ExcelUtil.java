@@ -162,6 +162,9 @@ public class ExcelUtil {
                                     field.setAccessible(true);
                                     field2.setAccessible(true);
                                     Object propertyValue = field.get(element);
+                                    if (propertyValue==null){
+                                        propertyValue=" ";
+                                    }
                                     Object propertyValue2 = field2.get(element);
                                     Class clazzMap2 = propertyValue2.getClass();
                                     Field field3 = clazzMap2.getDeclaredField("courseName");

@@ -292,6 +292,10 @@
                     this.totalCount = resp.data.data.totalCount/this.courseNum;
                     //获取科目数量并返回给数据模型（其实这一步不用跟数据库查询 因为固定是三科目，但是为了方便程序扩展，进行了查询并赋值的操作）
                     this.courseNum = resp.data.data.courseNum;
+                    this.$message({
+                        message:`当前为第${this.curPage}页`,
+                        type:"info"
+                    })
 
                 }).catch(error=>{
                     //异常
@@ -713,8 +717,8 @@
                     subjectName:'',
                     studentId:'',
                     studentName:'',
-                    maxScore: 100,
-                    minScore: 0
+                    maxScore: '',
+                    minScore: ''
 
                 },
 
