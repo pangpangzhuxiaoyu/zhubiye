@@ -3378,3 +3378,103 @@ com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
 com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)
 [INFO][localhost-startStop-2][2023-05-06 20:22:57][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
 com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-1][2023-05-08 18:34:57][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:271)
+[INFO][localhost-startStop-1][2023-05-08 18:34:58][org.springframework.web.context.ContextLoader] - Root WebApplicationContext initialized in 1414 ms
+org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+[INFO][localhost-startStop-1][2023-05-08 18:34:59][org.springframework.web.servlet.FrameworkServlet] - Initializing Servlet 'dispatcher'
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+[INFO][localhost-startStop-1][2023-05-08 18:35:01][org.springframework.web.servlet.FrameworkServlet] - Completed initialization in 1434 ms
+org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+[WARN][http-bio-8080-exec-2][2023-05-08 18:35:54][org.springframework.web.servlet.DispatcherServlet] - No mapping for GET /favicon.ico
+org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+[INFO][http-bio-8080-exec-5][2023-05-08 18:37:09][com.zhu.controller.CourseController] - 查询所有科目名称，selectSubjectName方法被调用
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:27)
+[WARN][http-bio-8080-exec-4][2023-05-08 18:37:09][org.springframework.web.servlet.DispatcherServlet] - No mapping for GET /favicon.ico
+org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:09][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-5][2023-05-08 18:37:09][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:1002)
+[INFO][http-bio-8080-exec-5][2023-05-08 18:37:10][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目开始
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:20)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:10][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-5][2023-05-08 18:37:10][com.zhu.service.impl.CourseServiceImpl] - 查询所有科目结束，查询成功
+com.zhu.service.impl.CourseServiceImpl.selectCourseName(CourseServiceImpl.java:22)
+[INFO][http-bio-8080-exec-5][2023-05-08 18:37:10][com.zhu.controller.CourseController] - selectSubjectName方法被调用结束
+com.zhu.controller.CourseController.selectSubjectName(CourseController.java:31)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:10][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:10][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:15][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:15][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:15][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:15][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:32][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:32][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:32][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:32][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:36][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:36][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:36][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:36][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:40][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:40][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:40][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:40][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:48][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:48][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:48][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:48][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:52][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:52][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:52][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:37:52][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:00][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:00][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:00][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:00][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:09][com.zhu.controller.StudentController] - selectAllByPage()方法被调用
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:32)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:09][com.zhu.service.impl.StudentServiceImpl] - 查询所有开始
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:47)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:09][com.zhu.service.impl.StudentServiceImpl] - 查询所有结束
+com.zhu.service.impl.StudentServiceImpl.selectAllByPageWithCondition(StudentServiceImpl.java:66)
+[INFO][http-bio-8080-exec-2][2023-05-08 18:38:09][com.zhu.controller.StudentController] - selectAllByPage()方法调用结束
+com.zhu.controller.StudentController.selectAllByPage(StudentController.java:55)
+[INFO][localhost-startStop-2][2023-05-08 18:51:44][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
+[INFO][localhost-startStop-2][2023-05-08 18:51:44][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)
+[INFO][localhost-startStop-2][2023-05-08 18:51:44][com.alibaba.druid.pool.DruidDataSource] - {dataSource-0} closing ...
+com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)
