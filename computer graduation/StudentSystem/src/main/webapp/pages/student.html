@@ -54,8 +54,7 @@
 
         <el-button type="danger" plain round="true" @click="deleteByIds">一括削除</el-button>
         <el-button type="primary" plain round="true" @click="addStudent">追加</el-button>
-        <el-button type="primary" plain round="true" @click="exportExcel">Excelにエクスポート（すべての学生データ）</el-button>
-        <el-button type="primary" plain round="true" @click="exportSelectExcel">Excelにエクスポート（選択した学生データ）</el-button>
+        <el-button type="primary" plain round="true" @click="exportExcel">Excelにエクスポート（学生データ）</el-button>
     </el-row>
 
     <!--データ追加ダイアログフォーム-->
@@ -514,43 +513,37 @@
             },
             exportExcel(){
                 try {
-                    axios.get("/excels", {
-                        responseType: "blob"
-                    }).then(resp => {
-                        if(resp.data.type === "application/vnd.ms-excel") {
-                            this.$message({
-                                message: "エクスポートに成功しました！",
-                                type: 'success'
-                            });
-                            const url = window.URL.createObjectURL(new Blob([resp.data]));
-                            const link = document.createElement("a");
-                            link.style.display = "none";
-                            link.href = url;
-                            link.setAttribute("download", "全体学生成績情報.xlsx");
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
-                            window.URL.revokeObjectURL(url);
-                        }
+                    //如果没有选择数据
+                if (this.multipleSelection.length == 0) {
+                    this.$confirm('すべての学生データがエクスボートされます、続行しますか？', 'ヒント', {
+                        confirmButtonText: '確認',
+                        cancelButtonText: 'キャンセル',
+                        type: 'warning'
+                    }).then(()=>{
+                        axios.get("/excels/Ids/"+ this.selectedIds, {
+                            responseType: "blob"
+                        }).then(resp => {
+                            if (resp.data.type === "application/vnd.ms-excel") {
+                                this.$message({
+                                    message: "エクスポートに成功しました！",
+                                    type: 'success'
+                                });
+                                const url = window.URL.createObjectURL(new Blob([resp.data]));
+                                const link = document.createElement("a");
+                                link.style.display = "none";
+                                link.href = url;
+                                link.setAttribute("download", "選択された学生成績情報.xlsx");
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                window.URL.revokeObjectURL(url);
+                            }
+                        })
                     })
-                }catch{
-                    this.$message({
-                        message: "異常が発生しました、エクスポートが失敗しました",
-                        type: 'error'
-                    });
+
                 }
 
-            },
-            exportSelectExcel(){
-                //如果没有选择数据
-                if (this.multipleSelection.length == 0) {
-                    this.$message({
-                        type: 'info',
-                        message: 'データが選択されていません'
-                    });
-                    return;
-                }
-                try {
+
                     //获取选择的数据
                     for (let i = 0; i < this.multipleSelection.length; i++) {
                         let id = this.multipleSelection[i];
