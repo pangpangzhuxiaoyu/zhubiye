@@ -40,8 +40,8 @@ public class ExcelController {
     }*/
 
     //导出部分
-    @GetMapping("/Ids/{studentIds}")
-    public void export(@PathVariable int[] studentIds,HttpServletResponse response) {
+    @GetMapping({"/Ids/{studentIds}","/Ids"})
+    public void export(@PathVariable(name="studentIds",required = false) int[] studentIds,HttpServletResponse response) {
         logger.info("导出选中学生按钮，export方法被调用");
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-disposition", "attachment;filename=AzcItemInfo.xlsx;charset=UTF-8");

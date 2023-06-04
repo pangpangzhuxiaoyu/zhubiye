@@ -34,8 +34,9 @@
         </el-form-item>
 
         <el-form-item label="科目">
-            <el-select  v-model="pojoByCondition.subjectName" clearable placeholder="科目名称を選択してください">
-                <el-option v-for="item in this.courseWithScoreMessage.items":key="item.courseId" :label="item.courseName" :value="item.courseName">
+            <el-select v-model="pojoByCondition.subjectName" clearable placeholder="科目名称を選択してください">
+                <el-option v-for="item in this.courseWithScoreMessage.items" :key="item.courseId"
+                           :label="item.courseName" :value="item.courseName">
                 </el-option>
             </el-select>
         </el-form-item>
@@ -61,13 +62,13 @@
     <el-dialog title="学生追加" :visible.sync="dialogVisible" width="50%">
         <el-card>
             <div slot="header">情報</div>
-            <el-form ref="form3" :model="studentAdd" label-width="80px":rules="rules">
+            <el-form ref="form3" :model="studentAdd" label-width="80px" :rules="rules">
                 <el-form-item label="学生ID" prop="studentId">
-                    <el-input v-model="studentAdd.studentId" ></el-input>
+                    <el-input v-model="studentAdd.studentId"></el-input>
                 </el-form-item>
 
                 <el-form-item label="氏名" prop="studentName">
-                    <el-input v-model="studentAdd.studentName" ></el-input>
+                    <el-input v-model="studentAdd.studentName"></el-input>
                 </el-form-item>
 
                 <el-form-item label="性別" prop="studentGender">
@@ -95,7 +96,7 @@
         </el-card>
         <el-card>
             <div slot="header">単位数</div>
-            <el-form ref="form4" :model="courseWithScoreMessage" >
+            <el-form ref="form4" :model="courseWithScoreMessage">
                 <!--拡張性を考慮して、科目名はループでフォームに追加する-->
                 <el-form-item v-for="(course, index) in courseWithScoreMessage.items" :key="index"
                               :label="course.courseName+`\(${course.courseId}\)`"
@@ -154,11 +155,11 @@
     </template>
 
     <!-- 編集フォーム -->
-    <el-dialog  title="編集" :visible.sync="editDialogVisible" width="50%">
+    <el-dialog title="編集" :visible.sync="editDialogVisible" width="50%">
         <template slot-scope="scope"> <!-- 編集するスコープ -->
             <el-card>
                 <div slot="header">学生情報</div>
-                <el-form ref="form1" :model="student" label-width="80px":rules="rules">
+                <el-form ref="form1" :model="student" label-width="80px" :rules="rules">
                     <el-form-item label="学生 ID" prop="studentId">
                         <el-input v-model="student.studentId" :disabled="true"></el-input>
                     </el-form-item>
@@ -173,7 +174,8 @@
                     </el-form-item>
                     <el-form-item label="誕生日" prop="studentBirth">
                         <el-col :span="11">
-                            <el-date-picker type="date" placeholder="日付を選択してください" v-model="student.studentBirth" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" placeholder="日付を選択してください" v-model="student.studentBirth"
+                                            style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="電話番号" prop="studentTel">
@@ -212,7 +214,6 @@
 </div>
 
 
-
 <script>
     new Vue({
         el: "#app",
@@ -236,7 +237,8 @@
                 } else {
                     this.$message({
                         message: '科目情報の検索に失敗しました',
-                        type: 'error'})
+                        type: 'error'
+                    })
                 }
             })
 
@@ -251,7 +253,7 @@
                 //表单校验
 
                 // 判断学生ID是否为整数，如果不是，则给出提示信息
-                if(isNaN(parseInt(this.pojoByCondition.studentId))&&this.pojoByCondition.studentId !== '') {
+                if (isNaN(parseInt(this.pojoByCondition.studentId)) && this.pojoByCondition.studentId !== '') {
                     this.$message({
                         message: '整数型の学生IDを入力してください',
                         type: 'error'
@@ -271,9 +273,9 @@
                         this.$message.error('最小スコアは最大スコアよりも大きくすることはできません');
                         return;
                     }
-                } else{
-                    if(this.pojoByCondition.minScore==''&&this.pojoByCondition.maxScore==''){
-                    }else{
+                } else {
+                    if (this.pojoByCondition.minScore == '' && this.pojoByCondition.maxScore == '') {
+                    } else {
                         alert('最小スコアと最大スコアは両方数値でなければなりません');
                         return;
                     }
@@ -284,23 +286,24 @@
                     method: "post",
                     url: "http://localhost:8080/students/condition?curPage=" + this.curPage +
                         "&pageSize=" + this.pageSize * this.courseNum,
-                    data:{pojoByCondition:this.pojoByCondition}
+                    data: {pojoByCondition: this.pojoByCondition}
                 }).then(resp => {
                     this.tableData = resp.data.data.rowsStudents;
                     //设置总记录数
-                    this.totalCount = resp.data.data.totalCount/this.courseNum;
+                    this.totalCount = resp.data.data.totalCount / this.courseNum;
                     //获取科目数量并返回给数据模型（其实这一步不用跟数据库查询 因为固定是三科目，但是为了方便程序扩展，进行了查询并赋值的操作）
                     this.courseNum = resp.data.data.courseNum;
                     this.$message({
-                        message:`当前为第${this.curPage}页`,
-                        type:"info"
+                        message: `当前为第${this.curPage}页`,
+                        type: "info"
                     })
 
-                }).catch(error=>{
+                }).catch(error => {
                     //异常
                     this.$message({
                         message: 'リクエストが失敗しました、後でもう一度お試しください',
-                        type: 'error'})
+                        type: 'error'
+                    })
                 })
 
             },
@@ -380,7 +383,7 @@
                         }
 
                     })
-
+                    this.selectedIds=null;
                 }).catch(() => {
                     this.$message({
                         type: 'info',
@@ -400,7 +403,10 @@
                 ]).then(results => {
                     const [valid1, valid2] = results;
                     if (valid1 && valid2) {
-                        axios.post("/students", {student: this.studentAdd, scores: this.courseWithScoreMessage.items}).then(resp => {
+                        axios.post("/students", {
+                            student: this.studentAdd,
+                            scores: this.courseWithScoreMessage.items
+                        }).then(resp => {
                             //插入成功
                             if (resp.data.code == 60011) {
                                 this.dialogVisible = false;
@@ -412,16 +418,16 @@
                                     type: 'success'
                                 });
                                 //挿入に成功したら、フォームをクリアする
-                                this.studentAdd.studentAdress='';
-                                this.studentAdd.studentId='';
-                                this.studentAdd.studentName='';
-                                this.studentAdd.studentBirth='';
-                                this.studentAdd.studentGender='';
-                                this.studentAdd.studentTel='';
+                                this.studentAdd.studentAdress = '';
+                                this.studentAdd.studentId = '';
+                                this.studentAdd.studentName = '';
+                                this.studentAdd.studentBirth = '';
+                                this.studentAdd.studentGender = '';
+                                this.studentAdd.studentTel = '';
                                 for (let i = 0; i < this.courseWithScoreMessage.items.length; i++) {
-                                    this.courseWithScoreMessage.items[i].score='';
+                                    this.courseWithScoreMessage.items[i].score = '';
                                 }
-                            } else{
+                            } else {
                                 this.$message({
                                     message: '挿入に失敗しました、既に存在する学籍番号を入力しないでください、再度お試しください',
                                     type: 'error'
@@ -438,11 +444,8 @@
                 });
 
 
-
-
-
             },
-            submitEdit(){
+            submitEdit() {
                 //对表单进行前端校验
                 Promise.all([
                     this.$refs['form1'].validate(),
@@ -451,8 +454,12 @@
                     const [valid1, valid2] = results;
                     if (valid1 && valid2) {
                         // 校验通过，执行表单提交逻辑
-                        axios.put("/students",{student:this.student},{headers: {'Content-Type': 'application/json;' +
-                                    'charset=UTF-8'}}).then(resp => {
+                        axios.put("/students", {student: this.student}, {
+                            headers: {
+                                'Content-Type': 'application/json;' +
+                                    'charset=UTF-8'
+                            }
+                        }).then(resp => {
                             //更新成功
                             if (resp.data.code == 60031) {
                                 this.editDialogVisible = false;
@@ -465,7 +472,8 @@
                             } else {
                                 this.$message({
                                     message: '更新に失敗しました、再度お試しください',
-                                    type: 'error'})
+                                    type: 'error'
+                                })
                             }
 
                         })
@@ -509,66 +517,53 @@
                 });*/
 
 
-
             },
-            exportExcel(){
+            Excel() {
+                if (this.selectedIds.length==0){
+                    selectedIds = [];
+                }
+                axios.get("/excels/Ids/" + this.selectedIds, {
+                    responseType: "blob"
+                }).then(resp => {
+                    if (resp.data.type === "application/vnd.ms-excel") {
+                        this.$message({
+                            message: "エクスポートに成功しました！",
+                            type: 'success'
+                        });
+                        const url = window.URL.createObjectURL(new Blob([resp.data]));
+                        const link = document.createElement("a");
+                        link.style.display = "none";
+                        link.href = url;
+                        link.setAttribute("download", "選択された学生成績情報.xlsx");
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        window.URL.revokeObjectURL(url);
+                    }
+                })
+            },
+            exportExcel() {
                 try {
                     //如果没有选择数据
-                if (this.multipleSelection.length == 0) {
-                    this.$confirm('すべての学生データがエクスボートされます、続行しますか？', 'ヒント', {
-                        confirmButtonText: '確認',
-                        cancelButtonText: 'キャンセル',
-                        type: 'warning'
-                    }).then(()=>{
-                        axios.get("/excels/Ids/"+ this.selectedIds, {
-                            responseType: "blob"
-                        }).then(resp => {
-                            if (resp.data.type === "application/vnd.ms-excel") {
-                                this.$message({
-                                    message: "エクスポートに成功しました！",
-                                    type: 'success'
-                                });
-                                const url = window.URL.createObjectURL(new Blob([resp.data]));
-                                const link = document.createElement("a");
-                                link.style.display = "none";
-                                link.href = url;
-                                link.setAttribute("download", "選択された学生成績情報.xlsx");
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                                window.URL.revokeObjectURL(url);
-                            }
+                    if (this.multipleSelection.length == 0) {
+                        this.$confirm('すべての学生データがエクスボートされます、続行しますか？', 'ヒント', {
+                            confirmButtonText: '確認',
+                            cancelButtonText: 'キャンセル',
+                            type: 'warning'
+                        }).then(() => {
+                            this.Excel();
                         })
-                    })
 
-                }
-
-
-                    //获取选择的数据
-                    for (let i = 0; i < this.multipleSelection.length; i++) {
-                        let id = this.multipleSelection[i];
-                        this.selectedIds[i] = id.studentId;
-                    }
-                    axios.get("/excels/Ids/"+ this.selectedIds, {
-                        responseType: "blob"
-                    }).then(resp => {
-                        if (resp.data.type === "application/vnd.ms-excel") {
-                            this.$message({
-                                message: "エクスポートに成功しました！",
-                                type: 'success'
-                            });
-                            const url = window.URL.createObjectURL(new Blob([resp.data]));
-                            const link = document.createElement("a");
-                            link.style.display = "none";
-                            link.href = url;
-                            link.setAttribute("download", "選択された学生成績情報.xlsx");
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
-                            window.URL.revokeObjectURL(url);
+                    } else {
+                        //获取选择的数据
+                        for (let i = 0; i < this.multipleSelection.length; i++) {
+                            let id = this.multipleSelection[i];
+                            this.selectedIds[i] = id.studentId;
                         }
-                    })
-                }catch{
+                        this.Excel();
+                        this.selectedIds=null;
+                    }
+                } catch {
                     this.$message({
                         message: "異常が発生しました、エクスポートが失敗しました",
                         type: 'error'
@@ -577,16 +572,17 @@
             },
 
             startEdit(row) {
-                try{
-                // 获取改行已经有的数据，以供填入修改框
-                //console.log(JSON.parse(JSON.stringify(row)));
-                this.student = JSON.parse(JSON.stringify(row));
-                // 弹出修改框
-                this.editDialogVisible = true;
-            }catch{
+                try {
+                    // 获取改行已经有的数据，以供填入修改框
+                    //console.log(JSON.parse(JSON.stringify(row)));
+                    this.student = JSON.parse(JSON.stringify(row));
+                    // 弹出修改框
+                    this.editDialogVisible = true;
+                } catch {
                     this.$message({
                         message: '情報取得に失敗しました、再度お試しください ',
-                        type: 'error'})
+                        type: 'error'
+                    })
                 }
             },
 
@@ -614,11 +610,11 @@
             },
             //清空查询表单
             clear() {
-                    this.pojoByCondition.subjectName='',
-                    this.pojoByCondition.studentId='',
-                    this.pojoByCondition.studentName='',
-                    this.pojoByCondition.maxScore= '',
-                    this.pojoByCondition.minScore= ''
+                this.pojoByCondition.subjectName = '',
+                    this.pojoByCondition.studentId = '',
+                    this.pojoByCondition.studentName = '',
+                    this.pojoByCondition.maxScore = '',
+                    this.pojoByCondition.minScore = ''
             },
 
         },
@@ -627,34 +623,38 @@
                 //编辑和新增输入框校验规则
                 rules: {
                     studentId: [
-                        { required: true, message: '请输入学生ID', trigger: 'blur' },
-                        { pattern: /^[0-9]*$/, message: '学生ID必须为数字', trigger: 'blur' }
+                        {required: true, message: '请输入学生ID', trigger: 'blur'},
+                        {pattern: /^[0-9]*$/, message: '学生ID必须为数字', trigger: 'blur'}
                     ],
                     studentName: [
-                        { required: true, message: '请输入姓名', trigger: 'blur' }
+                        {required: true, message: '请输入姓名', trigger: 'blur'}
                     ],
                     studentGender: [
-                        { required: true, message: '请选择性别', trigger: 'change' }
+                        {required: true, message: '请选择性别', trigger: 'change'}
                     ],
                     studentBirth: [
-                        { required: true, message: '请选择出生日期', trigger: 'change' }
+                        {required: true, message: '请选择出生日期', trigger: 'change'}
                     ],
                     studentTel: [
-                        { required: true, message: '请输入电话号码', trigger: 'blur' },
-                        { pattern: /^[0-9]*$/, message: '电话号码必须为数字', trigger: 'blur' }
+                        {required: true, message: '请输入电话号码', trigger: 'blur'},
+                        {pattern: /^[0-9]*$/, message: '电话号码必须为数字', trigger: 'blur'}
                     ],
                     studentAdress: [
-                        { required: true, message: '请输入住址', trigger: 'blur' }
+                        {required: true, message: '请输入住址', trigger: 'blur'}
                     ],
                     subjectScore: [
                         /*{ required: true, message: '成绩不能为空', trigger: 'blur' },*/
-                        { pattern: /^[0-9]+([.]{1}[0-9]{1,2})?$/, message: '请输入数字，最多保留两位小数', trigger: 'blur' },
-                        { pattern: /^(?:100|\d{1,2})(?:\.\d{1,2})?$/,
-                            message: '成绩必须在0-100之间',  trigger: 'blur' }
+                        {
+                            pattern: /^[0-9]+([.]{1}[0-9]{1,2})?$/,
+                            message: '请输入数字，最多保留两位小数',
+                            trigger: 'blur'
+                        },
+                        {
+                            pattern: /^(?:100|\d{1,2})(?:\.\d{1,2})?$/,
+                            message: '成绩必须在0-100之间', trigger: 'blur'
+                        }
                     ]
                 },
-
-
 
 
                 //科目总数量（会根据SQL动态变化）
@@ -671,7 +671,7 @@
                 editDialogVisible: false,
 
                 // 修改学生临时模型数据
-                student: [{
+                student: {
                     studentId: '加载中',
                     studentName: '加载中',
                     studentGender: '加载中',
@@ -690,7 +690,7 @@
                         }
                     ]
 
-                }],
+                },
                 //添加学生临时的模型数据
                 studentAdd: {
                     studentId: '',
@@ -703,13 +703,13 @@
                 },
                 ////添加学生成绩临时的模型数据
                 courseWithScoreMessage: {
-                    items:[]
+                    items: []
                 },
                 //查询表单的对应
-                pojoByCondition:{
-                    subjectName:'',
-                    studentId:'',
-                    studentName:'',
+                pojoByCondition: {
+                    subjectName: '',
+                    studentId: '',
+                    studentName: '',
                     maxScore: '',
                     minScore: ''
 
@@ -717,12 +717,12 @@
 
 
                 //被选中的数组
-                selectedIds: [],
+                selectedIds: {},
 
                 // 复选框选中数据集合
-                multipleSelection: [],
+                multipleSelection: {},
                 // 表格数据
-                tableData: [{
+                tableData: {
                     studentId: '加载中',
                     studentName: '加载中',
                     studentGender: '加载中',
@@ -733,7 +733,7 @@
                         {
                             "studentId": "",
                             "courseId": "",
-                            "subjectScore":'',
+                            "subjectScore": '',
                             "course": {
                                 "courseId": "",
                                 "courseName": ""
@@ -741,7 +741,7 @@
                         }
                     ]
 
-                }]
+                }
 
 
             }
