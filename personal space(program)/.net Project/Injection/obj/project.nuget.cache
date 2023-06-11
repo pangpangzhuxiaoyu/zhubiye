@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "/AGaijPcTz0O0VmgpzWkDfXOnnOlB3IJwCCmPyQUP1SsQ1qRmUQ/GTz9n/x7ZGAwW/K/aC6hmrCa5HJpPwkSGA==",
+  "dgSpecHash": "wAWQiecHTuWCQcqgu4GtdbiePQ6z4114Z7sH+DzCJRLzxPxEZQ2qlmdLxv1ICqjHP3e/2aDpBATbTd3Ep//rzg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hzhu40\\Desktop\\.net Project\\Injection\\Injection.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\Injection\\Injection.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zhu\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\zhu\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

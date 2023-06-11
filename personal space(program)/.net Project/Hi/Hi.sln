@@ -5,9 +5,17 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hi", "Hi.csproj", "{973DF541-7BA0-47F9-8210-FA58CCE24B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Injection", "..\Injection\Injection.csproj", "{BC7DE48C-F08F-4157-BFE1-50CCA6270EF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Injection", "..\Injection\Injection.csproj", "{BC7DE48C-F08F-4157-BFE1-50CCA6270EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMovie", "..\MvcMovie\MvcMovie.csproj", "{78754CF9-F0EE-4E37-9F18-7F706AB4679C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcMovie", "..\MvcMovie\MvcMovie.csproj", "{78754CF9-F0EE-4E37-9F18-7F706AB4679C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjection", "..\DependencyInjection\DependencyInjection.csproj", "{04E72688-82C0-4BD8-825B-7DC1998E2672}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogServices", "..\LogServices\LogServices.csproj", "{D6DB4D2F-4F03-4DD0-800D-59DA7DCFDBBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MileService", "..\MileService\MileService.csproj", "{ED72E103-02C7-4695-961E-805F0C86CCE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigService", "..\ConfigService\ConfigService.csproj", "{B96CA21F-B98E-4439-8A86-523191E2AB59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,22 @@ Global
 		{78754CF9-F0EE-4E37-9F18-7F706AB4679C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78754CF9-F0EE-4E37-9F18-7F706AB4679C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78754CF9-F0EE-4E37-9F18-7F706AB4679C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04E72688-82C0-4BD8-825B-7DC1998E2672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E72688-82C0-4BD8-825B-7DC1998E2672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E72688-82C0-4BD8-825B-7DC1998E2672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E72688-82C0-4BD8-825B-7DC1998E2672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6DB4D2F-4F03-4DD0-800D-59DA7DCFDBBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6DB4D2F-4F03-4DD0-800D-59DA7DCFDBBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6DB4D2F-4F03-4DD0-800D-59DA7DCFDBBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6DB4D2F-4F03-4DD0-800D-59DA7DCFDBBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED72E103-02C7-4695-961E-805F0C86CCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED72E103-02C7-4695-961E-805F0C86CCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED72E103-02C7-4695-961E-805F0C86CCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED72E103-02C7-4695-961E-805F0C86CCE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96CA21F-B98E-4439-8A86-523191E2AB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96CA21F-B98E-4439-8A86-523191E2AB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96CA21F-B98E-4439-8A86-523191E2AB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96CA21F-B98E-4439-8A86-523191E2AB59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

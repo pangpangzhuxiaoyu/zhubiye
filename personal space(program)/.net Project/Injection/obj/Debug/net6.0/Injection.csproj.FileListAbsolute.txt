@@ -29,3 +29,32 @@ C:\Users\hzhu40\Desktop\Injection\obj\Debug\net6.0\refint\Injection.dll
 C:\Users\hzhu40\Desktop\Injection\obj\Debug\net6.0\Injection.pdb
 C:\Users\hzhu40\Desktop\Injection\obj\Debug\net6.0\Injection.genruntimeconfig.cache
 C:\Users\hzhu40\Desktop\Injection\obj\Debug\net6.0\ref\Injection.dll
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\appsettings.Development.json
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\appsettings.json
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Injection.staticwebassets.runtime.json
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Injection.exe
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Injection.deps.json
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Injection.runtimeconfig.json
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Injection.dll
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Injection.pdb
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.csproj.AssemblyReference.cache
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.GeneratedMSBuildEditorConfig.editorconfig
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.AssemblyInfoInputs.cache
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.AssemblyInfo.cs
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.csproj.CoreCompileInputs.cache
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.MvcApplicationPartsAssemblyInfo.cache
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.RazorAssemblyInfo.cache
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.RazorAssemblyInfo.cs
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\staticwebassets.build.json
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\staticwebassets.development.json
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\scopedcss\bundle\Injection.styles.css
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\scopedcss\projectbundle\Injection.bundle.scp.css
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.csproj.CopyComplete
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.dll
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\refint\Injection.dll
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.pdb
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\Injection.genruntimeconfig.cache
+D:\gitcode1\zhubiye\personal space(program)\.net Project\Injection\obj\Debug\net6.0\ref\Injection.dll
