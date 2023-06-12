@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj": {}
+    "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj": {}
   },
   "projects": {
-    "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj": {
+    "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj",
+        "projectUniqueName": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj",
         "projectName": "ConfigService",
-        "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj",
-        "packagesPath": "C:\\Users\\zhu\\.nuget\\packages\\",
-        "outputPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\ConfigService\\obj\\",
+        "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj",
+        "packagesPath": "C:\\Users\\hzhu40\\.nuget\\packages\\",
+        "outputPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\ConfigService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\2022软件\\vs2022\\VS共享工具组件SDK\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hzhu40\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -59,24 +59,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj": {
+    "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj",
+        "projectUniqueName": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj",
         "projectName": "DependencyInjection",
-        "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj",
-        "packagesPath": "C:\\Users\\zhu\\.nuget\\packages\\",
-        "outputPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\DependencyInjection\\obj\\",
+        "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\DependencyInjection\\DependencyInjection.csproj",
+        "packagesPath": "C:\\Users\\hzhu40\\.nuget\\packages\\",
+        "outputPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\DependencyInjection\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\2022软件\\vs2022\\VS共享工具组件SDK\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hzhu40\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -91,8 +91,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MileService\\MileService.csproj": {
-                "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MileService\\MileService.csproj"
+              "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MileService\\MileService.csproj": {
+                "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MileService\\MileService.csproj"
               }
             }
           }
@@ -128,24 +128,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj": {
+    "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
+        "projectUniqueName": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
         "projectName": "LogServices",
-        "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
-        "packagesPath": "C:\\Users\\zhu\\.nuget\\packages\\",
-        "outputPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\obj\\",
+        "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
+        "packagesPath": "C:\\Users\\hzhu40\\.nuget\\packages\\",
+        "outputPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\2022软件\\vs2022\\VS共享工具组件SDK\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hzhu40\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -193,24 +193,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MileService\\MileService.csproj": {
+    "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MileService\\MileService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MileService\\MileService.csproj",
+        "projectUniqueName": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MileService\\MileService.csproj",
         "projectName": "MileService",
-        "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MileService\\MileService.csproj",
-        "packagesPath": "C:\\Users\\zhu\\.nuget\\packages\\",
-        "outputPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MileService\\obj\\",
+        "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MileService\\MileService.csproj",
+        "packagesPath": "C:\\Users\\hzhu40\\.nuget\\packages\\",
+        "outputPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MileService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\2022软件\\vs2022\\VS共享工具组件SDK\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hzhu40\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -225,11 +225,11 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj": {
-                "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj"
+              "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj": {
+                "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\ConfigService\\ConfigService.csproj"
               },
-              "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj": {
-                "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj"
+              "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj": {
+                "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj"
               }
             }
           }
@@ -259,7 +259,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

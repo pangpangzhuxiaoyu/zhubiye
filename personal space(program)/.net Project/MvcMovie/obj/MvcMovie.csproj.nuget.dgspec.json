@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj": {}
+    "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj": {}
   },
   "projects": {
-    "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj": {
+    "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj",
+        "projectUniqueName": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj",
         "projectName": "MvcMovie",
-        "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj",
-        "packagesPath": "C:\\Users\\zhu\\.nuget\\packages\\",
-        "outputPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MvcMovie\\obj\\",
+        "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MvcMovie\\MvcMovie.csproj",
+        "packagesPath": "C:\\Users\\hzhu40\\.nuget\\packages\\",
+        "outputPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MvcMovie\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\2022软件\\vs2022\\VS共享工具组件SDK\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hzhu40\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -54,7 +54,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

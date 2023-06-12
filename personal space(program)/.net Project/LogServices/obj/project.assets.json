@@ -99,23 +99,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zhu\\.nuget\\packages\\": {},
-    "D:\\2022软件\\vs2022\\VS共享工具组件SDK\\NuGetPackages": {}
+    "C:\\Users\\hzhu40\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
+      "projectUniqueName": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
       "projectName": "LogServices",
-      "projectPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
-      "packagesPath": "C:\\Users\\zhu\\.nuget\\packages\\",
-      "outputPath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\LogServices\\obj\\",
+      "projectPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\LogServices.csproj",
+      "packagesPath": "C:\\Users\\hzhu40\\.nuget\\packages\\",
+      "outputPath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\LogServices\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\2022软件\\vs2022\\VS共享工具组件SDK\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hzhu40\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -163,7 +163,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
