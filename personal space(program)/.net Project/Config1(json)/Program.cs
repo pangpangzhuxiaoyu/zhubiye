@@ -16,10 +16,20 @@ namespace Config1_json_
             //Console.WriteLine($"{name},{hh}");
             //Console.ReadLine();
             #endregion
-
-
             ServiceCollection services = new ServiceCollection();
-            services.AddOptions().Configure<Config>();
+            services.AddScoped<DiRead>();
+            ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddJsonFile("config.json", optional: true, reloadOnChange: true);
+            IConfigurationRoot configurationRoot = configurationBuilder.Build();
+            services.AddOptions()
+                .Configure<Config>(e => configurationRoot.Bind(e));
+
+            using (var sp = services.BuildServiceProvider())
+            {
+                var c = sp.GetService<DiRead>();
+                c.Test();
+
+            }
 
 
 
@@ -33,20 +43,16 @@ namespace Config1_json_
 
     public class Config
     {
-        private string name;
+        public string Name { get; set; }
 
-        private int age;
+        public int Age { get; set; }
+        public Hh Hh { get; set; }
 
-        public string Name { get => name; set => name = value; }
-        public int Age { get => age; set => age = value; }
-
-        public class haha
-        {
-            private string cc;
-
-            public string Cc { get => cc; set => cc = value; }
-        }
-
+        //public hh hh { get => hh_; set => hh_ = value; }
+    }
+    public class Hh
+    {
+        public string Cc { get; set; }
 
     }
 }

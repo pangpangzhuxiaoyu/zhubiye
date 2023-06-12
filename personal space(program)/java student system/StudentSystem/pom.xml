@@ -102,7 +102,7 @@
     </dependency>
 
   </dependencies>
-  <build>
+ <!-- <build>
     <finalName>StudentSystem</finalName>
       <plugins>
         <plugin>
@@ -114,5 +114,5 @@
           </configuration>
         </plugin>
       </plugins>
-  </build>
+  </build>-->
 </project>

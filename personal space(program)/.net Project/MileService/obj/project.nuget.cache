@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "xoIds7JjwfQh5NRGXZpSIBNQbmDMJh0d65wr1gOZYuZS2sUnAG+2lJFcSChuyq3DUmKfSaNe/9K0Ty6z2IYo7Q==",
+  "dgSpecHash": "1mODQ07fsghOG8BlLzpRInR6qRmZiN4Afj/bpY+g2bVzKSJm/sAj3k3BiYQBA7rz0/1Qpm8cCLirGHZ0Mi572A==",
   "success": true,
-  "projectFilePath": "C:\\software-hezhu\\ZhuPersonGit\\personal space(program)\\.net Project\\MileService\\MileService.csproj",
+  "projectFilePath": "D:\\gitcode1\\zhubiye\\personal space(program)\\.net Project\\MileService\\MileService.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\hzhu40\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
-    "C:\\Users\\hzhu40\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+    "C:\\Users\\zhu\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\zhu\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }
