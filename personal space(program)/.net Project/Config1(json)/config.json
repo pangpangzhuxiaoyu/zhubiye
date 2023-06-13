@@ -1,5 +1,7 @@
 {
-  "Name": "zhuhe",
-  "Age": 13,
-  "Hh": { "Cc": "jinru!" }
+  Config :{
+    "Name": "zhuhe",
+    "Age": 13,
+    "Hh": { "Cc": "jinru!" }
+  }
 }

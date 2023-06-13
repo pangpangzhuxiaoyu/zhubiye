@@ -22,7 +22,7 @@ namespace Config1_json_
             configurationBuilder.AddJsonFile("config.json", optional: true, reloadOnChange: true);
             IConfigurationRoot configurationRoot = configurationBuilder.Build();
             services.AddOptions()
-                .Configure<Config>(e => configurationRoot.Bind(e));
+                .Configure<Config>(e => configurationRoot.GetSection("Config"));
 
             using (var sp = services.BuildServiceProvider())
             {
@@ -30,11 +30,6 @@ namespace Config1_json_
                 c.Test();
 
             }
-
-
-
-
-
 
         }
 
