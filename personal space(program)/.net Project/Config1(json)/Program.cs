@@ -19,7 +19,9 @@ namespace Config1_json_
             ServiceCollection services = new ServiceCollection();
             services.AddScoped<DiRead>();
             ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddJsonFile("config.json", optional: true, reloadOnChange: true);
+            //configurationBuilder.AddJsonFile("config.json", optional: true, reloadOnChange: true);
+            //configurationBuilder.AddEnvironmentVariables();
+            //configurationBuilder.AddCommandLine(args);
             IConfigurationRoot configurationRoot = configurationBuilder.Build();
             services.AddOptions()
                 .Configure<Config>(e => configurationRoot.GetSection("Config"));
