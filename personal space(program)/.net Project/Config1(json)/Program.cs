@@ -7,6 +7,17 @@ namespace Config1_json_
     {
         static void Main(string[] args)
         {
+            Target_1<int>((x, y) => { return x + y; }, 200, 300);
+            static void Target_1<T>(Func<T, T, T> func, T x, T y)
+            {
+                T res = func(x, y);
+                Console.WriteLine(res);
+                Console.ReadLine();
+            }
+
+        }
+        static void Main1(string[] args)
+        {
             #region 传统读取方法
             //ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
             //configurationBuilder.AddJsonFile("config.json",optional:true,reloadOnChange:true);

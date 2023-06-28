@@ -52,7 +52,7 @@ namespace DependencyInjection
                 var mailService = sp.GetRequiredService<IMailService>();
                 mailService.Send("Hello","he.zhu@dxc.com","welcome!");
             }
-            Console.ReadLine();
+            Console.ReadLine(); 
 
 
 
