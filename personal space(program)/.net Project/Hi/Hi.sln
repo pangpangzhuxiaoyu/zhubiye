@@ -25,11 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Config1(json)", "..\Config1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{55B7EFBD-D3BD-4C6A-81B4-382C70184289}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCLearning", "..\MVCLearning\MVCLearning.csproj", "{4DAC14DF-3915-49EA-911D-55343C939DA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCLearning", "..\MVCLearning\MVCLearning.csproj", "{4DAC14DF-3915-49EA-911D-55343C939DA5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{57251365-4ED0-417B-845A-1D78F1EC163C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi huo cache", "WebApi huo cache", "{57251365-4ED0-417B-845A-1D78F1EC163C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiLearn", "..\WebApiLearn\WebApiLearn.csproj", "{4A42601C-6885-4995-8693-D3CFF150F26A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiLearn", "..\WebApiLearn\WebApiLearn.csproj", "{4A42601C-6885-4995-8693-D3CFF150F26A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
