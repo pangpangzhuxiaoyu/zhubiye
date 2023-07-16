@@ -10,11 +10,11 @@ namespace WebApiLearn.Controllers
     public class TestController : ControllerBase
     {
         private readonly IMemoryCache memoryCache;
-        private readonly ILogger logger;
-        public TestController(IMemoryCache memoryCache, ILogger logger)
+        //private readonly ILogger logger;
+        public TestController(IMemoryCache memoryCache)
         {
             this.memoryCache = memoryCache;
-            this.logger = logger;
+            //this.logger = logger;
         }
 
         [HttpGet]
@@ -37,15 +37,16 @@ namespace WebApiLearn.Controllers
         [HttpGet]
         public async Task<ActionResult<string?>> GetString(int id) 
         {
-            logger.LogDebug($"开始执行，id：{id}");
+            Console.WriteLine($"开始执行，id：{id}");
             //key(去缓存中取数据，如果能去得到就继续，取不到就调用回调函数去数据库取数据)
             string? s= await memoryCache.GetOrCreateAsync("Hi" + id, async (e) =>
             {
-                logger.LogDebug($"缓存中未找到，执行回调函数，id：{id}");
-
+                Console.WriteLine($"缓存中未找到，执行回调函数，id：{id}");
+                //缓存有效时间为10s(这个是绝对过期时间还有滑动过期时间)
+                //e.AbsoluteExpirationRelativeToNow=TimeSpan.FromSeconds(10);
                 return await DbDatacs.GetByIdAsync(id);
             });
-            logger.LogDebug($"执行结束，数据：{s}");
+            Console.WriteLine($"执行结束，数据：{s}");
 
             if (s == null)
             {

@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi huo cache", "WebApi 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiLearn", "..\WebApiLearn\WebApiLearn.csproj", "{4A42601C-6885-4995-8693-D3CFF150F26A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redis", "..\..\..\..\..\之前的电脑备份\备份\.NET core\ASP.NET Core WebApi\Redis\Redis.csproj", "{2AAB2A29-B834-4D57-BB6C-98C5E12B393C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{4A42601C-6885-4995-8693-D3CFF150F26A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A42601C-6885-4995-8693-D3CFF150F26A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A42601C-6885-4995-8693-D3CFF150F26A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AAB2A29-B834-4D57-BB6C-98C5E12B393C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AAB2A29-B834-4D57-BB6C-98C5E12B393C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AAB2A29-B834-4D57-BB6C-98C5E12B393C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AAB2A29-B834-4D57-BB6C-98C5E12B393C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{1D7811A5-5E2B-4D79-BFDA-225F2F4B15A1} = {6D8DBCA2-8081-42DC-B5AE-294BC034ADFB}
 		{4DAC14DF-3915-49EA-911D-55343C939DA5} = {55B7EFBD-D3BD-4C6A-81B4-382C70184289}
 		{4A42601C-6885-4995-8693-D3CFF150F26A} = {57251365-4ED0-417B-845A-1D78F1EC163C}
+		{2AAB2A29-B834-4D57-BB6C-98C5E12B393C} = {57251365-4ED0-417B-845A-1D78F1EC163C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6312B2AF-1323-4968-B7BB-E853A5697DBB}
