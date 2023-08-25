@@ -184,9 +184,9 @@ internal class Program
         #region 线程协作(管程模式->生产者消费者)
         SynContainer syn = new SynContainer();
         Thread th1 = new Thread(new Productor(syn).Push);
+        th1.Start();
         Thread th2 = new Thread(new Customer(syn).Pop);
         th2.Start();
-        th1.Start();
 
         #endregion
 
@@ -204,46 +204,44 @@ internal class Program
         int count = 0;
         public void Push(Chicken chicken)
         {
+            Monitor.Enter(chickens);
             //如果容器满了，等待消费者消费
-            if (count == chicken.nums)
+            if (count == chickens.Count())
             {
-                lock (chickens)
-                {
-                    Monitor.Wait(chickens);
-                }
+               
+                Monitor.Wait(chickens);
+
             }
-            //没有满就加工产品
-            else
+            else //没有满就加工产品
             {
                 chickens[count] = chicken;
                 count++;
                 //加工后通知可以消费了
-                lock (chickens)
-                {
-                    Monitor.PulseAll(chickens);
-                }
+
+                Monitor.PulseAll(chickens);
+                
             }
+            //Monitor.Exit(chickens);
 
         }
         public Chicken Pop()
         {
+            
             //如果不能消费就等待
             if (count == 0)
             {
-                lock (chickens)
-                {
-                    Monitor.Wait(chickens);
-                }
+                
+                Monitor.Wait(chickens);
+
             }
             //如果可以消费
 
             count--;
             Chicken chicken = chickens[count];
             //消费完成通知生产者生产
-            lock (chickens)
-            {
-                Monitor.PulseAll(chickens);
-            }
+
+            Monitor.PulseAll(chickens);
+           // Monitor.Exit(chickens);
             return chicken;
 
 
@@ -256,10 +254,11 @@ internal class Program
     /// </summary>
     public class Chicken
     {
-        public int nums { get; set; }
-        public Chicken(int nums)
+        public int id;
+
+        public Chicken(int id)
         {
-            this.nums = nums;
+            this.id = id;
         }
     }
 
@@ -278,10 +277,11 @@ internal class Program
         /// </summary>
         public void Push()
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i < 100; i++)
             {
-                Console.WriteLine($"生产了{i}只鸡");
+                
                 synContainer.Push(new Chicken(i));
+                Console.WriteLine($"生{i}只鸡");
             }
         }
 
@@ -303,7 +303,7 @@ internal class Program
         {
             for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine($"消费了{synContainer.Pop().nums}只鸡");
+                Console.WriteLine($"消第{synContainer.Pop().id}只鸡");
             }
         }
 
