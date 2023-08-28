@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Transactions;
 using static DelegateTest;
+using static Program;
 
 internal class Program
 {
@@ -205,62 +206,63 @@ internal class Program
         public void Push(Chicken chicken)
         {
             Monitor.Enter(chickens);
-            //如果容器满了，等待消费者消费
-            if (count == chickens.Count())
+            try
             {
-               
-                Monitor.Wait(chickens);
+                //如果容器满了，等待消费者消费
+                if (count == chickens.Count())
+                {
 
-            }
-            else //没有满就加工产品
-            {
-                chickens[count] = chicken;
-                count++;
-                //加工后通知可以消费了
+                    Monitor.Wait(chickens);
 
-                Monitor.PulseAll(chickens);
-                
+                }
+                else //没有满就加工产品
+                {
+                    chickens[count] = chicken;
+                    count++;
+                    //加工后通知可以消费了
+
+                    Monitor.PulseAll(chickens);
+
+                }
             }
-            //Monitor.Exit(chickens);
+            finally { Monitor.Exit(chickens); }
+
 
         }
         public Chicken Pop()
         {
-            
-            //如果不能消费就等待
-            if (count == 0)
+            lock (chickens)
             {
-                
-                Monitor.Wait(chickens);
 
+                //Monitor.Enter(chickens);
+                //如果不能消费就等待
+                if (count == 0)
+                {
+
+                    Monitor.Wait(chickens);
+
+                }
+                //如果可以消费
+
+                count--;
+                Chicken chicken = chickens[count];
+                //消费完成通知生产者生产
+
+                Monitor.PulseAll(chickens);
+                // Monitor.Exit(chickens);
+                return chicken;
             }
-            //如果可以消费
 
-            count--;
-            Chicken chicken = chickens[count];
-            //消费完成通知生产者生产
 
-            Monitor.PulseAll(chickens);
-           // Monitor.Exit(chickens);
-            return chicken;
+
+
 
 
 
         }
 
     }
-    /// <summary>
-    /// 产品类
-    /// </summary>
-    public class Chicken
-    {
-        public int id;
 
-        public Chicken(int id)
-        {
-            this.id = id;
-        }
-    }
 
     /// <summary>
     /// 生产者
@@ -279,7 +281,7 @@ internal class Program
         {
             for (int i = 1; i < 100; i++)
             {
-                
+
                 synContainer.Push(new Chicken(i));
                 Console.WriteLine($"生{i}只鸡");
             }
@@ -307,6 +309,18 @@ internal class Program
             }
         }
 
+    }
+    /// <summary>
+    /// 产品类
+    /// </summary>
+    public class Chicken
+    {
+        public int id;
+
+        public Chicken(int id)
+        {
+            this.id = id;
+        }
     }
 
 
