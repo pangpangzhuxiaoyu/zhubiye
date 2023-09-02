@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Transactions;
 using static DelegateTest;
+using static Program;
 
 internal class Program
 {
@@ -12,7 +13,7 @@ internal class Program
     {
         #region 线程停止
         //MyThread my = new MyThread();
-        //Thread tr1 = new Thread(new ThreadStart(my.Run));
+        //Thread tr1 = new Thread(my.Run);
         //tr1.Start();
         //for (int i = 0; i < 1000; i++)
         //{
@@ -182,15 +183,18 @@ internal class Program
         #endregion
 
         #region 线程协作(管程模式->生产者消费者)
-        SynContainer syn = new SynContainer();
-        Thread th1 = new Thread(new Productor(syn).Push);
-        Thread th2 = new Thread(new Customer(syn).Pop);
-        th2.Start();
-        th1.Start();
+        //SynContainer syn = new SynContainer();
+        //Thread th1 = new(new Productor(syn).Push);
+        //th1.Start();
+        //Thread th2 = new(new Customer(syn).Pop);
+        //th2.Start();
 
         #endregion
 
+        #region 线程池
+        
 
+        #endregion
 
 
 
@@ -204,64 +208,60 @@ internal class Program
         int count = 0;
         public void Push(Chicken chicken)
         {
-            //如果容器满了，等待消费者消费
-            if (count == chicken.nums)
+            Monitor.Enter(chickens);
+            try
             {
-                lock (chickens)
+                //如果容器满了，等待消费者消费
+                if (count == chickens.Length)
                 {
+
                     Monitor.Wait(chickens);
+
                 }
-            }
-            //没有满就加工产品
-            else
-            {
+                //没有满就加工产品
+
                 chickens[count] = chicken;
                 count++;
                 //加工后通知可以消费了
-                lock (chickens)
-                {
-                    Monitor.PulseAll(chickens);
-                }
+
+                Monitor.PulseAll(chickens);
+
+                Console.WriteLine($"生{chicken.id}只鸡");
+
             }
+            finally { Monitor.Exit(chickens); }
+
 
         }
         public Chicken Pop()
         {
-            //如果不能消费就等待
-            if (count == 0)
+            try
             {
-                lock (chickens)
+                Monitor.Enter(chickens);
+                //如果不能消费就等待
+                if (count == 0)
                 {
+
                     Monitor.Wait(chickens);
+
                 }
-            }
-            //如果可以消费
+                //如果可以消费
 
-            count--;
-            Chicken chicken = chickens[count];
-            //消费完成通知生产者生产
-            lock (chickens)
-            {
+                count--;
+                Chicken chicken = chickens[count];
+                //消费完成通知生产者生产
+
                 Monitor.PulseAll(chickens);
+                // Monitor.Exit(chickens);
+                return chicken;
+
             }
-            return chicken;
-
-
+            finally { Monitor.Exit(chickens); }
 
         }
 
     }
-    /// <summary>
-    /// 产品类
-    /// </summary>
-    public class Chicken
-    {
-        public int nums { get; set; }
-        public Chicken(int nums)
-        {
-            this.nums = nums;
-        }
-    }
+
 
     /// <summary>
     /// 生产者
@@ -280,8 +280,9 @@ internal class Program
         {
             for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine($"生产了{i}只鸡");
+
                 synContainer.Push(new Chicken(i));
+                
             }
         }
 
@@ -303,10 +304,23 @@ internal class Program
         {
             for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine($"消费了{synContainer.Pop().nums}只鸡");
+                Chicken ch = synContainer.Pop();
+                Console.WriteLine($"消第{ch.id}只鸡");
             }
         }
 
+    }
+    /// <summary>
+    /// 产品类
+    /// </summary>
+    public class Chicken
+    {
+        public int id;
+
+        public Chicken(int id)
+        {
+            this.id = id;
+        }
     }
 
 
