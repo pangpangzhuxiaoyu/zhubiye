@@ -192,13 +192,72 @@ internal class Program
         #endregion
 
         #region 线程池
-        
+
 
         #endregion
+
+        ThreadDemoClass demoClass = new ThreadDemoClass();//实例化类的对象
+
+        //使用委托绑定线程池要执行的方法（无参数）
+        WaitCallback waitCallback1 = demoClass.Run1;
+        //将方法排入队列，在线程池变为可用时执行
+        ThreadPool.QueueUserWorkItem(waitCallback1);
+
+        //使用委托绑定线程池要执行的方法（有参数）
+        WaitCallback waitCallback2 = new WaitCallback(demoClass.Run1);
+        //将方法排入队列，在线程池变为可用时执行
+        ThreadPool.QueueUserWorkItem(waitCallback2, "张三");
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.Name = "李四";
+        userInfo.Age = 33;
+
+        //使用委托绑定线程池要执行的方法（有参数,自定义类型的参数）
+        WaitCallback waitCallback3 = new WaitCallback(demoClass.Run2);
+        //将方法排入队列，在线程池变为可用时执行
+        ThreadPool.QueueUserWorkItem(waitCallback3, userInfo);
+
+        Console.WriteLine();
+        Console.WriteLine("Main thread working...");
+        Console.WriteLine("Main thread ID is:" + Thread.CurrentThread.ManagedThreadId.ToString());
+        Console.ReadKey();
 
 
 
     }
+    #region temp
+    public class ThreadDemoClass
+    {
+        public void Run1(object obj)
+        {
+            string name = obj as string;
+
+            Console.WriteLine();
+            Console.WriteLine("Child thread working...");
+            Console.WriteLine("My name is " + name);
+            Console.WriteLine("Child thread ID is:" + Thread.CurrentThread.ManagedThreadId.ToString());
+        }
+
+        public void Run2(object obj)
+        {
+            UserInfo userInfo = (UserInfo)obj;
+
+            Console.WriteLine();
+            Console.WriteLine("Child thread working...");
+            Console.WriteLine("My name is " + userInfo.Name);
+            Console.WriteLine("I'm " + userInfo.Age + " years old this year");
+            Console.WriteLine("Child thread ID is:" + Thread.CurrentThread.ManagedThreadId.ToString());
+        }
+    }
+
+    public class UserInfo
+    {
+        public string Name { get; set; }
+
+        public int Age { get; set; }
+    }
+
+    #endregion
     /// <summary>
     /// 缓冲类
     /// </summary>
