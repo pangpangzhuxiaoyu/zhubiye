@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LogServices
 {
-    class ConsoleLogProvider : ILogProvider
+    public class ConsoleLogProvider : ILogProvider
     {
         public void LogError(string msg)
         {

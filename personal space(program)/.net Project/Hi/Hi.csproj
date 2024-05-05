@@ -29,6 +29,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0-preview.5.23302.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.5" />
   </ItemGroup>
 
 </Project>
